@@ -1,0 +1,20 @@
+<template name="adminNews">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <button class="new-blog btn pull-right">New Blog</button>
+    </div>
+  </div>
+  {{#if $.Session.get 'newBlog'}}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <i class="fa fa-close pull-right"></i>
+        {{> addNews}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#each blogs}}
+    {{> newsList}}
+  {{/each}}
+
+</template>
