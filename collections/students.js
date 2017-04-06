@@ -15,21 +15,31 @@ Students.allow({
 Students.attachSchema(new SimpleSchema({
   lastname: {
     type: String,
-    label: "*Last Name"
+    label: "*Last Name",
+    autoform: {
+      group: 'Basic Information'
+    }
   },
   middlename: {
     type: String,
     label: "Middle Name",
-    optional: true
+    optional: true,
+    autoform: {
+      group: 'Basic Information'
+    }
   },
   firstname: {
     type: String,
-    label: "*First Name"
+    label: "*First Name",
+    autoform: {
+      group: 'Basic Information'
+    }
   },
   sex: {
     type: String,
     label: "Gender",
     autoform: {
+      group: 'Basic Information',
       type: "select-radio",
       options: function() {return[{label:"Male",value:"Male"},{label:"Female",value:"Female"}]}
     }
@@ -46,7 +56,10 @@ Students.attachSchema(new SimpleSchema({
   },
   dob: {
     type: Date,
-    label: "Date of Birth"
+    label: "Date of Birth",
+    autoform: {
+      group: 'Basic Information'
+    }
   },
   telephone: {
     type: String,
