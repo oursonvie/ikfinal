@@ -11,3 +11,9 @@ Template.singleNews.helpers({
     return News.findOne();
   }
 });
+
+Template.singleNews.events({
+  'click .fa-chevron-left': function() {
+    window.history.back();
+  }
+})
