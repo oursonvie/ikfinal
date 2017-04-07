@@ -13,14 +13,14 @@ Students.allow({
 })
 
 Students.attachSchema(new SimpleSchema({
-  lastname: {
+  last_name: {
     type: String,
     label: "*Last Name",
     autoform: {
       group: 'Basic Information'
     }
   },
-  middlename: {
+  middle_name: {
     type: String,
     label: "Middle Name",
     optional: true,
@@ -28,20 +28,41 @@ Students.attachSchema(new SimpleSchema({
       group: 'Basic Information'
     }
   },
-  firstname: {
+  first_name: {
     type: String,
     label: "*First Name",
     autoform: {
       group: 'Basic Information'
     }
   },
-  sex: {
+  print_name: {
     type: String,
-    label: "Gender",
+    label: "*Print Name on Passport",
+    autoform: {
+      group: 'Basic Information'
+    }
+  },
+  gender: {
+    type: String,
+    label: "*Gender",
     autoform: {
       group: 'Basic Information',
-      type: "select-radio",
+      type: "select-radio-inline",
       options: function() {return[{label:"Male",value:"Male"},{label:"Female",value:"Female"}]}
+    }
+  },
+  date_of_birth: {
+    type: Date,
+    label: "*Date of Birth",
+    autoform: {
+      group: 'Basic Information'
+    }
+  },
+  telephone: {
+    type: String,
+    label: "*Telephone",
+    autoform: {
+      group: 'Basic Information'
     }
   },
   email: {
@@ -54,80 +75,109 @@ Students.attachSchema(new SimpleSchema({
       type: 'hidden'
     }
   },
-  dob: {
-    type: Date,
-    label: "Date of Birth",
-    autoform: {
-      group: 'Basic Information'
-    }
-  },
-  telephone: {
-    type: String,
-    label: "Telephone"
-  },
   country_of_birth: {
     type: String,
-    label: "Country of Birth",
+    label: "*Country of Birth",
     autoform: {
+      group: 'Citizenship',
       type: "select",
       options: function(){return CountryList()}
     }
   },
   country_of_citizenship: {
     type: String,
-    label: "Country of Citizenship",
+    label: "*Country of Citizenship",
     autoform: {
+      group: 'Citizenship',
       type: "select",
       options: function(){return CountryList()}
     }
   },
-  studentid: {
-    type: String,
-    label: "Student No."
-  },
   passport: {
     type: String,
-    label: "Passport No."
-  },
-  major: {
-    type: String,
-    label: "Major"
-  },
-  education_degree: {
-    type: String,
-    label: "Education Background",
+    label: "*Passport No.",
     autoform: {
+      group: 'Citizenship'
+    }
+  },
+  highest_education: {
+    type: String,
+    label: "*Highest Education",
+    autoform: {
+      group: 'Education History',
+      type: "select",
+      options: function(){return HEList()}
+    }
+  },
+  area_of_study: {
+    type: String,
+    label: "*Area of Study",
+    autoform: {
+      group: 'Education History',
+      type: "select",
+      options: function(){return AreaOfStudyList()}
+    }
+  },
+  name_of_institute: {
+    type: String,
+    label: "Name of Institute",
+    optional: true,
+    autoform: {
+      group: 'Education History'
+    }
+  },
+  university_name: {
+    type: String,
+    label: "*University Name",
+    autoform: {
+      group: 'Current Study'
+    }
+  },
+  studentid: {
+    type: String,
+    label: "*Student No.",
+    autoform: {
+      group: 'Current Study'
+    }
+  },
+  degree: {
+    type: String,
+    label: "*Degree",
+    autoform: {
+      group: 'Current Study',
       type: "select",
       options: function(){return DegreeList()}
     }
   },
-  education_name_of_school: {
+  major: {
     type: String,
-    label: "Name of Institute"
+    label: "*Major",
+    autoform: {
+      group: 'Current Study',
+      type: "select",
+      options: function(){return AreaOfStudyList()}
+    }
   },
   occupation: {
     type: String,
     label: "Occupation",
+    optional: true,
     autoform: {
+      group: 'Other',
       type: "select",
       options: function(){return OccupationList()}
     }
   },
-  graduationdate: {
-    type: Date,
-    label: "Expected Graduation Date"
-  },
-  degree: {
+  source: {
     type: String,
-    label: "Current Degree"
-  },
-  university: {
-    type: String,
-    label: "University"
-  },
-  department: {
-    type: String,
-    label: "Department"
+    label: "Where did you find us?",
+    optional: true,
+    autoform: {
+
+      group: 'Other',
+      type: "select-radio-inline",
+      options: function(){return WhereHeardUsList()}
+    }
   },
   enrollment: {
       type: Array,
