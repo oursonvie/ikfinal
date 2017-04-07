@@ -50,3 +50,6 @@ pfafman:filesaver
 # form DB
 aldeed:collection2-core
 aldeed:autoform
+
+# data visualization
+chart:chart
