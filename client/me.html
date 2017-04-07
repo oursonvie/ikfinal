@@ -1,9 +1,13 @@
 <template name="me">
-  {{#if profileNotExist}}
-    {{> quickForm collection="Students" id="insertStudentsForm" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" type="insert"}}
-  {{/if}}
+  {{#if Template.subscriptionsReady}}
+    {{#if profileNotExist}}
+      {{> quickForm collection="Students" id="insertStudentsForm" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" type="insert"}}
+    {{/if}}
 
-  {{#with student}}
-    {{> singleStudent}}
-  {{/with}}
+    {{#with student}}
+      {{> singleStudent}}
+    {{/with}}
+  {{else}}
+    <p>loading</p>
+  {{/if}}
 </template>

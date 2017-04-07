@@ -1,10 +1,6 @@
 <template name="MainLayout">
   {{> nav}}
     <div class="container">
-      {{#if Template.subscriptionsReady}}
-        {{> Template.dynamic template=main}}
-      {{else}}
-        <p>Loading</p>
-      {{/if}}
+      {{> Template.dynamic template=main}}
     </div>
 </template>
