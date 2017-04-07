@@ -17,5 +17,8 @@ Template.singleStudent.events({
   },
   "click .fa-times": function(event, template){
     Session.set('editMode', false);
+  },
+  "submit form": function(event, template) {
+    Session.set('editMode', false);
   }
 });

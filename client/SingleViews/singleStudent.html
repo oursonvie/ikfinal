@@ -35,28 +35,79 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
+        <h3 class="panel-title">Citizenship</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <b>Country of Birth: </b>{{country_of_birth}}
+          </div>
+          <div class="col-sm-4">
+            <b>Country of Citizenship: </b>{{country_of_citizenship}}
+          </div>
+          <div class="col-sm-4">
+            <b>Passport No.: </b>{{passport}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Current Study</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <b>University Name: </b>{{university_name}}
+          </div>
+          <div class="col-sm-6">
+            <b>Student No.: </b>{{studentid}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <b>Degree: </b>{{degree}}
+          </div>
+          <div class="col-sm-6">
+            <b>Major: </b>{{major}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
         <h3 class="panel-title">Education History</h3>
       </div>
       <div class="panel-body">
-        <dl class="dl-horizontal">
-          <div class="row">
-            <div class="col-sm-4">
-              <dt>Last Name</dt>
-              <dd>{{last_name}}</dd>
-            </div>
-            <div class="col-sm-4">
-              <dt>Last Name</dt>
-              <dd>{{last_name}}</dd>
-            </div>
-            <div class="col-sm-4">
-              <dt>Last Name</dt>
-              <dd>{{last_name}}</dd>
-            </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <b>Highest Education: </b>{{highest_education}}
           </div>
+          <div class="col-sm-4">
+            <b>Area of Study: </b>{{area_of_study}}
+          </div>
+          <div class="col-sm-4">
+            <b>Name of Institute: </b>{{name_of_institute}}
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-
-        </dl>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Other</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <b>Occupation: </b>{{occupation}}
+          </div>
+          <div class="col-sm-6">
+            <b>Where did you find us? </b>{{source}}
+          </div>
+        </div>
       </div>
     </div>
 
