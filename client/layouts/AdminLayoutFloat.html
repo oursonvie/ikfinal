@@ -1,0 +1,8 @@
+<template name="AdminLayoutFloat">
+  {{#if isInRole 'admin'}}
+    {{> adminNav}}
+      {{> Template.dynamic template=main}}
+  {{else}}
+    {{> error}}
+  {{/if}}
+</template>
