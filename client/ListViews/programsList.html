@@ -1,31 +1,43 @@
 <template name="programsList">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><a href="/program/{{_id}}">{{subject}}</a></h3>
+
+    <div class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><a href="/program/{{_id}}">{{subject}}</a></h4>
+
+      {{#if isInRole 'admin'}}
+      <div class="btn-group pull-right">
+        <button class="btn btn-default btn-sm btn-edit">Edit</button>
+      </div>
+      {{else}}
+        <div class="btn-group pull-right">
+          <button class="btn btn-primary btn-sm btn-enroll">Enroll</button>
+        </div>
+      {{/if}}
     </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-sm-6">
-          <b>Start Date: </b>{{formatDate start_date}}
+    {{#if editProgram}}
+      <div class="container-fluid">
+        {{> quickForm collection="Programs" id=updateProgramId type="update" doc=this label-class="col-xs-3" input-col-class="col-xs-3"}}
+      </div>
+    {{else}}
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <b>Start Date: </b>{{formatDate start_date}}
+          </div>
+          <div class="col-sm-6">
+            <b>End Date: </b>{{formatDate end_date}}
+          </div>
         </div>
-        <div class="col-sm-6">
-          <b>End Date: </b>{{formatDate end_date}}
+        <div class="row">
+          <div class="col-sm-6">
+            <b>Address: </b>{{address}}
+          </div>
+          <div class="col-sm-6">
+            <b>Class Size: </b>{{size}}
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <b>Address: </b>{{address}}
-        </div>
-        <div class="col-sm-6">
-          <b>Class Size: </b>{{size}}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <button class="btn btn-primary">Edit</button>
-        </div>
-      </div>
-    </div>
-    <div class="panel-footer">Created at:{{createdAt}}</div>
+      <div class="panel-footer">Created at:{{createdAt}}</div>
+    {{/if}}
   </div>
 </template>
