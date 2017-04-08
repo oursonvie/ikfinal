@@ -1,0 +1,29 @@
+<template name="singleAdmin">
+  {{#if editMode}}
+    {{> quickForm collection="Admins" doc=this id="updateAdminsForm" type="update"}}
+  {{else}}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Admin Profile</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <b>Name: </b>{{name}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <b>Telephone: </b>telephone
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <b>Email: </b>{{email}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-edit">Edit</button>
+  {{/if}}
+</template>

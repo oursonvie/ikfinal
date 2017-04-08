@@ -19,9 +19,3 @@ Template.me.helpers({
     return Students.findOne();
   }
 });
-
-Template.me.events({
-  "click #foo": function(event, template){
-
-  }
-});

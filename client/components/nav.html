@@ -16,10 +16,17 @@
           <li role="presentation" class={{isActiveRoute 'program'}}><a href="/program">Program</a></li>
 
           {{#if currentUser }}
-            <li role="presentation" class={{isActiveRoute 'me'}}><a href="/me">Me</a></li>
+            {{#if isInRole 'admin'}}
+
+            {{else}}
+              <li role="presentation" class={{isActiveRoute 'me'}}><a href="/me">Me</a></li>
+            {{/if}}
           {{/if}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {{#if isInRole 'admin'}}
+            <li role="presentation" class='changeView'><a href="/admin">Dashboard</a></li>
+          {{/if}}
             {{> loginButtons}}
         </ul>
     </div>
