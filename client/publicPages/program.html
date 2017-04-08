@@ -1,0 +1,9 @@
+<template name="program">
+  {{#if Template.subscriptionsReady}}
+    {{#each programs}}
+      {{> programsList}}
+    {{/each}}
+  {{else}}
+    <p>Loading</p>
+  {{/if}}
+</template>
