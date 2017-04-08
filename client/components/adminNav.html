@@ -1,5 +1,4 @@
 <template name="adminNav">
-
   <div class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
     <div class="navbar-header">
@@ -14,7 +13,9 @@
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li role="presentation" class={{isActiveRoute 'adminNews'}}><a href="/admin/news">News</a></li>
-          <li role="presentation" class={{isActiveRoute 'program'}}><a href="admin/program">Program</a></li>
+
+          <li role="presentation" class={{isActiveRoute 'program'}}><a href="/admin/program">Program</a></li>
+
           <li role="presentation" class={{isActiveRoute 'home'}}><a href="/admin/me">Me</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

@@ -1,5 +1,5 @@
 <template name="singleAdmin">
-  {{#if editMode}}
+  {{#if editAdminMe}}
     {{> quickForm collection="Admins" doc=this id="updateAdminsForm" type="update"}}
   {{else}}
     <div class="panel panel-default">

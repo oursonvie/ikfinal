@@ -1,24 +1,24 @@
 Template.singleAdmin.onCreated(function() {
-  Session.set('editMode', false);
+  Session.set('editAdminMe', false);
 });
 
 Template.singleAdmin.helpers({
   formatDate: function(date) {
     return moment().format('YYYY-MM-DD');
   },
-  editMode: function() {
-    return Session.get('editMode');
+  editAdminMe: function() {
+    return Session.get('editAdminMe');
   }
 });
 
 Template.singleAdmin.events({
   "click .btn-edit": function(event, template){
-    Session.set('editMode', true);
+    Session.set('editAdminMe', true);
   },
   "click .fa-times": function(event, template){
-    Session.set('editMode', false);
+    Session.set('editAdminMe', false);
   },
   "submit form": function(event, template) {
-    Session.set('editMode', false);
+    Session.set('editAdminMe', false);
   }
 });

@@ -1,0 +1,19 @@
+<template name="adminProgram">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <button class="new-program btn pull-right">New Program</button>
+    </div>
+  </div>
+  {{#if $.Session.get 'newProgram'}}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <i class="fa fa-close pull-right"></i>
+        {{> addProgram}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#each programs}}
+    {{> programsList}}
+  {{/each}}
+</template>

@@ -1,5 +1,5 @@
 <template name="singleStudent">
-  {{#if editMode}}
+  {{#if editMe}}
     <i class="fa fa-times pull-right"></i>
     {{> quickForm collection="Students" doc=this id="updateStudentsForm" type="update"}}
   {{else}}
