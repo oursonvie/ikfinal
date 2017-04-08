@@ -15,6 +15,13 @@ Template.programsList.helpers({
   enrolled: function() {
     var enrollmentList = Students.findOne().enrollment;
     return enrollmentList.includes(this._id);
+  },
+  numberEnrolled: function() {
+    if (Programs.findOne({_id:this._id}).student == undefined) {
+      return 0;
+    } else {
+      return Programs.findOne({_id:this._id}).student.length;
+    }
   }
 });
 

@@ -50,7 +50,6 @@ pfafman:filesaver
 # form DB
 aldeed:collection2-core
 aldeed:autoform
-meteorhacks:aggregate
 
 # data visualization
 chart:chart
