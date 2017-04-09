@@ -13,7 +13,9 @@
     </div>
   {{/if}}
 
-  {{#each programs}}
-    {{> programsList}}
-  {{/each}}
+  {{#if Template.subscriptionsReady}}
+    {{#each programs}}
+      {{> adminProgramsList}}
+    {{/each}}
+  {{/if}}
 </template>
