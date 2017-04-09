@@ -8,8 +8,14 @@
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
       <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><a href="/program/{{_id}}">{{subject}}</a></h4>
-      <div class="btn-group pull-right btn-download">
-        <button class="btn btn-default btn-sm btn-edit">Download</button>
+      <div class="btn-group pull-right">
+
+        <label class="btn btn-default btn-sm btn-file">
+    Upload <input type="file" id="hiddenUpload" style="display: none;">
+        </label>
+
+        <button class="btn btn-default btn-sm btn-import">Import</button>
+        <button class="btn btn-default btn-sm btn-download">Download</button>
       </div>
     </div>
     <div class="panel-body">

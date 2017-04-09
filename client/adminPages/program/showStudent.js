@@ -33,5 +33,42 @@ Template.showStudent.events({
                 saveAs(blob, nameFile);
             }
         });
+    },
+    'click .btn-import': function() {
+      console.log(123);
+    },
+    'change #hiddenUpload': function(event, template){
+    var filesList = event.currentTarget.files;
+    if (filesList.length) {
+      console.log('filesList', filesList);
+
+      var file = filesList[0];
+      console.log('file', file);
+
+      if (file.type === 'text/csv') {
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+          var papaObject = CSV.parse(fileReader.result,{header: true});
+          console.log('papaObject', papaObject);
+
+          if (papaObject.data) {
+            Meteor.call('insertStudents'){
+
+            }
+            var data = papaObject.data;
+            for (i=0;i<data.length;i++) {
+              var id = Students.insert(data[i]);
+              console.log(id);
+              var programId = FlowRouter.getParam('id');
+          }
+
+          Session.set('uploadedData', papaObject);
+        };
+        fileReader.onerror = function (e) {
+          throw 'Error reading CSV file';
+        };
+        fileReader.readAsText(file);
+      }
     }
+  }
 })
