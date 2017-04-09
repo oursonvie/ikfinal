@@ -40,26 +40,17 @@ Template.showStudent.events({
     'change #hiddenUpload': function(event, template){
     var filesList = event.currentTarget.files;
     if (filesList.length) {
-      console.log('filesList', filesList);
-
       var file = filesList[0];
-      console.log('file', file);
-
       if (file.type === 'text/csv') {
         var fileReader = new FileReader();
         fileReader.onload = function (e) {
           var papaObject = CSV.parse(fileReader.result,{header: true});
           console.log('papaObject', papaObject);
 
-          if (papaObject.data) {
-            Meteor.call('insertStudents'){
-
-            }
-            var data = papaObject.data;
-            for (i=0;i<data.length;i++) {
-              var id = Students.insert(data[i]);
-              console.log(id);
-              var programId = FlowRouter.getParam('id');
+          if (papaObject && papaObject.errors.length==0) {
+            Meteor.call('importStudent', papaObject.data, FlowRouter.getParam('id'))
+          } else {
+            throw papaObject.errors
           }
 
           Session.set('uploadedData', papaObject);

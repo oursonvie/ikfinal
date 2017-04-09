@@ -69,7 +69,12 @@ Students.attachSchema(new SimpleSchema({
     type: String,
     label: "Email",
     autoValue:function(){
-      return Meteor.user().emails[0].address
+      console.log(this.value, this.value != undefined)
+      if (this.value != undefined) {
+        return this.value
+      } else {
+        return Meteor.user().emails[0].address
+      }
     },
     autoform:{
       type: 'hidden'
@@ -200,6 +205,13 @@ Students.attachSchema(new SimpleSchema({
      autoform: {
        type: 'hidden'
      }
+  },
+  import:{
+    type: Boolean,
+    optional: true,
+    autoform: {
+      type:"hidden"
+    }
   },
   createdAt: {
     type: Date,
