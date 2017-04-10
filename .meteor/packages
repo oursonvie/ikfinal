@@ -43,6 +43,9 @@ momentjs:moment
 meteorhacks:kadira
 summernote:summernote
 
+## ip online status monitoring
+mizzao:user-status
+
 ## file handling
 clinical:csv
 pfafman:filesaver
