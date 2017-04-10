@@ -41,9 +41,6 @@ Template.showStudent.events({
             }
         });
     },
-    'click .btn-import': function() {
-      console.log(123);
-    },
     'change #hiddenUpload': function(event, template){
     var filesList = event.currentTarget.files;
     if (filesList.length) {

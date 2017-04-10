@@ -25,7 +25,10 @@ Template.adminProgramsList.events({
   'click .btn-edit': function(event, template) {
     template.editProgram.set(!template.editProgram.get());
   },
-  "submit form": function(event, template) {
+  'submit form': function(event, template) {
     template.editProgram.set(false);
+  },
+  'click .btn-duplicate': function(event, template) {
+    Meteor.call('duplicateProgram', this._id);
   }
 });

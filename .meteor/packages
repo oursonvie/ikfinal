@@ -46,6 +46,7 @@ summernote:summernote
 ## file handling
 clinical:csv
 pfafman:filesaver
+ostrio:files
 
 # form DB
 aldeed:collection2-core

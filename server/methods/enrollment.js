@@ -21,7 +21,6 @@ Meteor.methods({
         extendStudent['import'] = true;
         extendStudent['enrollment'] = [programId];
         var id = Students.insert(extendStudent);
-        console.log(id);
         resultPrograms = Programs.update({_id:programId},{$addToSet:{student:id}});
       }
   },
