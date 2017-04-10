@@ -3,13 +3,19 @@ Template.adminStudent.onCreated(function() {
     self.autorun(function() {
         self.subscribe('StudentsAll');
     });
-    Session.set('studentDetail', false);
+    Session.set('searchEmail', '');
 });
 
 
 Template.adminStudent.helpers({
   students: function() {
-    return Students.find({});
+    var searchEmail = Session.get('searchEmail');
+    if (searchEmail == '') {
+      return Students.find({});
+    } else {
+      return Students.find({email:searchEmail})
+    }
+
   },
   number: function(number) {
       return number + 1
@@ -28,7 +34,7 @@ Template.adminStudent.events({
     FlowRouter.go("/admin/student/" + this._id);
   },
   'click .btn-search': function() {
-    var a = $('#searchCrit').val()
-    console.log(a)
+    var searchValue = $('#searchCrit').val()
+    Session.set('searchEmail', searchValue);
   }
 });
