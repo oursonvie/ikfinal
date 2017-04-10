@@ -9,3 +9,7 @@ Meteor.publish('StudentsAll', function() {
 Meteor.publish('StudentsHasProgram', function(programId) {
   return Students.find({enrollment:programId});
 });
+
+Meteor.publish('StudentDetail', function(id) {
+  return Students.find({_id:id});
+});

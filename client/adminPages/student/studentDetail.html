@@ -1,0 +1,121 @@
+<template name="studentDetail">
+  <div class="row">
+    <i class="fa fa-chevron-left"></i>
+    <hr>
+  </div>
+ {{#with student}}
+ <div class="panel panel-default">
+   <div class="panel-heading clearfix">
+     <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Basic Information</h4>
+     <div class="btn-group pull-right">
+       <button class="btn btn-default btn-sm btn-detail">Detail</button>
+     </div>
+   </div>
+   <div class="panel-body">
+     <div class="row">
+       <div class="col-sm-4">
+         <b>First Name: </b>{{first_name}}
+       </div>
+       <div class="col-sm-4">
+         <b>Last Name: </b>{{last_name}}
+       </div>
+       <div class="col-sm-4">
+         <b>Print Name: </b>{{print_name}}
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-sm-4">
+         <b>Gender: </b>{{gender}}
+       </div>
+       <div class="col-sm-4">
+         <b>Date of Birth: </b>{{formatDate date_of_birth}}
+       </div>
+       <div class="col-sm-4">
+         <b>Telephone: </b>{{telephone}}
+       </div>
+     </div>
+   </div>
+ </div>
+
+  {{#if showDetail}}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Citizenship</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-4">
+          <b>Country of Birth: </b>{{country_of_birth}}
+        </div>
+        <div class="col-sm-4">
+          <b>Country of Citizenship: </b>{{country_of_citizenship}}
+        </div>
+        <div class="col-sm-4">
+          <b>Passport No: </b>{{passport}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Current Study</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <b>University Name: </b>{{university_name}}
+        </div>
+        <div class="col-sm-6">
+          <b>Student No: </b>{{studentid}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <b>Degree: </b>{{degree}}
+        </div>
+        <div class="col-sm-6">
+          <b>Major: </b>{{major}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Education History</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-4">
+          <b>Highest Education: </b>{{highest_education}}
+        </div>
+        <div class="col-sm-4">
+          <b>Area of Study: </b>{{area_of_study}}
+        </div>
+        <div class="col-sm-4">
+          <b>Name of Institute: </b>{{name_of_institute}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Other</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <b>Occupation: </b>{{occupation}}
+        </div>
+        <div class="col-sm-6">
+          <b>Where did you find us? </b>{{source}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+ {{/with}}
+
+</template>

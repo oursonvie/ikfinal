@@ -69,7 +69,6 @@ Students.attachSchema(new SimpleSchema({
     type: String,
     label: "Email",
     autoValue:function(){
-      console.log(this.value, this.value != undefined)
       if (this.value != undefined) {
         return this.value
       } else {

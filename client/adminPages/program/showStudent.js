@@ -17,6 +17,13 @@ Template.showStudent.helpers({
     },
     number: function(number) {
         return number + 1
+    },
+    importStudent: function() {
+      if (Students.findOne({_id:this._id}).import != true) {
+        return false
+      } else {
+        return true
+      }
     }
 });
 
@@ -61,5 +68,8 @@ Template.showStudent.events({
         fileReader.readAsText(file);
       }
     }
+  },
+  'click tr': function(template) {
+    FlowRouter.go("/admin/student/" + this._id);
   }
 })

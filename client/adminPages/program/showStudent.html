@@ -29,7 +29,7 @@
           </tr>
               {{#each students}}
                 <tr>
-                  <td>{{number @index}}</td>
+                  <td>{{#if importStudent}}<i class="fa fa-flag"></i>{{/if}} {{number @index}}</td>
                   <td>{{last_name}}</td>
                   <td>{{first_name}}</td>
                   <td>{{email}}</td>
