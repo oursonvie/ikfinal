@@ -46,7 +46,8 @@ summernote:summernote
 ## file handling
 clinical:csv
 pfafman:filesaver
-ostrio:files
+cfs:standard-packages
+cfs:filesystem
 
 # form DB
 aldeed:collection2-core
