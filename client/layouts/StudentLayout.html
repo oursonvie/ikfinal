@@ -2,6 +2,7 @@
   {{> nav}}
   {{#if currentUser}}
     <div class="container">
+        {{> verifiedwarning}}
         {{> Template.dynamic template=main}}
     </div>
   {{else}}
