@@ -7,7 +7,12 @@ Template.users.onCreated(function() {
 
 Template.users.helpers({
   users: function() {
-    return Meteor.users.find({})
+    var searchEmail = Session.get('searchEmail');
+    if (searchEmail == '') {
+      return Meteor.users.find({});
+    } else {
+      return Meteor.users.find({"emails.address": searchEmail});
+    }
   },
   number: function(number) {
       return number + 1
@@ -24,5 +29,9 @@ Template.users.helpers({
 Template.users.events({
   'click .btn-makeadmin': function(event, template) {
     Meteor.call('makeAdmin', this._id);
+  },
+  'click .btn-search': function() {
+    var searchValue = $('#searchCrit').val()
+    Session.set('searchEmail', searchValue);
   }
 })

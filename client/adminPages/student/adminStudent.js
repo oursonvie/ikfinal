@@ -15,7 +15,6 @@ Template.adminStudent.helpers({
     } else {
       return Students.find({email:searchEmail})
     }
-
   },
   number: function(number) {
       return number + 1
