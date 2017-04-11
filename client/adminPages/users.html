@@ -19,6 +19,7 @@
           <tr>
             <th>#</th>
             <th>UserId</th>
+            <th>StudentId</th>
             <th>Email</th>
             <th>verified</th>
             <th>Roles</th>
@@ -29,6 +30,7 @@
                  <tr>
                    <td>{{number @index}}</td>
                    <td>{{_id}}</td>
+                   <td>{{profile.studentId}}</td>
                    {{#each emails}}
                      <td>{{address}}</td>
                      <td>{{verified}}</td>
