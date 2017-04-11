@@ -22,7 +22,8 @@
             <th>Email</th>
             <th>verified</th>
             <th>Roles</th>
-            <th></th>
+            <th>Action</th>
+            <th>Online Status</th>
           </tr>
               {{#each users}}
                  <tr>
@@ -35,11 +36,17 @@
                    {{#if isAdmin}}
                      {{#each roles}}
                         <td>{{this}}</td>
+                        <td></td>
                      {{/each}}
                    {{else}}
-                        <td>not Admin</td>
-                        <buton class="btn btn-primary btn-makeadmin">Add Admin</buton>
+                        <td>null</td>
+                        <buton class="btn btn-primary btn-makeadmin btn-sm">Add Admin</buton>
                    {{/if}}
+                    {{#if ifOnline}}
+                      <td align="center"><i class="fa fa-power-off fa-2x" style="color:green"></i></td>
+                    {{else}}
+                      <td align="center"><i class="fa fa-power-off fa-2x"></i></td>
+                    {{/if}}
                  </tr>
                {{else}}
               {{/each}}

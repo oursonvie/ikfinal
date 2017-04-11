@@ -9,5 +9,12 @@ Template.me.onCreated(function() {
 Template.me.helpers({
   student: function() {
     return Students.findOne();
+  },
+  profileNotExist: function() {
+    if (Students.findOne() == undefined) {
+      return true
+    } else {
+      return false
+    }
   }
 });

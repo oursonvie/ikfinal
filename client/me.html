@@ -2,12 +2,12 @@
   {{#if Template.subscriptionsReady}}
     {{#if profileNotExist}}
       {{> quickForm collection="Students" id="insertStudentsForm" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" type="insert"}}
+    {{else}}
+      {{#with student}}
+        {{> myForm}}
+        {{> singleStudent}}
+      {{/with}}
     {{/if}}
-
-    {{#with student}}
-      {{> myForm}}
-      {{> singleStudent}}
-    {{/with}}
   {{else}}
     <p>loading</p>
   {{/if}}

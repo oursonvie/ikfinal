@@ -18,11 +18,14 @@ Template.users.helpers({
       return number + 1
   },
   isAdmin: function() {
-    if (Meteor.users.findOne({_id:this._id}).roles != undefined) {
-      return Meteor.users.findOne({_id:this._id}).roles.includes('admin');
+    if (this.roles != undefined) {
+      return this.roles.includes('admin');
     } else {
       return false
     }
+  },
+  ifOnline: function() {
+    return this.status.online
   }
 })
 

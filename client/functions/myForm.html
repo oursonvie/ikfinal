@@ -1,0 +1,17 @@
+<template name="myForm">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Profile Photo</h3>
+    </div>
+    <div class="panel-body">
+      {{#if profileNotExist}}
+        {{#with profileImg}}
+          <img src="{{this.url}}" class="img-responsive profile-photo center-block" alt="Profile image">
+        {{/with}}
+        <input type="file" name="…" class="myFileInput">
+      {{else}}
+        <input type="file" name="…" class="myFileInput">
+      {{/if}}
+    </div>
+  </div>
+</template>
