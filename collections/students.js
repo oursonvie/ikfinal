@@ -212,6 +212,13 @@ Students.attachSchema(new SimpleSchema({
       type:"hidden"
     }
   },
+  profile_image:{
+    type: String,
+    optional: true,
+    autoform: {
+      type:"hidden"
+    }
+  },
   createdAt: {
     type: Date,
     autoValue:function(){

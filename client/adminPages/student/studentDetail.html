@@ -4,38 +4,53 @@
     <hr>
   </div>
  {{#with student}}
- <div class="panel panel-default">
-   <div class="panel-heading clearfix">
-     <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Basic Information</h4>
-     <div class="btn-group pull-right">
-       <button class="btn btn-default btn-sm btn-detail">Detail</button>
+ <div class="row">
+   <div class="col-sm-3">
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Profile Photo</h3>
+      </div>
+      <div class="panel-body">
+          <img src="{{profile.url}}" class="img-responsive profile-photo center-block" alt="Profile image">
+      </div>
+    </div>
+  </div>
+
+   <div class="col-sm-9">
+     <div class="panel panel-default">
+       <div class="panel-heading clearfix">
+         <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Basic Information</h4>
+         <div class="btn-group pull-right">
+           <button class="btn btn-default btn-sm btn-detail">Detail</button>
+         </div>
+       </div>
+       <div class="panel-body">
+         <div class="row">
+           <div class="col-sm-4">
+             <b>First Name: </b>{{first_name}}
+           </div>
+           <div class="col-sm-4">
+             <b>Last Name: </b>{{last_name}}
+           </div>
+           <div class="col-sm-4">
+             <b>Print Name: </b>{{print_name}}
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-sm-4">
+             <b>Gender: </b>{{gender}}
+           </div>
+           <div class="col-sm-4">
+             <b>Date of Birth: </b>{{formatDate date_of_birth}}
+           </div>
+           <div class="col-sm-4">
+             <b>Telephone: </b>{{telephone}}
+           </div>
+         </div>
+       </div>
      </div>
    </div>
-   <div class="panel-body">
-     <div class="row">
-       <div class="col-sm-4">
-         <b>First Name: </b>{{first_name}}
-       </div>
-       <div class="col-sm-4">
-         <b>Last Name: </b>{{last_name}}
-       </div>
-       <div class="col-sm-4">
-         <b>Print Name: </b>{{print_name}}
-       </div>
-     </div>
-     <div class="row">
-       <div class="col-sm-4">
-         <b>Gender: </b>{{gender}}
-       </div>
-       <div class="col-sm-4">
-         <b>Date of Birth: </b>{{formatDate date_of_birth}}
-       </div>
-       <div class="col-sm-4">
-         <b>Telephone: </b>{{telephone}}
-       </div>
-     </div>
-   </div>
- </div>
+  </div>
 
   {{#if showDetail}}
   <div class="panel panel-default">
