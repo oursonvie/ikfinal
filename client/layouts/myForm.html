@@ -1,4 +1,10 @@
 <template name="myForm">
-  <input type="file" name="…" class="myFileInput">
-  <img src="{{profileImg}}" alt="ProfileImg">
+  {{#if profileNotExist}}
+    {{#with profileImg}}
+      <img src="{{this.url}}" class="img-responsive profile-photo" alt="Profile image">
+    {{/with}}
+    <input type="file" name="…" class="myFileInput">
+  {{else}}
+    <input type="file" name="…" class="myFileInput">
+  {{/if}}
 </template>

@@ -1,7 +1,23 @@
+Template.myForm.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+      var id = Meteor.user().profile.image;
+      self.subscribe('images', id);
+    });
+});
+
 Template.myForm.helpers({
   profileImg: function() {
-    return Meteor.user().profile.image;
-  }
+    return Images.findOne();
+  },
+  profileNotExist: function() {
+    if (Images.findOne() == undefined) {
+      return false
+    }
+    else {
+      return true
+    }
+  },
 })
 
 Template.myForm.events({
@@ -13,9 +29,9 @@ Template.myForm.events({
           console.log(err);
         } else {
           var userId = Meteor.userId();
-          var imagesURL = {"profile.image":"/cfs/files/images/" + fileObj._id}
+          var imagesURL = {"profile.image": fileObj._id};
+          Meteor.users.update(userId, {$set: imagesURL});
         }
-        Meteor.users.update(userId, {$set: imagesURL});
       });
     }
   }

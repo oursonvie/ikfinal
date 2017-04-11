@@ -7,14 +7,6 @@ Template.me.onCreated(function() {
 
 
 Template.me.helpers({
-  profileNotExist: function() {
-    if (Students.find().count() == 0) {
-      return true
-    }
-    else {
-      return false
-    }
-  },
   student: function() {
     return Students.findOne();
   }
