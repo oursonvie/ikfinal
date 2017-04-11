@@ -24,4 +24,8 @@ Meteor.methods({
         resultPrograms = Programs.update({_id:programId},{$addToSet:{student:id}});
       }
   },
+  duplicateProgram(id) {
+    var copy = Programs.findOne({_id:id},{fields:{_id:0, student:0}})
+    Programs.insert(copy)
+  }
 });

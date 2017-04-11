@@ -5,16 +5,7 @@
   </div>
  {{#with student}}
  <div class="row">
-   <div class="col-sm-3">
-     <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Profile Photo</h3>
-      </div>
-      <div class="panel-body">
-          <img src="{{profile.url}}" class="img-responsive profile-photo center-block" alt="Profile image">
-      </div>
-    </div>
-  </div>
+    {{> profilePhoto}}
 
    <div class="col-sm-9">
      <div class="panel panel-default">

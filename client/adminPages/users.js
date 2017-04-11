@@ -3,6 +3,7 @@ Template.users.onCreated(function() {
     self.autorun(function() {
         self.subscribe('allUsers',Meteor.userId());
     });
+    Session.set('searchEmail','');
 });
 
 Template.users.helpers({
