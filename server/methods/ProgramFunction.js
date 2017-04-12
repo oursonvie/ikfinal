@@ -15,12 +15,31 @@ Meteor.methods({
     }
   },
   importStudent(data, programId) {
+      var insertHistory = [];
+      var errorStop = false;
+
       for (i=0;i<data.length;i++){
+        // init data and add import tag and enrollment status
         var extendStudent = data[i];
-        // add import tag and enrollment status
         extendStudent['import'] = true;
         extendStudent['enrollment'] = [programId];
-        var id = Students.insert(extendStudent);
+
+        if (errorStop === true) {
+          console.log(insertHistory, i);
+          for (i=0;i<insertHistory.length;i++) {
+            var result = Students.remove({_id:insertHistory[i]});
+          }
+          break;
+        } else {
+          var id = Students.insert(extendStudent, function(err,res) {
+            if (err) {
+              errorStop = true;
+            }
+            else {
+              insertHistory.push(id);
+            }
+          });
+        }
         resultPrograms = Programs.update({_id:programId},{$addToSet:{student:id}});
       }
   },
