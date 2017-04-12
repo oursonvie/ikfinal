@@ -27,13 +27,24 @@
             <th>Telephone</th>
           </tr>
               {{#each students}}
-                <tr>
-                  <td>{{#if importStudent}}<i class="fa fa-flag"></i>{{/if}} {{number @index}}</td>
-                  <td>{{last_name}}</td>
-                  <td>{{first_name}}</td>
-                  <td>{{email}}</td>
-                  <td>{{telephone}}</td>
-                </tr>
+                {{#if importStudent}}
+                  <tr class="danger">
+                    <td>{{number @index}}</td>
+                    <td>{{last_name}}</td>
+                    <td>{{first_name}}</td>
+                    <td>{{email}}</td>
+                    <td>{{telephone}}</td>
+                  </tr>
+                {{else}}
+                  <tr class="success">
+                    <td>{{number @index}}</td>
+                    <td>{{last_name}}</td>
+                    <td>{{first_name}}</td>
+                    <td>{{email}}</td>
+                    <td>{{telephone}}</td>
+                  </tr>
+                {{/if}}
+
               {{/each}}
         </tbody>
       </table>
