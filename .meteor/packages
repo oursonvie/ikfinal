@@ -55,6 +55,8 @@ cfs:filesystem
 # form DB
 aldeed:collection2-core
 aldeed:autoform
+aldeed:autoform-bs-datepicker
+rajit:bootstrap3-datepicker
 
 # data visualization
 chart:chart

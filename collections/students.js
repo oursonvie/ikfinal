@@ -33,8 +33,11 @@ Students.attachSchema(new SimpleSchema({
     type: String,
     label: "*Date of Birth",
     autoform: {
-      type:'date',
-      group: 'Basic Information'
+      group: 'Basic Information',
+      type: "bootstrap-datepicker",
+      datePickerOptions: {
+        autoclose: true
+      }
     }
   },
   telephone: {
