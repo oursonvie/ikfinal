@@ -34,6 +34,8 @@ Template.programsList.events({
             Meteor.call('enrollProgram', this._id, Meteor.userId(), function(err, res) {
                 if (res == 1) {
                     Bert.alert('You need to fill in your information before enroll in any program', 'danger', 'growl-top-right');
+                } else if (res == 2) {
+                    Bert.alert('You need upload a profile photo', 'danger', 'growl-top-right');
                 } else {
                     Bert.alert('Program Enrolled', 'success', 'growl-top-right');
                 }

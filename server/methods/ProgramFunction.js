@@ -4,8 +4,9 @@ Meteor.methods({
 
     if (studentInfo == 0) {
       return 1
-    }
-    else {
+    } else if (Students.findOne({userId:userId}).profile_image == undefined) {
+      return 2
+    } else {
       var studentId = Students.findOne({userId:userId})._id;
       //add program to student, not the otherway around
       resultStudents = Students.update({_id:studentId},{$addToSet:{enrollment:programId}});
