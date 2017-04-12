@@ -17,8 +17,8 @@
        <tbody>
          <tr>
            <th>#</th>
-           <th>Last Name</th>
-           <th>First Name</th>
+           <th>Name</th>
+           <th>Gender</th>
            <th>Email</th>
            <th>Telephone</th>
          </tr>
@@ -26,16 +26,16 @@
               {{#if importStudent}}
                 <tr class="danger">
                   <td>{{number @index}}</td>
-                  <td>{{last_name}}</td>
-                  <td>{{first_name}}</td>
+                  <td>{{full_name}}</td>
+                  <td>{{gender}}</td>
                   <td>{{email}}</td>
                   <td>{{telephone}}</td>
                 </tr>
               {{else}}
                 <tr class="success">
                   <td>{{number @index}}</td>
-                  <td>{{last_name}}</td>
-                  <td>{{first_name}}</td>
+                  <td>{{full_name}}</td>
+                  <td>{{gender}}</td>
                   <td>{{email}}</td>
                   <td>{{telephone}}</td>
                 </tr>

@@ -13,9 +13,6 @@ Template.studentDetail.helpers({
   },
   showDetail: function() {
     return Session.get('studentDetail');
-  },
-  formatDate: function(date) {
-    return moment().format('YYYY-MM-DD');
   }
 });
 

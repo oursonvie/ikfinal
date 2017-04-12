@@ -48,7 +48,10 @@ Template.showStudent.events({
       if (file.type === 'text/csv') {
         var fileReader = new FileReader();
         fileReader.onload = function (e) {
-          var papaObject = CSV.parse(fileReader.result,{header: true});
+          var papaObject = CSV.parse(fileReader.result,{
+            header: true,
+            encoding: "UTF-8"
+          });
           console.log('papaObject', papaObject);
 
           if (papaObject && papaObject.errors.length==0) {

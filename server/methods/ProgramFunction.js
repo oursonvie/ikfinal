@@ -24,6 +24,8 @@ Meteor.methods({
         extendStudent['import'] = true;
         extendStudent['enrollment'] = [programId];
 
+        extendStudent['date_of_birth']= moment(extendStudent.date_of_birth).format("YYYY-MM-DD")
+
         if (errorStop === true) {
           console.log(insertHistory, i);
           for (i=0;i<insertHistory.length;i++) {
@@ -33,6 +35,8 @@ Meteor.methods({
         } else {
           var id = Students.insert(extendStudent, function(err,res) {
             if (err) {
+              // to find out why something isn't working
+              console.log(err);
               errorStop = true;
             }
             else {

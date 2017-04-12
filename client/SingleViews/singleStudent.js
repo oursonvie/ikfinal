@@ -3,9 +3,6 @@ Template.singleStudent.onCreated(function() {
 });
 
 Template.singleStudent.helpers({
-  formatDate: function(date) {
-    return moment().format('YYYY-MM-DD');
-  },
   editMe: function() {
     return Session.get('editMe');
   }

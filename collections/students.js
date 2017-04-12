@@ -13,31 +13,9 @@ Students.allow({
 })
 
 Students.attachSchema(new SimpleSchema({
-  last_name: {
+  full_name: {
     type: String,
-    label: "*Last Name",
-    autoform: {
-      group: 'Basic Information'
-    }
-  },
-  middle_name: {
-    type: String,
-    label: "Middle Name",
-    optional: true,
-    autoform: {
-      group: 'Basic Information'
-    }
-  },
-  first_name: {
-    type: String,
-    label: "*First Name",
-    autoform: {
-      group: 'Basic Information'
-    }
-  },
-  print_name: {
-    type: String,
-    label: "*Print Name on Passport",
+    label: "*Full Name",
     autoform: {
       group: 'Basic Information'
     }
@@ -52,9 +30,10 @@ Students.attachSchema(new SimpleSchema({
     }
   },
   date_of_birth: {
-    type: Date,
+    type: String,
     label: "*Date of Birth",
     autoform: {
+      type:'date',
       group: 'Basic Information'
     }
   },
