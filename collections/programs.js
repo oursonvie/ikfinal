@@ -20,12 +20,24 @@ Programs.attachSchema(new SimpleSchema({
   start_date: {
     type: Date,
     label: "Start Date",
-    optional: true
+    optional: true,
+    autoform: {
+      type: "bootstrap-datepicker",
+      datePickerOptions: {
+        autoclose: true
+      }
+    }
   },
   end_date: {
     type: Date,
     label: "End Date",
-    optional: true
+    optional: true,
+    autoform: {
+      type: "bootstrap-datepicker",
+      datePickerOptions: {
+        autoclose: true
+      }
+    }
   },
   address: {
     type: String,

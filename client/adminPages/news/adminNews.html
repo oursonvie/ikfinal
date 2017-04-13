@@ -1,19 +1,18 @@
 <template name="adminNews">
   <div class="panel panel-default">
     <div class="panel-body">
-      <button class="new-blog btn btn-primary pull-right">New Blog</button>
+      <button class="new-blog btn btn-primary pull-right">New News</button>
     </div>
   </div>
-  {{#if $.Session.get 'newBlog'}}
+  {{#if $.Session.get 'newNews'}}
     <div class="panel panel-default">
       <div class="panel-body">
-        <i class="fa fa-close pull-right"></i>
         {{> addNews}}
       </div>
     </div>
   {{/if}}
 
-  {{#each blogs}}
+  {{#each news}}
     {{> newsList}}
   {{/each}}
 

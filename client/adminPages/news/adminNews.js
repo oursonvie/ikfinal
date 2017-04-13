@@ -3,19 +3,20 @@ Template.adminNews.onCreated(function(){
     self.autorun(function() {
        self.subscribe('NewsAll');
     });
+    Session.set('newNews', false);
 });
 
 Template.adminNews.helpers({
-  blogs: function() {
+  news: function() {
     return News.find();
   }
 });
 
 Template.adminNews.events({
     'click .new-blog': function() {
-        Session.set('newBlog', true);
+        Session.set('newNews', !Session.get('newNews'));
     },
-    'click .fa-close': function() {
-        Session.set('newBlog', false);
+    'submit form': function() {
+      Session.set('newNews', false);
     }
 });

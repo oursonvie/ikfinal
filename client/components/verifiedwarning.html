@@ -1,31 +1,33 @@
 <template name="verifiedwarning">
 
-  {{#if currentUser }}
+  {{#unless currentUser }}
+    {{#if isInRole 'admin'}}
 
-    {{#unless allDone}}
-      <p class="alert alert-warning">Before you can enroll to any program, you still have the following tasks to complete</p>
+    {{else}}
+      {{#unless allDone}}
+        <p class="alert alert-warning">Before you can enroll to any program, you still have the following tasks to complete</p>
 
-      {{#unless currentUser.emails.[0].verified}}
-        <p class="alert alert-warning">Verify your email address
-        {{#if inProgress}}
-          <button type="button" class="btn btn-success btn-sm" disabled="disabled">Please Wait: {{getCountdown}}</button>
-        {{else}}
-          <button type="button" class="btn btn-success btn-sm btn-send resend-verification-link">Send Email</button>
-        {{/if}}
-        </p>
-      {{/unless}}
-
-      {{#if ifProfile}}
-        {{#unless ProfileImage}}
-          <p class="alert alert-warning">Dont forget to upload a photo of yours in <a href="/me">profile</a></p>
+        {{#unless currentUser.emails.[0].verified}}
+          <p class="alert alert-warning">Verify your email address
+          {{#if inProgress}}
+            <button type="button" class="btn btn-success btn-sm" disabled="disabled">Please Wait: {{getCountdown}}</button>
+          {{else}}
+            <button type="button" class="btn btn-success btn-sm btn-send resend-verification-link">Send Email</button>
+          {{/if}}
+          </p>
         {{/unless}}
-      {{else}}
-        <p class="alert alert-warning">You need to complete your <a href="/me">profile</a></p>
-      {{/if}}
-    {{/unless}}
 
-
-
+        {{#if ifProfile}}
+          {{#unless ProfileImage}}
+            <p class="alert alert-warning">Dont forget to upload a photo of yours in <a href="/me">profile</a></p>
+          {{/unless}}
+        {{else}}
+          <p class="alert alert-warning">You need to complete your <a href="/me">profile</a></p>
+        {{/if}}
+      {{/unless}}
     {{/if}}
+
+
+  {{/unless}}
 
 </template>

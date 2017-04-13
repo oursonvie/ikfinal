@@ -26,7 +26,11 @@ Template.users.helpers({
     }
   },
   ifOnline: function() {
-    return this.status.online
+    if (this.status != undefined) {
+      return this.status.online;
+    } else {
+      return false;
+    }
   }
 })
 
