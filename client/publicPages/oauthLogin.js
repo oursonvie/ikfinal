@@ -21,21 +21,16 @@ Template.oauthLogin.helpers({
     },
     grantResult: function() {
         return grantResult.get();
+    },
+    currentEmail: function() {
+      Meteor.user().emails[0].address;
     }
 })
 
 Template.oauthLogin.events({
-  'submit form': function(event) {
-        event.preventDefault();
-        var emailVar = event.target.loginEmail.value;
-        var passwordVar = event.target.loginPassword.value;
-        Meteor.loginWithPassword(emailVar, passwordVar);
-    },
     'click button.authorize': function() {
         console.log('Authorize button clicked.');
         var urlParams = getUrlParams();
-        console.log(123)
-        console.log(urlParams)
 
         // create an authorization code for the provided client.
         oAuth2Server.callMethod.authCodeGrant(
@@ -45,12 +40,17 @@ Template.oauthLogin.events({
             urlParams.scope && urlParams.scope.split(' '),
             urlParams.state,
             function(err, result) {
-                console.log(err, result);
+                //console.log(err, result);
 
                 // give the UI something to display.
                 grantResult.set(result);
             }
         );
+    },
+    'click .btn-login': function() {
+      var emailVar = $('#userName').val();
+      var passwordVar = $('#passWord').val();
+      Meteor.loginWithPassword(emailVar, passwordVar);
     }
 });
 
