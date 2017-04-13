@@ -1,0 +1,119 @@
+<template name="oauthLogin">
+  <form>
+        <input type="email" name="loginEmail">
+        <input type="password" name="loginPassword">
+        <input type="submit" value="Login">
+  </form>
+
+  {{#unless isUrlParamsValid }}
+      <p>The URL params are not set in order to authorize an oauth2 token.</p>
+      <p>The following link will simulate arriving to this page from another site that wishes to authenticate with oauth2.</p>
+      <a href="/?client_id=clientApplication&redirect_uri=http://localhost:3200/_oauth/MeteorOAuth2Server&response_type=code">Simulate proper link.</a>
+  {{/unless}}
+
+  {{#if isUrlParamsValid}}
+    <p>Here are the url params this site received.</p>
+    <table border="1" cellpadding="5" cellspacing="0">
+      <tr>
+        <td>clint_id</td>
+        <td>{{ urlParams.client_id }}</td>
+      </tr>
+      <tr>
+        <td>redirect_uri</td>
+        <td>{{ urlParams.redirect_uri }}</td>
+      </tr>
+      <tr>
+        <td>response_type</td>
+        <td>{{ urlParams.response_type }}</td>
+      </tr>
+    </table>
+    {{/if}}
+
+    {{#unless currentUser}}
+        <p>The user must be authenticated to authorize an oauth2 request.</p>
+        {{> loginButtons}}
+    {{/unless}}
+
+
+    {{#if currentUser}}
+        <p>User is authenticated.</p>
+        {{> loginButtons}}
+
+        <hr />
+        <h3>Step A5.1 - Generate Access Tokens</h3>
+        <p>This is the button a user would click to allow {{ urlParams.client_id }} access to your email address.. etc.</p>
+        <button class="authorize">Authorize</button>
+
+        {{#if grantResult}}
+            <h3>Step A5.2 - Return Access Tokens</h3>
+            <p>Grant was run with the given params. Normally, the user would be redirected to the redirect URI.</p>
+            <table border="1" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td>Success</td>
+                    <td>{{ grantResult.success }}</td>
+                </tr>
+                <tr>
+                    <td>Error</td>
+                    <td>{{ grantResult.error }}</td>
+                </tr>
+                <tr>
+                    <td>Authorization Code</td>
+                    <td>{{ grantResult.authorizationCode }}</td>
+                </tr>
+                <tr>
+                    <td>RedirectUri</td>
+                    <td><a href="{{ grantResult.redirectToUri}}">{{ grantResult.redirectToUri}}</a></td>
+                </tr>
+            </table>
+
+
+            <p>This is where the user's interaction generally stops. For testing purposes, now that you have an authorization code, you can test service by retrieving an access token.</p>
+            <button class="testLocalTokens">Test Local Tokens</button>
+
+            {{#if tokenResult}}
+                <hr />
+                <h3>Step A6 - Save Refresh Token</h3>
+                <p>
+                    Using the authorizationCode, the client applicationg would post back to this server
+                    to request a token. This is the token you'd use to run REST calls and alike.
+                    This is server to server communication. This example is only for testing purposes to
+                    ensure we did everything properly.
+                </p>
+                <table border="1" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <td>access_token</td>
+                        <td>{{ tokenResult.access_token }}</td>
+                    </tr>
+                    <tr>
+                        <td>expires_in</td>
+                        <td>{{ tokenResult.expires_in }}</td>
+                    </tr>
+                    <tr>
+                        <td>token_type</td>
+                        <td>{{ tokenResult.token_type }}</td>
+                    </tr>
+                </table>
+
+                <hr />
+                <h3>Step A7 - fetch userId from /api/getUserId</h3>
+                <p>
+                    This step is also performed server-to-server by the client application and is
+                    only done here for testing purposes. Here we are using the newly acquired
+                    access token, we retrieve the userId associated with the access token.
+                </p>
+                <table border="1" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <td>expected id</td>
+                        <td>{{ currentUser._id }}</td>
+                        <td>This was given to us by Meteor.</td>
+                    </tr>
+                    <tr>
+                        <td>actual id</td>
+                        <td>{{ getUserIdResult }}</td>
+                        <td>This was retrieved via REST using the access token.</td>
+                    </tr>
+                </table>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</template>

@@ -60,3 +60,8 @@ rajit:bootstrap3-datepicker
 
 # data visualization
 chart:chart
+
+#oauth2.0
+prime8consulting:meteor-oauth2-server
+http
+simple:json-routes
