@@ -24,8 +24,6 @@ Template.oauthLogin.helpers({
     }
 })
 
-
-
 Template.oauthLogin.events({
   'submit form': function(event) {
         event.preventDefault();
@@ -36,6 +34,8 @@ Template.oauthLogin.events({
     'click button.authorize': function() {
         console.log('Authorize button clicked.');
         var urlParams = getUrlParams();
+        console.log(123)
+        console.log(urlParams)
 
         // create an authorization code for the provided client.
         oAuth2Server.callMethod.authCodeGrant(

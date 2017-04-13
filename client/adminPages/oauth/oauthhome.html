@@ -1,46 +1,60 @@
 <template name="oauthhome">
-  {{> authorize}}
-</template>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Oauth Client Setting</h3>
+    </div>
+    <div class="panel-body">
 
-<template name="authorize">
-  {{#if clientCount}}
-      <p>Client created.</p>
-      <p>
-          For the sake of testing, you can remove all the created clients.
-          <button type="button" class="deleteAllClients">Delete All</button>
-      </p>
-  {{/if}}
+      {{#if clientCount}}
+          <p>Client created.</p>
+          <p>
+              For the sake of testing, you can remove all the created clients.
+              <button type="button" class="deleteAllClients">Delete All</button>
+          </p>
+      {{/if}}
 
-  {{#unless clientCount }}
-      <form id="addClientForm">
-          <div>
-              <label>Client Name
-                  <input type="text" name="clientName" value="My Client Name" />
-              </label>
-          </div>
+      {{#unless clientCount}}
+      <div class="row">
 
-          <div>
-              <label>
-                  Client ID
-                  <input type="text" name="clientId" value="clientApplication" />
-              </label>
-          </div>
+        <div class="input-group">
+          <span class="input-group-addon">Client Name</span>
+          <input type="text" class="form-control" id="clientName" value="My Client Name">
+        </div>
 
-          <div>
-              <label>
-                  Redirect URI
-                  <input type="text" name="redirectUri" value="http://localhost:3200/_oauth/MeteorOAuth2Server" /> * Provided in step C2.
-              </label>
-          </div>
+      </div>
 
-          <div>
-              <label>
-                  Client Secret
-                  <input type="text" name="clientSecret" value="12345" />
-              </label>
-          </div>
+      <div class="row">
 
-          <button type="submit">Add Client</button>
-      </form>
-  {{/unless}}
+        <div class="input-group">
+          <span class="input-group-addon">Client ID</span>
+          <input type="text" class="form-control" id="clientId" value="clientApplication">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="input-group">
+          <span class="input-group-addon">Redirect URI</span>
+          <input type="text" class="form-control" id="redirectUri" value="http://localhost:3200/_oauth/MeteorOAuth2Server">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="input-group">
+          <span class="input-group-addon">Client Secret</span>
+          <input type="text" class="form-control" id="clientSecret" value="12345">
+        </div>
+
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-add">Add Client</button>
+      </div>
+      {{/unless}}
+    </div>
+  </div>
+
 </template>
