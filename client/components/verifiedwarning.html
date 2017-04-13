@@ -1,6 +1,6 @@
 <template name="verifiedwarning">
 
-  {{#unless currentUser }}
+  {{#if currentUser }}
     {{#if isInRole 'admin'}}
 
     {{else}}
@@ -28,6 +28,6 @@
     {{/if}}
 
 
-  {{/unless}}
+  {{/if}}
 
 </template>
