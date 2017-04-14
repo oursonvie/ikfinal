@@ -6,7 +6,7 @@ Picker.middleware( bodyParser.urlencoded( { extended: false } ) );
 
 Picker.route( '/api/student/:_id', function( params, request, response, next ) {
 
-  var getDocument = Students.findOne( { "_id": params._id } );
+  var getDocument = Students.findOne( { "userId": params._id } );
 
   if ( getDocument ) {
     response.setHeader( 'Content-Type', 'application/json' );
