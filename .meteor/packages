@@ -66,9 +66,4 @@ prime8consulting:meteor-oauth2-server
 http@1.2.12
 simple:json-routes
 
-## API
-meteorhacks:picker
-meteorhacks:npm
-
-npm-container
 session
