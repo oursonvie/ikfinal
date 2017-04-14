@@ -65,3 +65,10 @@ chart:chart
 prime8consulting:meteor-oauth2-server
 http
 simple:json-routes
+
+## API
+meteorhacks:picker
+meteorhacks:npm
+
+
+npm-container
