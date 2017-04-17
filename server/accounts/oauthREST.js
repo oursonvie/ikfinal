@@ -36,3 +36,14 @@ JsonRoutes.add('get', '/api/getUserId', function(req, res, next) {
         data: Students.findOne({userId:accessToken.userId})
     });
 });
+
+// removed for furture user
+JsonRoutes.add('get', '/api/student/:id', function(req, res, next) {
+    console.log('GET /api/student');
+    var studentId = req.params.id;
+    // console.log(studentId);
+
+    JsonRoutes.sendResult(res, {
+        data: Students.findOne({_id:studentId})
+    });
+});
