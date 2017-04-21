@@ -19,6 +19,15 @@ Template.adminStudent.helpers({
 
     return pageIndex
   },
+  currentPage: function() {
+    return FlowRouter.getParam('page');
+  },
+  nextPage: function() {
+    return FlowRouter.getParam('page') + 1;
+  },
+  prevPage: function() {
+    return FlowRouter.getParam('page') - 1;
+  },
   students: function() {
     var searchEmail = Session.get('searchEmail');
     if (searchEmail == '') {
