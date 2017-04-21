@@ -67,3 +67,6 @@ http@1.2.12
 simple:json-routes
 
 session
+
+## fake data
+digilord:faker
