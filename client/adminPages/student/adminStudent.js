@@ -1,17 +1,29 @@
 Template.adminStudent.onCreated(function() {
     var self = this;
     self.autorun(function() {
+        // pageNumber = FlowRouter.getParam('page');
         self.subscribe('StudentsAll');
     });
     Session.set('searchEmail', '');
 });
 
-
 Template.adminStudent.helpers({
+  totalPageNumber: function() {
+    var totalStudentNumber = Students.find().count();
+    var pageNumber = Math.ceil(totalStudentNumber/20);
+
+    var pageIndex = [];
+    for (var i = 1; i <= pageNumber; i++) {
+        pageIndex.push(i);
+    }
+
+    return pageIndex
+  },
   students: function() {
     var searchEmail = Session.get('searchEmail');
     if (searchEmail == '') {
-      return Students.find({});
+      var pageIndex = FlowRouter.getParam('page') - 1;
+      return Students.find({},{sort: {createdAt: -1},skip: pageIndex*20, limit: 20});
     } else {
       return Students.find({email:searchEmail})
     }
