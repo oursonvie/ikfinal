@@ -68,8 +68,10 @@ simple:json-routes
 
 session
 
+<<<<<<< HEAD
 #open auth
 jparker:crypto-aes
-
+=======
 ## fake data
 digilord:faker
+>>>>>>> master
