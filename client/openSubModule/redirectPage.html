@@ -1,0 +1,14 @@
+<template name="redirectPage">
+  {{#if Template.subscriptionsReady}}
+
+    {{password}}
+    <p>str = {{strValue}}</p>
+    <p>SessionValue = {{sessionValue}}</p>
+    <p>urlValue = {{urlValue}}</p>
+
+    <br>
+    <a href="http://pre.mooc2u.com/PublicService/LoginHandler.ashx?Method=ikcestlogin&u={{urlValue}}">Continue</a>
+
+  {{/if}}
+
+</template>
