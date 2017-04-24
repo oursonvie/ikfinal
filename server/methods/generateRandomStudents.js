@@ -4,32 +4,40 @@ Meteor.methods({
   // process csv file for download
   makeStudent: function(number) {
 
-    _.each(_.range(number), function() {
-      studentInfor = {
-        full_name:faker.name.findName(),
-        gender: faker.random.arrayElement(['Male','Female']),
-        date_of_birth: moment(faker.date.between(1920,1995)).format('YYYY-MM-DD'),
-        telephone: faker.phone.phoneNumber(),
-        email: faker.internet.email(),
-        country_of_birth: faker.random.arrayElement(countryArray),
-        country_of_citizenship: faker.random.arrayElement(countryArray),
-        passport: faker.random.number(),
-        highest_education: faker.random.arrayElement(HEArrayList),
-        area_of_study: faker.random.arrayElement(AreaOfStudyArrayList),
-        name_of_institute: faker.address.city() + " College",
-        university_name: faker.address.city() + " University",
-        studentid: faker.random.number(),
-        degree: faker.random.arrayElement(DegressArrayList),
-        major: faker.random.arrayElement(AreaOfStudyArrayList),
-        occupation: faker.random.arrayElement(OccupationArrayList),
-        source: faker.random.arrayElement(WhereHeardUsArrayList),
-        import: true,
+    if (Roles.userIsInRole(this.userId, ['admin'])) {
+      _.each(_.range(number), function() {
+        studentInfor = {
+          full_name:faker.name.findName(),
+          gender: faker.random.arrayElement(['Male','Female']),
+          date_of_birth: moment(faker.date.between(1920,1995)).format('YYYY-MM-DD'),
+          telephone: faker.phone.phoneNumber(),
+          email: faker.internet.email(),
+          country_of_birth: faker.random.arrayElement(countryArray),
+          country_of_citizenship: faker.random.arrayElement(countryArray),
+          passport: faker.random.number(),
+          highest_education: faker.random.arrayElement(HEArrayList),
+          area_of_study: faker.random.arrayElement(AreaOfStudyArrayList),
+          name_of_institute: faker.address.city() + " College",
+          university_name: faker.address.city() + " University",
+          studentid: faker.random.number(),
+          degree: faker.random.arrayElement(DegressArrayList),
+          major: faker.random.arrayElement(AreaOfStudyArrayList),
+          occupation: faker.random.arrayElement(OccupationArrayList),
+          source: faker.random.arrayElement(WhereHeardUsArrayList),
+          import: true,
 
-      }
-      Students.insert(studentInfor);
-    })
+        }
+        Students.insert(studentInfor);
+      })
+    } else {
+      console.log('Add student error: dont have permission')
+    }
   },
   removeAllImportStudent: function() {
-    Students.remove({import:true})
+    if (Roles.userIsInRole(this.userId, ['admin'])) {
+      Students.remove({import:true})
+    } else {
+      console.log('remove students error: dont have permission')
+    }
   }
 });

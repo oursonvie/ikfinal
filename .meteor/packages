@@ -74,3 +74,4 @@ jparker:crypto-aes
 
 ## fake data
 digilord:faker
+dispatch:mocha-browser
