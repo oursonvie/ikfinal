@@ -50,9 +50,6 @@ Template.adminStudent.helpers({
 });
 
 Template.adminStudent.events({
-  'click tr': function(template) {
-    FlowRouter.go("/admin/student/" + this._id);
-  },
   'click .btn-search': function() {
     var searchValue = $('#searchCrit').val()
     Session.set('searchEmail', searchValue);

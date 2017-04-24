@@ -26,7 +26,7 @@
               {{#if importStudent}}
                 <tr class="danger">
                   <td>{{number @index}}</td>
-                  <td>{{full_name}}</td>
+                  <td><a href="/admin/student/{{_id}}">{{full_name}}</a></td>
                   <td>{{gender}}</td>
                   <td>{{email}}</td>
                   <td>{{telephone}}</td>
@@ -34,7 +34,7 @@
               {{else}}
                 <tr class="success">
                   <td>{{number @index}}</td>
-                  <td>{{full_name}}</td>
+                  <td><a href="/admin/student/{{_id}}">{{full_name}}</a></td>
                   <td>{{gender}}</td>
                   <td>{{email}}</td>
                   <td>{{telephone}}</td>
