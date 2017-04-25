@@ -3,6 +3,7 @@ Template.adminHome.onCreated(function() {
   self.autorun(function() {
     self.subscribe('StudentsAll');
     self.subscribe('NewsAll');
+    self.subscribe('ProgramsAll');
   });
 });
 
@@ -12,5 +13,8 @@ Template.adminHome.helpers({
   },
   newsCount: function() {
     return News.find().count()
+  },
+  programCount: function() {
+    return Programs.find().count()
   }
 });
