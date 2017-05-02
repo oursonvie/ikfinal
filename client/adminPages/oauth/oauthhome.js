@@ -6,7 +6,7 @@ Template.oauthhome.onCreated(function() {
     oAuth2Server.subscribeTo.authCode();
     oAuth2Server.subscribeTo.refreshTokens();
 
-    // get teh client count.
+    // get the client count.
     Meteor.call('clientCount', function(err, cnt) {
         clientCount.set(cnt);
     });

@@ -35,8 +35,11 @@ Template.users.helpers({
 })
 
 Template.users.events({
-  'click .btn-makeadmin': function(event, template) {
+  'click .fa-user-circle-add': function(event, template) {
     Meteor.call('makeAdmin', this._id);
+  },
+  'click .fa-user-circle-remove': function(event, template) {
+    Meteor.call('removeAdmin', this._id);
   },
   'click .btn-search': function() {
     var searchValue = $('#searchCrit').val()
