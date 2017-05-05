@@ -1,7 +1,7 @@
 <template name="programsList">
-  <div class="panel panel-default">
+  <div class="panel panel-default panel-program">
     <div class="panel-heading clearfix">
-      <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><a href="/program/{{_id}}">{{subject}}</a></h4>
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><a href="/program/{{_id}}"><p class="text-primary"><i class="fa fa-th-list"></i> {{subject}}</p></a></h4>
         <div class="btn-group pull-right">
           {{#if isInRole 'admin'}}
           {{else}}
@@ -18,24 +18,30 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-6">
-            <b>Start Date: </b>{{formatDate start_date}}
+            <h4><i class="fa fa-calendar"></i> <b>Start Date: </b>{{formatDate start_date}}</h4>
           </div>
           <div class="col-sm-6">
-            <b>End Date: </b>{{formatDate end_date}}
+            <h4><i class="fa fa-calendar"></i> <b>End Date: </b>{{formatDate end_date}}</h4>
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-4">
-            <b>Address: </b>{{address}}
+          <div class="col-sm-6">
+            <i class="fa fa-map-marker"></i> <b>Address: </b>{{address}}
           </div>
-          <div class="col-sm-4">
-            <b>Class Size: </b>{{size}}
-          </div>
-          <div class="col-sm-4">
-            <b>Current Enrollment: </b>{{numberEnrolled}}
+          <div class="col-sm-6">
+            <i class="fa fa-book"></i> <b>Class Size: </b>{{size}}
           </div>
         </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <i class="fa fa-user"></i> <b>Current Enrollment: </b>{{numberEnrolled}}
+          </div>
+
+          <div class="col-sm-6">
+            <button class="btn btn-primary pull-right">TEST</button>
+          </div>
+
+        </div>
       </div>
-      <div class="panel-footer">Created at:{{createdAt}}</div>
   </div>
 </template>

@@ -25,5 +25,8 @@ Template.singleProgram.helpers({
 Template.singleProgram.events({
   'click .fa-chevron-left': function() {
     window.history.back();
+  },
+  'click #accordion': function() {
+    console.log($("123"))
   }
 })

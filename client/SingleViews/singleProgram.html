@@ -1,101 +1,120 @@
 <template name="singleProgram">
-  <a href="/news/" ><i class="fa fa-chevron-left"></i></a>
-  {{#with program}}
-  <div class="panel panel-default">
-    <div class="panel-body">
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><b>Subject: </b>{{subject}}</h3>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-sm-6">
-              <b>Start Date: </b>{{formatDate start_date}}
-            </div>
-            <div class="col-sm-6">
-              <b>End Date: </b>{{formatDate end_date}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <b>Address: </b>{{address}}
-            </div>
-            <div class="col-sm-4">
-              <b>Class Size: </b>{{size}}
-            </div>
-            <div class="col-sm-4">
-              <b>Current Enrollment: </b>{{numberEnrolled}}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Basic Informaiton</h3>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-sm-6">
-              <b>Objective: </b>{{objective}}
-            </div>
-            <div class="col-sm-6">
-              <b>Who can enroll: </b>{{qualified_to_enroll}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <b>Certificate: </b>{{certificate}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <b>Contact: </b>{{contact}}
-            </div>
-            <div class="col-sm-6">
-              <b>Phone: </b>{{telephone}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <b>Email: </b>{{email}}
-            </div>
-            <div class="col-sm-6">
-              <b>Office Address: </b>{{office_address}}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Course</h3>
-        </div>
-        <div class="panel-body">
-          {{#each course}}
-            <div class="row">
-              <div class="col-sm-6">
-                <b>Course Name: </b>{{course_name}}
-              </div>
-              <div class="col-sm-6">
-                <b>Course Description: </b>{{course_description}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <b>Lecturer Name: </b>{{lecturer_name}}
-              </div>
-              <div class="col-sm-6">
-                <b>Lecturer Description: </b>{{lecturer_description}}
-              </div>
-            </div>
-            <hr>
-          {{/each}}
-        </div>
-      </div>
-
-    </div>
+  <div class="row">
+    <a href="/news/" ><i class="fa fa-chevron-left"></i></a>
+    <hr>
   </div>
-  {{/with}}
+
+  <div class="row">
+    {{#with program}}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><b>Subject: </b>{{subject}}</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <b>Start Date: </b>{{formatDate start_date}}
+              </div>
+              <div class="col-sm-6">
+                <b>End Date: </b>{{formatDate end_date}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <b>Address: </b>{{address}}
+              </div>
+              <div class="col-sm-4">
+                <b>Class Size: </b>{{size}}
+              </div>
+              <div class="col-sm-4">
+                <b>Current Enrollment: </b>{{numberEnrolled}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Basic Informaiton</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <b>Objective: </b>{{objective}}
+              </div>
+              <div class="col-sm-6">
+                <b>Who can enroll: </b>{{qualified_to_enroll}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <b>Certificate: </b>{{certificate}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <b>Contact: </b>{{contact}}
+              </div>
+              <div class="col-sm-6">
+                <b>Phone: </b>{{telephone}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <b>Email: </b>{{email}}
+              </div>
+              <div class="col-sm-6">
+                <b>Office Address: </b>{{office_address}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#Courses" aria-expanded="true" aria-controls="collapseOne">
+              <div class="panel-heading" role="tab" id="headingOne">
+
+                <h4 class="panel-title">
+
+                    Courses
+                    <i class="fa fa-angle-double-down fa-50x pull-right" aria-hidden="true"></i>
+
+                </h4>
+
+              </div>
+            </a>
+
+            <div id="Courses" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                {{#each course}}
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <b>Course Name: </b>{{course_name}}
+                    </div>
+                    <div class="col-sm-6">
+                      <b>Course Description: </b>{{course_description}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <b>Lecturer Name: </b>{{lecturer_name}}
+                    </div>
+                    <div class="col-sm-6">
+                      <b>Lecturer Description: </b>{{lecturer_description}}
+                    </div>
+                  </div>
+                  <hr>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+    {{/with}}
+  </div>
+
+
 </template>
