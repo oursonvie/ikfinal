@@ -1,19 +1,13 @@
 <template name="programsList">
   <div class="panel panel-default panel-program">
-    <div class="panel-heading clearfix">
-      <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><a href="/program/{{_id}}"><p class="text-primary"><i class="fa fa-th-list"></i> {{subject}}</p></a></h4>
-        <div class="btn-group pull-right">
-          {{#if isInRole 'admin'}}
-          {{else}}
-            {{#if currentUser}}
-              {{#if enrolled}}
-                <button class="btn btn-sm disabled">Enrolled</button>
-              {{else}}
-                <button class="btn btn-success btn-sm btn-enroll">Enroll</button>
-              {{/if}}
-            {{/if}}
-          {{/if}}
-        </div>
+    <div class="panel-heading">
+
+      <a href="/program/{{_id}}">
+        <h3 class="panel-title"><i class="fa fa-th-list"></i> {{subject}}</h3>
+      </a>
+
+
+
     </div>
       <div class="panel-body">
         <div class="row">
@@ -38,7 +32,16 @@
           </div>
 
           <div class="col-sm-6">
-            <button class="btn btn-primary pull-right">TEST</button>
+            {{#if isInRole 'admin'}}
+            {{else}}
+              {{#if currentUser}}
+                {{#if enrolled}}
+                  <button class="btn  disabled pull-right">Enrolled</button>
+                {{else}}
+                  <button class="btn btn-success btn-enroll pull-right">Enroll</button>
+                {{/if}}
+              {{/if}}
+            {{/if}}
           </div>
 
         </div>
