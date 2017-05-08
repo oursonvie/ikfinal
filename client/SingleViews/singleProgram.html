@@ -6,34 +6,36 @@
 
   <div class="row">
     {{#with program}}
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-program">
           <div class="panel-heading">
             <h3 class="panel-title"><b>Subject: </b>{{subject}}</h3>
           </div>
           <div class="panel-body">
             <div class="row">
               <div class="col-sm-6">
-                <b>Start Date: </b>{{formatDate start_date}}
+                <i class="fa fa-calendar"></i> <b>Start Date: </b>{{formatDate start_date}}
               </div>
               <div class="col-sm-6">
-                <b>End Date: </b>{{formatDate end_date}}
+                <i class="fa fa-calendar"></i> <b>End Date: </b>{{formatDate end_date}}
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-4">
-                <b>Address: </b>{{address}}
+              <div class="col-sm-6">
+                <i class="fa fa-map-marker"></i> <b>Address: </b>{{address}}
               </div>
-              <div class="col-sm-4">
-                <b>Class Size: </b>{{size}}
+              <div class="col-sm-6">
+                <i class="fa fa-book"></i> <b>Class Size: </b>{{size}}
               </div>
-              <div class="col-sm-4">
-                <b>Current Enrollment: </b>{{numberEnrolled}}
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <i class="fa fa-user"></i> <b>Current Enrollment: </b>{{numberEnrolled}}
               </div>
             </div>
           </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-program">
           <div class="panel-heading">
             <h3 class="panel-title">Basic Informaiton</h3>
           </div>
@@ -71,40 +73,45 @@
         </div>
 
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-
+          <div class="panel panel-default panel-program">
             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#Courses" aria-expanded="true" aria-controls="collapseOne">
               <div class="panel-heading" role="tab" id="headingOne">
-
                 <h4 class="panel-title">
-
                     Courses
-                    <i class="fa fa-angle-double-down fa-50x pull-right" aria-hidden="true"></i>
-
+                    {{#if ifAccordion}}
+                      <i class="fa fa-angle-double-left fa-50x pull-right" aria-hidden="true"></i>
+                    {{else}}
+                      <i class="fa fa-angle-double-down fa-50x pull-right" aria-hidden="true"></i>
+                    {{/if}}
                 </h4>
-
               </div>
             </a>
-
             <div id="Courses" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
                 {{#each course}}
+
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-2">
                       <b>Course Name: </b>{{course_name}}
                     </div>
-                    <div class="col-sm-6">
-                      <b>Course Description: </b>{{course_description}}
+                    <div class="col-sm-10">
+                      <b>Course Description: </b>
+                      <br>
+                      {{course_description}}
                     </div>
                   </div>
+
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-2">
                       <b>Lecturer Name: </b>{{lecturer_name}}
                     </div>
-                    <div class="col-sm-6">
-                      <b>Lecturer Description: </b>{{lecturer_description}}
+                    <div class="col-sm-10">
+                      <b>Lecturer Description: </b>
+                      <br>
+                      {{lecturer_description}}
                     </div>
                   </div>
+
                   <hr>
                 {{/each}}
               </div>

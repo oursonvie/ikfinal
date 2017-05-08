@@ -4,6 +4,7 @@ Template.singleProgram.onCreated(function(){
        var id = FlowRouter.getParam('id');
        self.subscribe('ProgramsOne', id);
     });
+    Session.set('accordion', false)
 });
 
 Template.singleProgram.helpers({
@@ -19,6 +20,9 @@ Template.singleProgram.helpers({
     } else {
       return Programs.findOne({_id:this._id}).student.length;
     }
+  },
+  ifAccordion: function() {
+    return Session.get('accordion')
   }
 });
 
@@ -27,6 +31,6 @@ Template.singleProgram.events({
     window.history.back();
   },
   'click #accordion': function() {
-    console.log($("123"))
+    Session.set('accordion', !Session.get('accordion'))
   }
 })
