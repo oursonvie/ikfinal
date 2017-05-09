@@ -1,10 +1,4 @@
-<template name="AdminLayoutFloat">
-  {{#if isInRole 'admin'}}
-    {{> adminNav}}
-    <div class="container-fluid">
-      {{> Template.dynamic template=main}}
-    </div>
-  {{else}}
-    {{> error}}
-  {{/if}}
+<template name="errorLayout">
+    {{> nav}}
+    {{> Template.dynamic template=main}}
 </template>
