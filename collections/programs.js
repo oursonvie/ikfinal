@@ -96,7 +96,8 @@ Programs.attachSchema(new SimpleSchema({
   },
   'course.$.course_description':{
     type: String,
-    label: "Course Description"
+    label: "Course Description",
+    optional: true
   },
   'course.$.lecturer_name':{
     type: String,
@@ -104,7 +105,8 @@ Programs.attachSchema(new SimpleSchema({
   },
   'course.$.lecturer_description':{
     type: String,
-    label: "Lecturer Description"
+    label: "Lecturer Description",
+    optional: true
   },
   student: {
     type: Array,

@@ -23,10 +23,21 @@ Template.adminStudent.helpers({
     return FlowRouter.getParam('page');
   },
   nextPage: function() {
-    return FlowRouter.getParam('page') + 1;
+    var totalStudentNumber = Students.find().count();
+    var pageNumber = Math.ceil(totalStudentNumber/20);
+
+    if (FlowRouter.getParam('page') == pageNumber) {
+      return pageNumber
+    } else {
+      return parseInt(FlowRouter.getParam('page')) + 1;
+    }
   },
   prevPage: function() {
-    return FlowRouter.getParam('page') - 1;
+    if (FlowRouter.getParam('page') == 1) {
+      return 1
+    } else {
+      return parseInt(FlowRouter.getParam('page')) - 1;
+    }
   },
   students: function() {
     var searchEmail = Session.get('searchEmail');
@@ -38,7 +49,7 @@ Template.adminStudent.helpers({
     }
   },
   number: function(number) {
-      return number + 1
+      return (FlowRouter.getParam('page') - 1)  * 20 + number + 1
   },
   importStudent: function() {
     if (Students.findOne({_id:this._id}).import != true) {
