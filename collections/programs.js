@@ -15,7 +15,7 @@ Programs.allow({
 Programs.attachSchema(new SimpleSchema({
   subject: {
     type: String,
-    label: "Program Subject"
+    label: "*Program Subject"
   },
   start_date: {
     type: Date,
@@ -41,11 +41,11 @@ Programs.attachSchema(new SimpleSchema({
   },
   address: {
     type: String,
-    label: "Lecture Address"
+    label: "*Lecture Address"
   },
   size: {
     type: Number,
-    label: "Class Size",
+    label: "*Class Size",
     min: 0
   },
   qualified_to_enroll: {

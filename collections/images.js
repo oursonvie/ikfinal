@@ -1,10 +1,10 @@
 Images = new FS.Collection("images", {
   stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})],
   filter: {
-    maxSize: 3145728, //3mb
+    maxSize: 10485760, //3mb
     allow: {
       contentTypes: ['image/*'],
-      extensions: ['png','jpeg','jpg','gif']
+      extensions: ['png','jpeg','jpg','gif','bmp']
     },
     onInvalid: function(message) {
       if (Meteor.isClient) {

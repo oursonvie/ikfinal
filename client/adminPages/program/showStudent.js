@@ -71,5 +71,44 @@ Template.showStudent.events({
   },
   'click tr': function(template) {
     FlowRouter.go("/admin/student/" + this._id);
+  },
+  'change #photoUpload': function(event, template) {
+    var files = event.target.files;
+    var photoCount = 0;
+    var counter = 0;
+    var filesize = 0;
+    _.forEach(files, function(file) {
+      counter += 1;
+      var name = file.name.split('.')[0].replace(/\s+$/, '');
+      if (Students.findOne({"full_name":{$regex:new RegExp(name, "i")}}) != undefined) {
+        photoCount+=1;
+        var studentId = Students.findOne({"full_name":{$regex:new RegExp(name, "i")}})._id;
+
+        // upload image to server
+        Images.insert(file, function (err, fileObj) {
+          if (err) {
+            console.log(err);
+          } else {
+            var imagesURL = {"profile.image": fileObj._id};
+            var imageId = fileObj._id
+            console.log(fileObj._id);
+            // update student info
+            Meteor.call('batchInsertImages', studentId, imageId, function(err, res) {
+              if (err) {
+                console.log(err)
+              } else {
+                //console.log(res)
+              }
+            });
+          }
+        })
+
+
+      } else {
+        console.log('missing: ' + name);
+      }
+    })
+    console.log('Uploaded: '+ counter + ', Successed: ' + photoCount + ', Total photo: ' + Students.find().count())
+
   }
 })
