@@ -68,6 +68,7 @@ http@1.2.12
 simple:json-routes
 
 session
+stevezhu:lodash
 
 #open auth
 jparker:crypto-aes

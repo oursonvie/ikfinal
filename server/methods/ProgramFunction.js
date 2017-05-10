@@ -9,7 +9,7 @@ Meteor.methods({
     } else {
       var studentId = Students.findOne({userId:userId})._id;
       //add program to student, not the otherway around
-      resultStudents = Students.update({_id:studentId},{$addToSet:{enrollment:{programId:programId, status:'pending'}}});
+      resultStudents = Students.update({_id:studentId},{$addToSet:{enrollment:{programId:programId, status:'Pending'}}});
       // add student to program
       resultPrograms = Programs.update({_id:programId},{$addToSet:{student:studentId}});
       return 0

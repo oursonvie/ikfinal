@@ -28,11 +28,18 @@ Template.showStudent.helpers({
     }
   },
   enrollStatus: function() {
-    return Students.findOne(this._id).enrollment[0].status;
+    var programId = FlowRouter.getParam('id');
+    var enrollmentObj = Students.findOne({_id:this._id}).enrollment;
+    var arrayNo = lodash.findIndex(enrollmentObj, ['programId',programId])
+
+    return Students.findOne({_id:this._id}).enrollment[arrayNo].status
   },
   ifEnrolled: function() {
-    var status = Students.findOne(this._id).enrollment[0].status;
-    if (status == 'pending') {
+    var programId = FlowRouter.getParam('id');
+    var enrollmentObj = Students.findOne({_id:this._id}).enrollment;
+    var arrayNo = lodash.findIndex(enrollmentObj, ['programId',programId]);
+    var status = Students.findOne({_id:this._id}).enrollment[arrayNo].status;
+    if (status == 'Pending') {
       return false
     } else {
       return true
@@ -158,6 +165,9 @@ Template.showStudent.events({
     }
   },
   'click .btn-pending': function(template) {
-    Meteor.call('changePendingStatus',this._id);
+    var programId = FlowRouter.getParam('id');
+    var enrollmentObj = Students.findOne({_id:this._id}).enrollment;
+    var arrayNo = lodash.findIndex(enrollmentObj, ['programId',programId])
+    Meteor.call('changePendingStatus',this._id, arrayNo);
   }
 })

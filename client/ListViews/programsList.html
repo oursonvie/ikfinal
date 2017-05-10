@@ -34,10 +34,11 @@
               {{#if currentUser}}
 
                 {{#if enrolled}}
-                  <button class="btn  disabled pull-right">Enrolled</button>
+                  <button class="btn pull-right {{enrollCSS}}" disabled="disabled">{{enrollStauts}}</button>
                 {{else}}
-                  <button class="btn btn-success btn-enroll pull-right">Enroll</button>
+                  <button class="btn btn-primary btn-enroll pull-right"> {{enrollStauts}}</button>
                 {{/if}}
+
               {{/if}}
             {{/if}}
           </div>
