@@ -51,10 +51,10 @@ Students.attachSchema(new SimpleSchema({
     type: String,
     label: "Email",
     autoValue:function(){
-      if (this.value != undefined) {
-        return this.value
-      } else {
+      if (this.isInsert) {
         return Meteor.user().emails[0].address
+      } else {
+        this.unset()
       }
     },
     autoform:{
@@ -192,7 +192,11 @@ Students.attachSchema(new SimpleSchema({
   userId: {
     type: String,
     autoValue:function(){
-       return this.userId
+      if (this.isInsert) {
+        return this.userId
+      } else {
+        this.unset()
+      }
      },
      autoform: {
        type: 'hidden'
