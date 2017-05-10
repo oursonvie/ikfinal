@@ -173,10 +173,21 @@ Students.attachSchema(new SimpleSchema({
       }
   },
   'enrollment.$': {
-      type: String,
-      autoform: {
-          type:"hidden"
-      }
+      type: Object
+  },
+  'enrollment.$.programId':{
+    type: String,
+    label: "Program ID",
+    autoform: {
+        type:"hidden"
+    }
+  },
+  'enrollment.$.status':{
+    type: String,
+    label: "Program Status",
+    autoform: {
+        type:"hidden"
+    }
   },
   userId: {
     type: String,
@@ -203,9 +214,7 @@ Students.attachSchema(new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    autoValue:function(){
-       return new Date
-     },
+    defaultValue: new Date,
      autoform: {
        type: 'hidden'
      }

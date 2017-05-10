@@ -7,8 +7,6 @@ Meteor.methods({
     var imageId = imageId
     var email = Students.findOne({_id:studentId}).email
     Students.update({_id:studentId},{$set:{email:email, profile_image:imageId}});
-
-    console.log(Students.findOne({_id:studentId}).profile_image)
   },
   fixMissingImage(imageId) {
     var list = Students.find({profile_image:undefined}).fetch()

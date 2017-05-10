@@ -13,8 +13,11 @@ Template.programsList.helpers({
         var enrollmentList = Students.findOne().enrollment;
         return enrollmentList.includes(this._id);
       }
-
     },
+    enrollment: function() {
+      return this._id
+    }
+    ,
     numberEnrolled: function() {
         if (Programs.findOne({
                 _id: this._id

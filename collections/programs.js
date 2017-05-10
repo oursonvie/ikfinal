@@ -133,9 +133,7 @@ Programs.attachSchema(new SimpleSchema({
   createdAt: {
         type: Date,
         label: "Created At",
-        autoValue: function() {
-            return new Date()
-        },
+        defaultValue: new Date(),
         autoform: {
             type: "hidden"
         }
