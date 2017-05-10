@@ -16,7 +16,7 @@ Meteor.methods({
       var studentId = each._id;
       Students.update({_id:studentId},{$set:{email:email, profile_image:imageId}});
 
-      console.log(Students.findOne({_id:studentId}).profile_image)
+      console.log('inserting image: ' + Students.findOne({_id:studentId}).profile_image)
     })
   }
 });
