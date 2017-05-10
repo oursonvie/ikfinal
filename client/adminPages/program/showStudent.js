@@ -26,6 +26,17 @@ Template.showStudent.helpers({
     } else {
       return true
     }
+  },
+  enrollStatus: function() {
+    return Students.findOne(this._id).enrollment[0].status;
+  },
+  ifEnrolled: function() {
+    var status = Students.findOne(this._id).enrollment[0].status;
+    if (status == 'pending') {
+      return false
+    } else {
+      return true
+    }
   }
 });
 
@@ -70,9 +81,6 @@ Template.showStudent.events({
         fileReader.readAsText(file);
       }
     }
-  },
-  'click tr': function(template) {
-    FlowRouter.go("/admin/student/" + this._id);
   },
   'change #photoUpload': function(event, template) {
     var files = event.target.files;
@@ -148,5 +156,8 @@ Template.showStudent.events({
     } else {
       console.log('upload cancelled')
     }
+  },
+  'click .btn-pending': function(template) {
+    Meteor.call('changePendingStatus',this._id);
   }
 })

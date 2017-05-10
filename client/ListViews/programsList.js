@@ -7,17 +7,14 @@ Template.programsList.helpers({
         return moment(date).format('YYYY-MM-DD');
     },
     enrolled: function() {
-      if (Students.findOne() == undefined || Students.findOne().enrollment == undefined) {
+      if (Students.findOne() == undefined || true) {
+
         return false
       } else {
         var enrollmentList = Students.findOne().enrollment;
         return enrollmentList.includes(this._id);
       }
     },
-    enrollment: function() {
-      return this._id
-    }
-    ,
     numberEnrolled: function() {
         if (Programs.findOne({
                 _id: this._id

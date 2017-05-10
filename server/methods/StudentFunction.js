@@ -16,5 +16,8 @@ Meteor.methods({
 
       console.log('inserting image: ' + Students.findOne({_id:studentId}).profile_image)
     })
+  },
+  changePendingStatus(studentId) {
+    Students.update({_id:studentId},{$set:{"enrollment.0.status":'enrolled'}})
   }
 });
