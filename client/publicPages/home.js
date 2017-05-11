@@ -8,7 +8,7 @@ Template.home.onCreated(function(){
 
 Template.home.helpers({
   news: function() {
-    return News.find({});
+    return News.find({},{sort: {createdAt: -1}, limit:4});
   },
   clean: function(content) {
     return content.replace(/<(?:.|\n)*?>/gm, '').substring(0,50) + ' ...';
