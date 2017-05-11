@@ -1,7 +1,23 @@
 <template name="home">
-  <div class="jumbotron">
-    <h1>Start your offline training program today</h1>
-    <p></p>
-    <p><a class="btn btn-success btn-lg" href="/program" role="button">Learn more</a></p>
+  <div class="container">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a href="/news"><b><i class="fa fa-angle-right  pull-right" aria-hidden="true"> More</i></b> </a>
+        <h3 class="panel-title"><b>NEWS</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          {{#each news}}
+          <a href="/news/{{_id}}" alt="news">
+              <div class="col-sm-3  hover1 "> {{{newImg}}}
+              <h5>{{clean title}}</h5></div>
+          </a>
+          {{/each}}
+        </div>
+
+      </div>
+    </div>
   </div>
+
 </template>
