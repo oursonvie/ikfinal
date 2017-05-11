@@ -44,6 +44,23 @@ Template.showStudent.helpers({
     } else {
       return true
     }
+  },
+  enrollCSS: function() {
+    var programId = FlowRouter.getParam('id');
+    var enrollmentObj = Students.findOne({_id:this._id}).enrollment;
+    var arrayNo = lodash.findIndex(enrollmentObj, ['programId',programId]);
+    var status = Students.findOne({_id:this._id}).enrollment[arrayNo].status;
+    switch(status) {
+      case 'Pending':
+        return 'btn-info';
+        break;
+      case 'Enrolled':
+        return 'btn-success';
+        break;
+      case 'Complete':
+        return 'btn-default';
+        break;
+    }
   }
 });
 
@@ -61,6 +78,7 @@ Template.showStudent.events({
       }
     });
   },
+  // import function
   'change #hiddenUpload': function(event, template) {
     var filesList = event.currentTarget.files;
     if (filesList.length) {

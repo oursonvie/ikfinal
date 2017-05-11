@@ -23,7 +23,7 @@ Meteor.methods({
         // init data and add import tag and enrollment status
         var extendStudent = data[i];
         extendStudent['import'] = true;
-        extendStudent['enrollment'] = [programId];
+        extendStudent['enrollment'] = [{'programId':programId,'status':'Complete'}];
 
         extendStudent['date_of_birth']= moment(extendStudent.date_of_birth).format("YYYY-MM-DD")
 
@@ -52,6 +52,7 @@ Meteor.methods({
     var copy = Programs.findOne({_id:id},{fields:{_id:0, student:0}})
     Programs.insert(copy)
   },
+  // use for check enroll stat on serverside?
   checkEnrollment(programId) {
     return Students.findOne({}, {fields:{enrollment:{$elemMatch:{programId:programId}}}}).enrollment
   }

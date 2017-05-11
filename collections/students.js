@@ -52,7 +52,11 @@ Students.attachSchema(new SimpleSchema({
     label: "Email",
     autoValue:function(){
       if (this.isInsert) {
-        return Meteor.user().emails[0].address
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return Meteor.user().emails[0].address
+        }
       } else {
         this.unset()
       }

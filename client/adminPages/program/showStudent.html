@@ -32,6 +32,8 @@
             <th>Telephone</th>
             <th style="text-align: center">Status</th>
           </tr>
+          {{#if Template.subscriptionsReady}}
+
               {{#each students}}
                 {{#if importStudent}}
                   <tr class="danger">
@@ -40,7 +42,7 @@
                     <td>{{gender}}</td>
                     <td>{{email}}</td>
                     <td>{{telephone}}</td>
-                    <td align="center">{{enrollStatus}}</td>
+                    <td align="center"><button class="btn btn-sm disabled {{enrollCSS}}">{{enrollStatus}}</button></td>
                   </tr>
                 {{else}}
                   <tr class="success">
@@ -51,7 +53,7 @@
                     <td>{{telephone}}</td>
                     <td style="text-align: center">
                       {{#if ifEnrolled}}
-                        <button class="btn btn-success btn-sm disabled ">{{enrollStatus}}</button>
+                        <button class="btn btn-sm disabled {{enrollCSS}}">{{enrollStatus}}</button>
                       {{else}}
                         <button class="btn btn-warning btn-sm btn-pending ">{{enrollStatus}}</button>
                       {{/if}}
@@ -61,6 +63,10 @@
                 {{/if}}
 
               {{/each}}
+
+            {{else}}
+              {{> spinner}}
+            {{/if}}
         </tbody>
       </table>
     </div>

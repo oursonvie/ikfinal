@@ -8,7 +8,7 @@ Meteor.publish('StudentsAll', function() {
 
 Meteor.publish('StudentsHasProgram', function(programId) {
   // this program should be unique to specific student
-  return Students.find({}, {enrollment:{$elemMatch:{programId:programId}}})
+  return Students.find({'enrollment.programId':programId})
 });
 
 Meteor.publish('StudentDetail', function(id) {
