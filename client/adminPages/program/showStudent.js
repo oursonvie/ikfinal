@@ -166,8 +166,6 @@ Template.showStudent.events({
   },
   'click .btn-pending': function(template) {
     var programId = FlowRouter.getParam('id');
-    var enrollmentObj = Students.findOne({_id:this._id}).enrollment;
-    var arrayNo = lodash.findIndex(enrollmentObj, ['programId',programId])
-    Meteor.call('changePendingStatus',this._id, arrayNo);
+    Meteor.call('changePendingStatus',this._id, programId);
   }
 })
