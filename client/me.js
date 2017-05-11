@@ -2,6 +2,7 @@ Template.me.onCreated(function() {
   var self = this;
   self.autorun(function() {
     self.subscribe('StudentOne', Meteor.userId());
+    self.subscribe('EnrolledProgram', Meteor.user().profile.studentId);
   });
 });
 
@@ -16,7 +17,10 @@ Template.me.helpers({
     } else {
       return false
     }
-  }
+  },
+  enrollment: function() {
+    return Students.findOne().enrollment
+  },
 });
 
 Template.me.events({

@@ -1,10 +1,22 @@
 <template name="home">
   <div class="container">
 
+
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="http://219.245.39.47/training/trainingWeb/images/111.png" alt="First slide">
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+
     <div class="panel panel-default">
       <div class="panel-heading">
-        <a href="/news"><b><i class="fa fa-angle-right  pull-right" aria-hidden="true"> More</i></b> </a>
-        <h3 class="panel-title"><b>NEWS</b></h3>
+        <a href="/news"><b><i class="fa fa-angle-right  pull-right" aria-hidden="true"> More</i></b></a>
+        <h3 class="panel-title"><b>News</b></h3>
       </div>
       <div class="panel-body">
         <div class="row">
@@ -15,9 +27,49 @@
           </a>
           {{/each}}
         </div>
-
       </div>
     </div>
+
+    <div class="panel panel-default home-program">
+                <div class="panel-heading">
+                <a href="/program"><b><i class="fa fa-angle-right  pull-right" aria-hidden="true"> More</i></b></a>
+                    <h3 class="panel-title"><b>Program</b> </h3>
+                </div>
+
+                {{#each programs}}
+
+                <div class="row hover1">
+                   <a href="/program/{{_id}}">
+                    <div class="col-sm-3 date">
+
+
+                        <div class="panel-body">
+                          <h6><p><i class="fa fa-calendar"></i> Start Date: </p>
+                            {{formatDate start_date}}</h6>
+
+                          <h6><p><i class="fa fa-calendar"></i> End Date: </p>
+                            {{formatDate end_date}}</h6>
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="panel-body ">
+                            <h2>{{subject}}</h2>
+                            <p>
+                                {{objective}}
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                {{/each}}
+
+                  <hr>
+
+            </div>
+
   </div>
 
 </template>
