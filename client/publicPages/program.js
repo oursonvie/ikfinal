@@ -8,6 +8,6 @@ Template.program.onCreated(function(){
 
 Template.program.helpers({
   programs: function() {
-    return Programs.find({},{sort: {createdAt: -1}});
+    return Programs.find({},{sort: {start_date: -1}});
   }
 })
