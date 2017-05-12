@@ -16,6 +16,7 @@ Meteor.methods({
     }
   },
   importStudent(data, programId) {
+    if (Roles.userIsInRole(this.userId, ['admin']) == true) {
       var insertHistory = [];
       var errorStop = false;
 
@@ -47,13 +48,27 @@ Meteor.methods({
         }
         resultPrograms = Programs.update({_id:programId},{$addToSet:{student:id}});
       }
+    } else {
+      console.log('err .importStudent provoked by ' + this.userId)
+    }
   },
   duplicateProgram(id) {
-    var copy = Programs.findOne({_id:id},{fields:{_id:0, student:0}})
-    Programs.insert(copy)
+    if (Roles.userIsInRole(this.userId, ['admin']) == true) {
+      var copy = Programs.findOne({_id:id},{fields:{_id:0, student:0}})
+      Programs.insert(copy)
+    } else {
+      console.log('err .duplicateProgram provoked by ' + this.userId)
+    }
   },
   // use for check enroll stat on serverside?
   checkEnrollment(programId) {
     return Students.findOne({}, {fields:{enrollment:{$elemMatch:{programId:programId}}}}).enrollment
+  },
+  deleteProgram(programId) {
+    if (Roles.userIsInRole(this.userId, ['admin']) == true) {
+      return Programs.remove({_id:programId})
+    } else {
+      console.log('userId: ' + this.userId + 'trying to provoke deleteProgram on ' + programId)
+    }
   }
 });

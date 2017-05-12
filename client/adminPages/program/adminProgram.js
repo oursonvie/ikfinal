@@ -8,7 +8,7 @@ Template.adminProgram.onCreated(function(){
 
 Template.adminProgram.helpers({
   programs: function() {
-    return Programs.find();
+    return Programs.find({},{sort: {createdAt: -1}});
   }
 });
 

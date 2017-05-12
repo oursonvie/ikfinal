@@ -45,7 +45,7 @@ Template.adminStudent.helpers({
       var pageIndex = FlowRouter.getParam('page') - 1;
       return Students.find({},{sort: {createdAt: -1},skip: pageIndex*20, limit: 20});
     } else {
-      return Students.find({email:searchEmail})
+      return Students.find({email:searchEmail},{sort: {createdAt: -1}})
     }
   },
   number: function(number) {

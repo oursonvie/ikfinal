@@ -7,6 +7,6 @@ Template.news.onCreated(function(){
 
 Template.news.helpers({
   blogs: function() {
-    return News.find();
+    return News.find({},{sort: {createdAt: -1}});
   }
 });

@@ -30,5 +30,8 @@ Template.adminProgramsList.events({
   },
   'click .btn-duplicate': function(event, template) {
     Meteor.call('duplicateProgram', this._id);
+  },
+  'click .btn-delete': function(event, template) {
+    Meteor.call('deleteProgram', this._id);
   }
 });

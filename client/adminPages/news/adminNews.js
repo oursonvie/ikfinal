@@ -8,7 +8,7 @@ Template.adminNews.onCreated(function(){
 
 Template.adminNews.helpers({
   news: function() {
-    return News.find();
+    return News.find({},{sort: {createdAt: -1}});
   }
 });
 
