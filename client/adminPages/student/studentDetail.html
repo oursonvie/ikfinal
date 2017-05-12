@@ -96,12 +96,16 @@
 
         <tbody>
           {{#each enrolledPrograms}}
-          <tr>
-            <th scope="row">{{@index}}</th>
-            <td>{{subject}}</td>
-            <td>{{formatDate start_date}}</td>
-            <td><button class="btn btn-sm disabled {{enrollCSS status}}">{{status}}</button></td>
-          </tr>
+
+
+            <tr>
+              <th scope="row">{{@index}}</th>
+              <td><a href="/program/{{_id}}">{{subject}}</a></td>
+              <td>{{formatDate start_date}}</td>
+              <td><button class="btn btn-sm disabled {{enrollCSS status}}">{{status}}</button></td>
+            </tr>
+
+
           {{/each}}
         </tbody>
       </table>
