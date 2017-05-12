@@ -3,6 +3,9 @@
     <i class="fa fa-chevron-left"></i>
     <hr>
   </div>
+
+{{#if Template.subscriptionsReady}}
+
  {{#with student}}
  <div class="row">
 
@@ -99,7 +102,7 @@
           {{#each enrolledPrograms}}
             <tr>
               <th scope="row">{{@index}}</th>
-              <td><a href="/program/{{_id}}">{{subject}}</a></td>
+              <td><a href="/admin/program/{{_id}}">{{subject}}</a></td>
               <td>{{formatDate start_date}}</td>
               <td>{{formatDate end_date}}</td>
               <td><button class="btn btn-sm disabled {{enrollCSS status}}">{{status}}</button></td>
@@ -135,5 +138,9 @@
 </div>
 
  {{/with}}
+
+ {{else}}
+   {{> spinner}}
+ {{/if}}
 
 </template>
