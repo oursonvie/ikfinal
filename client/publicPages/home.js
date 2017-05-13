@@ -19,6 +19,23 @@ Template.home.helpers({
   formatDate: function(date) {
       return moment(date).format('YYYY-MM-DD');
   },
+  daoVoice: function() {
+    if (Meteor.userId()) {
+      daovoice('init', {
+        app_id: "b8de9f2f",
+        user_id: Meteor.userId(), // 必填: 该用户在您系统上的唯一ID
+        email: Meteor.user().emails[0].address, // 选填:  该用户在您系统上的主邮箱
+        name: Meteor.user().emails[0].address, // 选填: 用户名
+        signed_up: new Date().getTime() // 选填: 用户的注册时间，用Unix时间戳表示
+      });
+      daovoice('update');
+    } else {
+      daovoice('init', {
+        app_id: "b8de9f2f"
+      });
+      daovoice('update');
+    }
+  },
   newImg: function() {
     var myRegex = /<img[^>]+src="(http:\/\/[^">]+)"/g;
     var htmlContent = News.findOne({_id:this._id}).content
