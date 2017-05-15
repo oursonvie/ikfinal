@@ -116,42 +116,55 @@ Template.showStudent.events({
     // check all selection files compare with name in db
     _.forEach(files, function(file) {
       counter += 1;
-      var name = file.name.split('.')[0].replace(/\s+$/, '');
-      if (Students.findOne({
-          "full_name": {
-            $regex: new RegExp(name, "i")
-          }
-        }) != undefined) {
-        photoCount += 1;
-        var studentId = Students.findOne({
-          "full_name": {
-            $regex: new RegExp(name, "i")
-          }
-        })._id;
 
+      var nameHeader = file.name.split('.')[0] || file.name.split('+')[0]
+
+      if (nameHeader.match(/^[0-9]+$/) != null) {
+
+        var programNo = parseInt(nameHeader, 10)
+        if (Students.findOne({"programNo": programNo}) != undefined) {
+          photoCount += 1
+        } else {
+          console.log('missing no photo at:' + programNo)
+        }
       } else {
-        console.log('missing: ' + name);
+
+        var name = file.name.split('.')[0].replace(/\s+$/, '');
+
+        if (Students.findOne({"full_name": {$regex: new RegExp(name, "i")}      }) != undefined) {
+          photoCount += 1;
+          var studentId = Students.findOne({"full_name": {$regex: new RegExp(name, "i")}})._id;
+        } else {
+          console.log('missing: ' + name);
+        }
       }
+
+
     })
 
     var resultText = 'Total Section: ' + counter + ', Uploading: ' + photoCount + ', Total Students: ' + Students.find().count()
 
     if (confirm(resultText)) {
       _.forEach(files, function(file) {
-        var name = file.name.split('.')[0].replace(/\s+$/, '');
-        if (Students.findOne({
-            "full_name": {
-              $regex: new RegExp(name, "i")
-            }
-          }) != undefined) {
-          var studentId = Students.findOne({
-            "full_name": {
-              $regex: new RegExp(name, "i")
-            }
-          })._id;
 
-          // upload image to server
-          Images.insert(file, function(err, fileObj) {
+        var nameHeader = file.name.split('.')[0] || file.name.split('+')[0]
+        var name = file.name.split('.')[0].replace(/\s+$/, '');
+
+        if (nameHeader.match(/^[0-9]+$/) != null) {
+          var programNo = parseInt(nameHeader, 10)
+
+          if (Students.findOne({"programNo":programNo}) != undefined) {
+            var studentId = Students.findOne({"programNo":programNo})._id
+          }
+        } else if (Students.findOne({"full_name": {$regex: new RegExp(name, "i")}}) != undefined) {
+          var studentId = Students.findOne({"full_name": {$regex: new RegExp(name, "i")}})._id;
+        } else {
+          console.log('missing: ' + name);
+        }
+
+        // insert if studentId exists
+
+        Images.insert(file, function(err, fileObj) {
             if (err) {
               console.log(err);
             } else {
@@ -174,9 +187,7 @@ Template.showStudent.events({
             }
           })
 
-        } else {
-          console.log('missing: ' + name);
-        }
+
       })
     } else {
       console.log('upload cancelled')

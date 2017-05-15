@@ -206,6 +206,13 @@ Students.attachSchema(new SimpleSchema({
        type: 'hidden'
      }
   },
+  programNo:{
+    type: Number,
+    optional: true,
+    autoform: {
+      type:"hidden"
+    }
+  },
   import:{
     type: Boolean,
     optional: true,
