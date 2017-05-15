@@ -1,5 +1,5 @@
 Accounts.onLogin(function(user){
-  // target id
+  // target id p9Kfe7xor2Nn93zAb for test accounnt on ikcest.xjtudlc.com
   var targetID = 'p9Kfe7xor2Nn93zAb'
 
   if (user.user._id == targetID) {
