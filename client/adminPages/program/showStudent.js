@@ -117,7 +117,11 @@ Template.showStudent.events({
     _.forEach(files, function(file) {
       counter += 1;
 
-      var nameHeader = file.name.split('.')[0] || file.name.split('+')[0]
+      if (file.name.includes('+')) {
+        var nameHeader = file.name.split('+')[0]
+      } else {
+        var nameHeader = file.name.split('.')[0]
+      }
 
       if (nameHeader.match(/^[0-9]+$/) != null) {
 
@@ -147,7 +151,12 @@ Template.showStudent.events({
     if (confirm(resultText)) {
       _.forEach(files, function(file) {
 
-        var nameHeader = file.name.split('.')[0] || file.name.split('+')[0]
+        if (file.name.includes('+')) {
+          var nameHeader = file.name.split('+')[0]
+        } else {
+          var nameHeader = file.name.split('.')[0]
+        }
+
         var name = file.name.split('.')[0].replace(/\s+$/, '');
 
         if (nameHeader.match(/^[0-9]+$/) != null) {
