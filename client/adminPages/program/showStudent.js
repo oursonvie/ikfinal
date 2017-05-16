@@ -124,8 +124,12 @@ Template.showStudent.events({
     _.forEach(files, function(file) {
       counter += 1;
 
-      if (file.name.includes('+')) {
-        var nameHeader = file.name.split('+')[0]
+      if (file.name.includes('+') || file.name.includes('-')) {
+        if (file.name.includes('+')) {
+          var nameHeader = file.name.split('+')[0]
+        } else {
+          var nameHeader = file.name.split('-')[0]
+        }
       } else {
         var nameHeader = file.name.split('.')[0]
       }
@@ -158,10 +162,12 @@ Template.showStudent.events({
     if (confirm(resultText)) {
       _.forEach(files, function(file) {
 
-        if (file.name.includes('+')) {
-          var nameHeader = file.name.split('+')[0]
-        } else {
-          var nameHeader = file.name.split('.')[0]
+        if (file.name.includes('+') || file.name.includes('-')) {
+          if (file.name.includes('+')) {
+            var nameHeader = file.name.split('+')[0]
+          } else {
+            var nameHeader = file.name.split('-')[0]
+          }
         }
 
         var name = file.name.split('.')[0].replace(/\s+$/, '');
@@ -212,5 +218,9 @@ Template.showStudent.events({
   'click .btn-pending': function(template) {
     var programId = FlowRouter.getParam('id');
     Meteor.call('changePendingStatus',this._id, programId);
+  },
+  'click .btn-delete': function() {
+    var programId = FlowRouter.getParam('id');
+    Meteor.call('clearStudent', programId);
   }
 })
