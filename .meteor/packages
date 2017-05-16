@@ -77,3 +77,5 @@ jparker:crypto-aes
 ## fake data
 digilord:faker
 dispatch:mocha-browser
+
+webdeb:app-loader
