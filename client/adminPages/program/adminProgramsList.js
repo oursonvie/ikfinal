@@ -32,6 +32,13 @@ Template.adminProgramsList.events({
     Meteor.call('duplicateProgram', this._id);
   },
   'click .btn-delete': function(event, template) {
-    Meteor.call('deleteProgram', this._id);
+    var deleteMessage = 'Delete program?'
+
+    if (confirm(deleteMessage)) {
+      Meteor.call('deleteProgram', this._id);
+    } else {
+      console.log('Program delete cancelled')
+    }
+
   }
 });

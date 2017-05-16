@@ -222,7 +222,15 @@ Template.showStudent.events({
     Meteor.call('changePendingStatus',this._id, programId);
   },
   'click .btn-delete': function() {
-    var programId = FlowRouter.getParam('id');
-    Meteor.call('clearStudent', programId);
+    var deleteMessage = 'Delete all student in this program?'
+
+    if (confirm(deleteMessage)) {
+      var programId = FlowRouter.getParam('id');
+      Meteor.call('clearStudent', programId);
+    } else {
+      console.log('Delete students cancelled')
+    }
+
+
   }
 })
