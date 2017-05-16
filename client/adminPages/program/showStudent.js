@@ -12,6 +12,13 @@ Template.showStudent.helpers({
   program: function() {
     return Programs.findOne();
   },
+  profilePhoto: function() {
+    if (Students.findOne({_id:this._id}).profile_image != undefined) {
+      return true
+    } else {
+      return false
+    }
+  },
   students: function() {
     return Students.find({});
   },

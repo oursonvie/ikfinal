@@ -27,6 +27,17 @@ Students.attachSchema(new SimpleSchema({
       group: 'Basic Information',
       type: "select-radio-inline",
       options: function() {return[{label:"Male",value:"Male"},{label:"Female",value:"Female"}]}
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   date_of_birth: {
@@ -38,6 +49,17 @@ Students.attachSchema(new SimpleSchema({
       datePickerOptions: {
         autoclose: true
       }
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   telephone: {
@@ -45,6 +67,17 @@ Students.attachSchema(new SimpleSchema({
     label: "*Telephone",
     autoform: {
       group: 'Basic Information'
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   email: {
@@ -72,6 +105,17 @@ Students.attachSchema(new SimpleSchema({
       group: 'Citizenship',
       type: "select",
       options: function(){return CountryList()}
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   country_of_citizenship: {
@@ -81,6 +125,17 @@ Students.attachSchema(new SimpleSchema({
       group: 'Citizenship',
       type: "select",
       options: function(){return CountryList()}
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   passport: {
@@ -88,6 +143,17 @@ Students.attachSchema(new SimpleSchema({
     label: "*Passport No.",
     autoform: {
       group: 'Citizenship'
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   highest_education: {
@@ -97,6 +163,17 @@ Students.attachSchema(new SimpleSchema({
       group: 'Education History',
       type: "select",
       options: function(){return HEList()}
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   area_of_study: {
@@ -106,6 +183,17 @@ Students.attachSchema(new SimpleSchema({
       group: 'Education History',
       type: "select",
       options: function(){return AreaOfStudyList()}
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   name_of_institute: {
@@ -121,6 +209,17 @@ Students.attachSchema(new SimpleSchema({
     label: "*University Name",
     autoform: {
       group: 'Current Study'
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   studentid: {
@@ -128,6 +227,17 @@ Students.attachSchema(new SimpleSchema({
     label: "*Student No.",
     autoform: {
       group: 'Current Study'
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   degree: {
@@ -137,6 +247,17 @@ Students.attachSchema(new SimpleSchema({
       group: 'Current Study',
       type: "select",
       options: function(){return DegreeList()}
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   major: {
@@ -146,6 +267,17 @@ Students.attachSchema(new SimpleSchema({
       group: 'Current Study',
       type: "select",
       options: function(){return AreaOfStudyList()}
+    },
+    autoValue:function(){
+      if (this.isInsert) {
+        if (this.value != undefined) {
+          return this.value
+        } else {
+          return 'null'
+        }
+      } else {
+        this.unset()
+      }
     }
   },
   occupation: {

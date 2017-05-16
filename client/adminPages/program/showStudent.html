@@ -38,7 +38,13 @@
                 {{#if importStudent}}
                   <tr class="danger">
                     <td>{{number @index}}</td>
-                    <td><a href="/admin/student/{{_id}}">{{full_name}}</a></td>
+                    <td><a href="/admin/student/{{_id}}">
+                      {{#if profilePhoto}}
+                        <i class="fa fa-user-circle" aria-hidden="true"></i> {{full_name}}
+                      {{else}}
+                        {{full_name}}
+                      {{/if}}
+                    </a></td>
                     <td>{{gender}}</td>
                     <td>{{email}}</td>
                     <td>{{telephone}}</td>
@@ -47,7 +53,13 @@
                 {{else}}
                   <tr class="success">
                     <td>{{number @index}}</td>
-                    <td><a href="/admin/student/{{_id}}">{{full_name}}</a></td>
+                    <td><a href="/admin/student/{{_id}}">
+                      {{#if profilePhoto}}
+                        <i class="fa fa-user-circle" aria-hidden="true"></i> {{full_name}}
+                      {{else}}
+                        {{full_name}}
+                      {{/if}}
+                    </a></td>
                     <td>{{gender}}</td>
                     <td>{{email}}</td>
                     <td>{{telephone}}</td>
