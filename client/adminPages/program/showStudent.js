@@ -168,6 +168,8 @@ Template.showStudent.events({
           } else {
             var nameHeader = file.name.split('-')[0]
           }
+        } else {
+          var nameHeader = file.name.split('.')[0]
         }
 
         var name = file.name.split('.')[0].replace(/\s+$/, '');
