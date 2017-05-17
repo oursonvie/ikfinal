@@ -78,5 +78,15 @@ Meteor.methods({
     } else {
       console.log('userId: ' + this.userId + 'trying to provoke clearStudent on ' + programId)
     }
+  },
+  removeStudentFromProgram(studentList, programId) {
+    if (Roles.userIsInRole(this.userId, ['admin']) == true) {
+      _.forEach(studentList, function(studentId) {
+        Students.update({_id:studentId},{$pull:{enrollment: {programId: programId}}})
+        Programs.update({_id:programId},{$pull:{student:studentId}})
+      })
+    } else {
+      console.log('err .removeStudentFromProgram provoked by ' + this.userId)
+    }
   }
 });

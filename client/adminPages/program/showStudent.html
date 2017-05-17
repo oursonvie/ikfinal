@@ -18,9 +18,10 @@
         <label class="btn btn-default btn-sm">
     Upload Photo<input type="file" id="photoUpload" style="display: none;" multiple>
         </label>
+        
+        {{#if ifSelected}}
         <button class="btn btn-danger btn-sm btn-delete">Delete Students</button>
 
-        {{#if ifSelected}}
           <div class="btn-group">
             <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Status <span class="caret"></span>

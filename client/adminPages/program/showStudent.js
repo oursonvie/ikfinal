@@ -229,16 +229,6 @@ Template.showStudent.events({
     var programId = FlowRouter.getParam('id');
     Meteor.call('changeStatus',this._id, programId, 'enrolled');
   },
-  'click .btn-delete': function() {
-    var deleteMessage = 'Delete all student in this program?'
-
-    if (confirm(deleteMessage)) {
-      var programId = FlowRouter.getParam('id');
-      Meteor.call('clearStudent', programId);
-    } else {
-      console.log('Delete students cancelled')
-    }
-  },
   'click #checkAll': function(event, template) {
     var result = document.getElementById('checkAll').checked;
 
@@ -280,7 +270,19 @@ Template.showStudent.events({
   'click #completed': function() {
     console.log('completed')
     var programId = FlowRouter.getParam('id');
-    var studentList = Session.get('selectedStudents')
+    var studentList = Session.get('selectedStudents');
     Meteor.call('batchStatusChanging',studentList, programId, 'completed');
+  },
+  'click .btn-delete': function() {
+    var deleteMessage = 'Delete selected students in this program?'
+
+    if (confirm(deleteMessage)) {
+      var programId = FlowRouter.getParam('id');
+      var studentList = Session.get('selectedStudents');
+      Meteor.call('removeStudentFromProgram',studentList, programId);
+    } else {
+      console.log('Delete students cancelled')
+    }
+    
   }
 })
