@@ -26,27 +26,31 @@ Meteor.methods({
     }
   },
   changeStatus(studentId, programId, status) {
-    // new way to update
-    switch(status) {
-      case 'pending':
-        Students.update(
-           { _id: studentId, "enrollment.programId": programId },
-           { $set: { "enrollment.$.status" : 'Pending' } }
-        )
-        break;
-      case 'enrolled':
-        Students.update(
-           { _id: studentId, "enrollment.programId": programId },
-           { $set: { "enrollment.$.status" : 'Enrolled' } }
-        )
-        break;
-      case 'completed':
-        Students.update(
-           { _id: studentId, "enrollment.programId": programId },
-           { $set: { "enrollment.$.status" : 'Completed' } }
-        )
-        break;
+    if (Roles.userIsInRole(this.userId, ['admin']) == true) {
+      switch(status) {
+        case 'pending':
+          Students.update(
+             { _id: studentId, "enrollment.programId": programId },
+             { $set: { "enrollment.$.status" : 'Pending' } }
+          )
+          break;
+        case 'enrolled':
+          Students.update(
+             { _id: studentId, "enrollment.programId": programId },
+             { $set: { "enrollment.$.status" : 'Enrolled' } }
+          )
+          break;
+        case 'completed':
+          Students.update(
+             { _id: studentId, "enrollment.programId": programId },
+             { $set: { "enrollment.$.status" : 'Completed' } }
+          )
+          break;
+      }
+    } else {
+      console.log('err .changeStatus provoked by ' + this.userId)
     }
+
   },
   batchStatusChanging(studentList, programId, status) {
     _.forEach(studentList, function(student) {

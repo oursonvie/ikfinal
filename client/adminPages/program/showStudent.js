@@ -70,12 +70,13 @@ Template.showStudent.helpers({
         break;
     }
   },
-  isChecked: function() {
-
-     return 'checked'
-
+  ifSelected: function() {
+    if (Session.get('selectedStudents').length != 0) {
+      return true
+    } else {
+      return false
+    }
   }
-
 });
 
 Template.showStudent.events({
@@ -240,7 +241,7 @@ Template.showStudent.events({
   },
   'click #checkAll': function(event, template) {
     var result = document.getElementById('checkAll').checked;
-    console.log(result)
+
     var checkList = Students.find({}).fetch();
     if (result == true) {
       _.forEach(checkList, function(each) {
@@ -271,11 +272,13 @@ Template.showStudent.events({
     Meteor.call('batchStatusChanging',studentList, programId, 'pending');
   },
   'click #enrolled': function() {
+    console.log('enrolled')
     var programId = FlowRouter.getParam('id');
     var studentList = Session.get('selectedStudents')
     Meteor.call('batchStatusChanging',studentList, programId, 'enrolled');
   },
   'click #completed': function() {
+    console.log('completed')
     var programId = FlowRouter.getParam('id');
     var studentList = Session.get('selectedStudents')
     Meteor.call('batchStatusChanging',studentList, programId, 'completed');
