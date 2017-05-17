@@ -230,7 +230,19 @@ Template.showStudent.events({
     } else {
       console.log('Delete students cancelled')
     }
-
-
+  },
+  'click #checkAll': function(event, template) {
+    var result = document.getElementById('checkAll').checked;
+    console.log(result)
+    var checkList = Students.find({}).fetch();
+    if (result == true) {
+      _.forEach(checkList, function(each) {
+        document.getElementById(each._id).checked = true
+      })
+    } else {
+      _.forEach(checkList, function(each) {
+        document.getElementById(each._id).checked = false
+      })
+    }
   }
 })
