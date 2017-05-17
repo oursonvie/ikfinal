@@ -20,6 +20,18 @@
         </label>
         <button class="btn btn-danger btn-sm btn-delete">Delete Students</button>
 
+        <!-- Single button -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Status <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#" id="pending">Pending</a></li>
+            <li><a href="#" id="enrolled">Enrolled</a></li>
+            <li><a href="#" id="completed">Completed</a></li>
+          </ul>
+        </div>
+
       </div>
     </div>
     <div class="panel-body">
@@ -37,6 +49,7 @@
           {{#if Template.subscriptionsReady}}
 
               {{#each students}}
+
                 {{#if importStudent}}
                   <tr class="danger">
                     <td><input type="checkbox" id="{{this._id}}" aria-label="..."></td>
@@ -55,6 +68,7 @@
                   </tr>
                 {{else}}
                   <tr class="success">
+                    <td><input type="checkbox" id="{{this._id}}" aria-label="..."></td>
                     <td>{{number @index}}</td>
                     <td><a href="/admin/student/{{_id}}">
                       {{#if profilePhoto}}

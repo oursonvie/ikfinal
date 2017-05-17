@@ -4,6 +4,7 @@ Template.showStudent.onCreated(function() {
     var id = FlowRouter.getParam('id');
     self.subscribe('ProgramsOne', id);
     self.subscribe('StudentsHasProgram', id);
+    Session.set('selectedStudents',[])
   });
 });
 
@@ -68,7 +69,13 @@ Template.showStudent.helpers({
         return 'btn-default';
         break;
     }
+  },
+  isChecked: function() {
+
+     return 'checked'
+
   }
+
 });
 
 Template.showStudent.events({
@@ -219,7 +226,7 @@ Template.showStudent.events({
   },
   'click .btn-pending': function(template) {
     var programId = FlowRouter.getParam('id');
-    Meteor.call('changePendingStatus',this._id, programId);
+    Meteor.call('changeStatus',this._id, programId, 'enrolled');
   },
   'click .btn-delete': function() {
     var deleteMessage = 'Delete all student in this program?'
@@ -244,5 +251,33 @@ Template.showStudent.events({
         document.getElementById(each._id).checked = false
       })
     }
+  },
+  'click input': function() {
+    var checkList = Students.find({}).fetch();
+    var selectedList = []
+
+    _.forEach(checkList, function(each) {
+      if (document.getElementById(each._id).checked == true) {
+        selectedList.push(each._id)
+      }
+    })
+
+    Session.set('selectedStudents',selectedList)
+
+  },
+  'click #pending': function() {
+    var programId = FlowRouter.getParam('id');
+    var studentList = Session.get('selectedStudents')
+    Meteor.call('batchStatusChanging',studentList, programId, 'pending');
+  },
+  'click #enrolled': function() {
+    var programId = FlowRouter.getParam('id');
+    var studentList = Session.get('selectedStudents')
+    Meteor.call('batchStatusChanging',studentList, programId, 'enrolled');
+  },
+  'click #completed': function() {
+    var programId = FlowRouter.getParam('id');
+    var studentList = Session.get('selectedStudents')
+    Meteor.call('batchStatusChanging',studentList, programId, 'completed');
   }
 })

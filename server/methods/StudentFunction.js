@@ -25,11 +25,32 @@ Meteor.methods({
       console.log('err .fixMissingImage provoked by ' + this.userId)
     }
   },
-  changePendingStatus(studentId, programId) {
+  changeStatus(studentId, programId, status) {
     // new way to update
-      Students.update(
-         { _id: studentId, "enrollment.programId": programId },
-         { $set: { "enrollment.$.status" : 'Enrolled' } }
-      )
+    switch(status) {
+      case 'pending':
+        Students.update(
+           { _id: studentId, "enrollment.programId": programId },
+           { $set: { "enrollment.$.status" : 'Pending' } }
+        )
+        break;
+      case 'enrolled':
+        Students.update(
+           { _id: studentId, "enrollment.programId": programId },
+           { $set: { "enrollment.$.status" : 'Enrolled' } }
+        )
+        break;
+      case 'completed':
+        Students.update(
+           { _id: studentId, "enrollment.programId": programId },
+           { $set: { "enrollment.$.status" : 'Completed' } }
+        )
+        break;
     }
+  },
+  batchStatusChanging(studentList, programId, status) {
+    _.forEach(studentList, function(student) {
+      Meteor.call('changeStatus',student, programId, status);
+    })
+  }
 });
