@@ -19,14 +19,20 @@
         <h3 class="panel-title"><b>News</b></h3>
       </div>
       <div class="panel-body">
-        <div class="row">
-          {{#each news}}
-          <a href="/news/{{_id}}" alt="news">
-              <div class="col-sm-3  hover1 "> {{{newImg}}}
-              <h5>{{clean title}}</h5></div>
-          </a>
-          {{/each}}
-        </div>
+        {{#if Template.subscriptionsReady}}
+          <div class="row">
+            {{#each news}}
+            <a href="/news/{{_id}}" alt="news">
+                <div class="col-sm-3  hover1 "> {{{newImg}}}
+                <h5>{{clean title}}</h5></div>
+            </a>
+            {{/each}}
+          </div>
+        {{else}}
+          {{> loader}}
+        {{/if}}
+
+
       </div>
     </div>
 
@@ -36,37 +42,44 @@
                     <h3 class="panel-title"><b>Program</b> </h3>
                 </div>
 
-                {{#each programs}}
+                {{#if Template.subscriptionsReady}}
+                  {{#each programs}}
+                    <div class="row hover1">
+                       <a href="/program/{{_id}}">
+                        <div class="col-sm-3 date">
 
-                <div class="row hover1">
-                   <a href="/program/{{_id}}">
-                    <div class="col-sm-3 date">
 
+                            <div class="panel-body">
+                              <h6><p><i class="fa fa-calendar"></i> Start Date: </p>
+                                {{formatDate start_date}}</h6>
 
-                        <div class="panel-body">
-                          <h6><p><i class="fa fa-calendar"></i> Start Date: </p>
-                            {{formatDate start_date}}</h6>
+                              <h6><p><i class="fa fa-calendar"></i> End Date: </p>
+                                {{formatDate end_date}}</h6>
 
-                          <h6><p><i class="fa fa-calendar"></i> End Date: </p>
-                            {{formatDate end_date}}</h6>
+                            </div>
+
 
                         </div>
-
-
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="panel-body ">
-                            <h2>{{subject}}</h2>
-                            <p>
-                                {{objective}}
-                            </p>
+                        <div class="col-sm-9">
+                            <div class="panel-body ">
+                                <h2>{{subject}}</h2>
+                                <p>
+                                    {{objective}}
+                                </p>
+                            </div>
                         </div>
+                        </a>
                     </div>
-                    </a>
-                </div>
-                {{/each}}
+                  {{/each}}
 
                   <hr>
+                {{else}}
+                  {{> loader}}
+                {{/if}}
+
+
+
+
 
             </div>
 
