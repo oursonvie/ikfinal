@@ -1,3 +1,4 @@
+/*
 Accounts.onLogin(function(user){
   // target id
   var targetID = 'p9Kfe7xor2Nn93zAb'
@@ -29,3 +30,16 @@ Accounts.onLogin(function(user){
     })
   }
 });
+*/
+
+/*
+if (Meteor.isServer) {
+  Accounts.onLogin(function(user){
+    console.log('login in server')
+  })
+}
+
+if (Meteor.isClient) {
+  console.log('login in client')
+}
+*/
