@@ -41,7 +41,7 @@ meteortoys:allthings
 themeteorchef:bert
 chipcastle:countries
 momentjs:moment
-meteorhacks:kadira
+# meteorhacks:kadira
 summernote:summernote
 sacha:spin
 
@@ -63,7 +63,7 @@ rajit:bootstrap3-datepicker
 # data visualization
 chart:chart
 
-#oauth2.0
+# oauth2.0
 prime8consulting:meteor-oauth2-server
 http@1.2.12
 simple:json-routes
@@ -71,7 +71,7 @@ simple:json-routes
 session
 stevezhu:lodash
 
-#open auth
+# open auth
 jparker:crypto-aes
 
 ## fake data
