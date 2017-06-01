@@ -5,10 +5,10 @@ Programs = new Mongo.Collection("program");
 
 Programs.allow({
   insert: function(userId, doc) {
-    return Roles.userIsInRole(userId, 'admin')
+    return Roles.userIsInRole(userId, 'admin');
   },
   update: function(userId, doc) {
-    return Roles.userIsInRole(userId, 'admin')
+    return Roles.userIsInRole(userId, 'admin');
   }
 })
 

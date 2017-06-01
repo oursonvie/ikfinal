@@ -1,0 +1,52 @@
+<template name="bindingPage">
+
+<div class="container">
+
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><a href="/program/{{_id}}">{{subject}}</a></h4>
+    </div>
+
+
+
+    <div class="panel-body">
+
+      <table class="table table-hover WeixinBindingTable">
+        <tbody>
+          <tr>
+            <th>openID</th>
+            <th>avatar</th>
+            <th>nickName</th>
+            <th>gender</th>
+            <th>language</th>
+            <th>city</th>
+            <th>province</th>
+            <th>country</th>
+            <th>accountbind</th>
+            <th>status</th>
+          </tr>
+
+          {{#each bindingInfomration}}
+          <tr>
+            <td style="vertical-align:middle;">{{meteorAccount.openid}}</td>
+            <td style="vertical-align:middle;"><img class="img-responsive img-circle avatar-photo"  src={{userInfo.avatarUrl}}></td>
+            <td style="vertical-align:middle;">{{userInfo.nickName}}</td>
+            <td style="vertical-align:middle;">{{userInfo.gender}}</td>
+            <td style="vertical-align:middle;">{{userInfo.language}}</td>
+            <td style="vertical-align:middle;">{{userInfo.city}}</td>
+            <td style="vertical-align:middle;">{{userInfo.province}}</td>
+            <td style="vertical-align:middle;">{{userInfo.country}}</td>
+            <td style="vertical-align:middle;">{{accountbind}}</td>
+            <td style="vertical-align:middle;"><button class="btn btn-sm btn-info btn-pending">{{status}}</button></td>
+          </tr>
+          {{/each}}
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+
+</template>
