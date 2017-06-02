@@ -22,17 +22,17 @@ JsonRoutes.add('get', '/login', function(req, res, next) {
           console.log('sessionKey: ' + JSON.stringify(sessionInfo))
 
           if ( WXAccounts.find({"meteorAccount.openid":sessionInfo.openid}).count() == 0) {
-            var ifBind = false
+            var status = 0
           } else {
-            var ifBind = true
+            var status = WXAccounts.findOne({"meteorAccount.openid":sessionInfo.openid}).status
           }
 
-          console.log(ifBind)
+          console.log(status)
 
           JsonRoutes.sendResult(res, {
               data: {
                 openid: sessionInfo.openid,
-                ifBind: false
+                status: status
               }
           });
 
@@ -51,10 +51,26 @@ JsonRoutes.add('get', '/accountbind', function(req, res, next) {
     // convert string to object
     data.userInfo = JSON.parse(data.userInfo)
     data.meteorAccount = JSON.parse(data.meteorAccount)
-    data.status = 'Pending'
+    data.status = 1
 
     console.log(data)
 
-    WXAccounts.insert(data)
+    if ( WXAccounts.find({"meteorAccount.openid":data.meteorAccount.openid}).count() == 0) {
+      var id = WXAccounts.insert(data)
+    }
+
+    if (id) {
+      JsonRoutes.sendResult(res, {
+          data: {
+            error: 0,
+          }
+      });
+    } else {
+      JsonRoutes.sendResult(res, {
+          data: {
+            error: 1,
+          }
+      });
+    }
 
 });

@@ -98,7 +98,9 @@ Template.showStudent.events({
     var filesList = event.currentTarget.files;
     if (filesList.length) {
       var file = filesList[0];
-      if (file.type === 'text/csv') {
+      // windows dont have file.type field, have to if via .extension
+      var splited = file.name.split('.')
+      if (splited[splited.length-1] === 'csv') {
         var fileReader = new FileReader();
         fileReader.onload = function(e) {
           var papaObject = CSV.parse(fileReader.result, {
@@ -283,6 +285,6 @@ Template.showStudent.events({
     } else {
       console.log('Delete students cancelled')
     }
-    
+
   }
 })

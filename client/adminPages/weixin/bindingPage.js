@@ -14,10 +14,8 @@ Template.bindingPage.helpers({
 Template.bindingPage.events({
   'click .btn-pending': function() {
     var openid = this.meteorAccount.openid
-    if (this.status == "Pending") {
-      Meteor.call("WXStatus", 'Pass', Meteor.userId(), this._id)
-    } else {
-      Meteor.call("WXStatus", 'Pending', Meteor.userId(), this._id)
+    if (this.status == "1") {
+      Meteor.call("WXStatus", 2, Meteor.userId(), this._id)
     }
   }
 })
