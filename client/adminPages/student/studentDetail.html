@@ -102,7 +102,7 @@
           {{#each enrolledPrograms}}
             <tr>
               <th scope="row">{{@index}}</th>
-              <td><a href="/admin/program/{{_id}}">{{subject}}</a></td>
+              <td><a href="/admin/program/showstudents/{{_id}}">{{subject}}</a></td>
               <td>{{formatDate start_date}}</td>
               <td>{{formatDate end_date}}</td>
               <td><button class="btn btn-sm disabled {{enrollCSS status}}">{{status}}</button></td>
@@ -115,11 +115,6 @@
 
   </div>
 </div>
-
-
-{{#each enrolledPrograms}}
-
-{{/each}}
 
   <div class="panel panel-default">
     <div class="panel-heading">
