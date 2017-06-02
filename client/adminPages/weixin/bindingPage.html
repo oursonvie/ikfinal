@@ -24,6 +24,7 @@
             <th>country</th>
             <th>accountbind</th>
             <th>status</th>
+            <th>admin</th>
           </tr>
 
           {{#each bindingInfomration}}
@@ -38,6 +39,11 @@
             <td style="vertical-align:middle;">{{userInfo.country}}</td>
             <td style="vertical-align:middle;">{{accountbind}}</td>
             <td style="vertical-align:middle;"><button class="btn btn-sm btn-info btn-pending">{{status}}</button></td>
+            {{#if ifAdmin}}
+              <td style="vertical-align:middle;"><i class="fa fa-user-circle fa-wx-admin fa-2x" style="color:green"></i></td>
+            {{else}}
+              <td style="vertical-align:middle;"><i class="fa fa-user-circle fa-wx-admin fa-2x"></i></td>
+            {{/if}}
           </tr>
           {{/each}}
 

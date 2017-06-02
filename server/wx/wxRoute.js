@@ -1,4 +1,4 @@
-JsonRoutes.add('get', '/login', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/login', function(req, res, next) {
 
     var jscode = req.query.code
 
@@ -24,15 +24,16 @@ JsonRoutes.add('get', '/login', function(req, res, next) {
           if ( WXAccounts.find({"meteorAccount.openid":sessionInfo.openid}).count() == 0) {
             var status = 0
           } else {
-            var status = WXAccounts.findOne({"meteorAccount.openid":sessionInfo.openid}).status
-          }
 
-          console.log(status)
+            var status = WXAccounts.findOne({"meteorAccount.openid":sessionInfo.openid}).status
+            var ifAdmin = WXAccounts.findOne({"meteorAccount.openid":sessionInfo.openid}).meteorAccount.ifAdmin
+          }
 
           JsonRoutes.sendResult(res, {
               data: {
                 openid: sessionInfo.openid,
-                status: status
+                status: status,
+                ifAdmin: ifAdmin
               }
           });
 
@@ -44,7 +45,7 @@ JsonRoutes.add('get', '/login', function(req, res, next) {
 
 });
 
-JsonRoutes.add('get', '/accountbind', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/accountbind', function(req, res, next) {
 
     var data = req.query
 
@@ -73,4 +74,25 @@ JsonRoutes.add('get', '/accountbind', function(req, res, next) {
       });
     }
 
+});
+
+JsonRoutes.add('get', '/api/wx/program', function(req, res, next) {
+    var data = req.query
+    // program api should take no parameter
+    console.log('GET /api/wx/program')
+
+    // date process
+    var currentDate = moment().format("YYYY-MM-DD")
+    // the start date have to -1 to make sure the result is right
+    var JSDate_start = moment(currentDate).add(1,'days').toDate()
+    var JSDate_end = moment(currentDate).toDate()
+
+    // project result without student enrolled
+    var result = Programs.find({start_date:{$lte: JSDate_start},end_date:{$gte:JSDate_end}},{fields:{student:0}}).fetch()
+
+    JsonRoutes.sendResult(res, {
+        data: {
+          programList : result
+        }
+    });
 });
