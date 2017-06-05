@@ -21,19 +21,26 @@ JsonRoutes.add('get', '/api/wx/login', function(req, res, next) {
           var sessionInfo = JSON.parse(result)
           console.log('sessionKey: ' + JSON.stringify(sessionInfo))
 
-          if ( WXAccounts.find({"meteorAccount.openid":sessionInfo.openid}).count() == 0) {
-            var status = 0
-          } else {
+          // add time for session
+          sessionInfo.updatedAt = new Date();
 
-            var status = WXAccounts.findOne({"meteorAccount.openid":sessionInfo.openid}).status
-            var ifAdmin = WXAccounts.findOne({"meteorAccount.openid":sessionInfo.openid}).meteorAccount.ifAdmin
+          // define WX user
+          var wxUser = WXAccounts.findOne({openid:sessionInfo.openid})
+
+          // only unique openid saved in DB
+          if (wxUser == undefined) {
+            // insert session into DB
+            WXAccounts.insert({openid:sessionInfo.openid, session:sessionInfo});
+          } else if (WXAccounts.findOne({openid:sessionInfo.openid}).session.session_key != sessionInfo.session_key){
+            // else update session information
+
+
+            WXAccounts.update({openid:sessionInfo.openid}, {$set:{session:sessionInfo}});
           }
 
           JsonRoutes.sendResult(res, {
               data: {
-                openid: sessionInfo.openid,
-                status: status,
-                ifAdmin: ifAdmin
+                openid: sessionInfo.openid
               }
           });
 
@@ -42,6 +49,34 @@ JsonRoutes.add('get', '/api/wx/login', function(req, res, next) {
         }
       }
     });
+
+});
+
+JsonRoutes.add('get', '/api/wx/getUserInfo', function(req, res, next) {
+
+    var data = req.query
+
+    var openid = data.openid
+    var userInfo = JSON.parse(data.userInfo)
+
+
+
+    if (WXAccounts.findOne({openid:openid}).userInfo == undefined) {
+      userInfo.updatedAt = new Date()
+      WXAccounts.update({openid:openid},{$set:{userInfo:userInfo}})
+    } else {
+      // compare with local userInfo, after deleting updatedAt
+      var localUserInfo = WXAccounts.findOne({openid:openid}).userInfo
+      delete localUserInfo.updatedAt
+
+      if (JSON.stringify(userInfo) != JSON.stringify(localUserInfo)) {
+        userInfo.updatedAt = new Date()
+        WXAccounts.update({openid:openid},{$set:{userInfo:userInfo}})
+      }
+    }
+
+
+
 
 });
 
