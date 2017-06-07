@@ -6,26 +6,25 @@ Template.bindingPage.onCreated(function() {
 });
 
 Template.bindingPage.helpers({
-  bindingInfomration: function() {
+  WXAccounts: function() {
     return WXAccounts.find({})
   },
   ifAdmin: function() {
-    return this.meteorAccount.ifAdmin
+    return this.ifAdmin
   }
 })
 
 Template.bindingPage.events({
   'click .btn-pending': function() {
-    var openid = this.meteorAccount.openid
     if (this.status == "1") {
       Meteor.call("WXStatus", 2, Meteor.userId(), this._id)
     }
   },
   'click .fa-wx-admin':function() {
-    if (this.meteorAccount.ifAdmin == undefined) {
+    if (this.ifAdmin == undefined) {
       Meteor.call('wxAdmin', this._id, true)
     } else {
-      Meteor.call('wxAdmin', this._id, !this.meteorAccount.ifAdmin)
+      Meteor.call('wxAdmin', this._id, !this.ifAdmin)
     }
 
   }

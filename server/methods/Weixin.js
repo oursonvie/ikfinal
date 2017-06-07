@@ -3,7 +3,7 @@ Meteor.methods({
       if (Roles.userIsInRole(this.userId, ['admin']) == true) {
         WXAccounts.update(
           {_id: WXAccountsID},
-          {$set: {"status":status}}
+          {$set: {"status":status,"bindInformation.vertified":true}}
         )
       } else {
         console.log('err .WXStatus provoked by ' + this.userId)
@@ -13,7 +13,7 @@ Meteor.methods({
       if (Roles.userIsInRole(this.userId, ['admin']) == true) {
         WXAccounts.update(
           {_id: WXAccountsID},
-          {$set: {"meteorAccount.ifAdmin":status}}
+          {$set: {"ifAdmin":status}}
         )
       } else {
         console.log('err .wxAdmin provoked by ' + this.userId)

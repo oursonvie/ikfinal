@@ -27,20 +27,30 @@ JsonRoutes.add('get', '/api/wx/login', function(req, res, next) {
           // define WX user
           var wxUser = WXAccounts.findOne({openid:sessionInfo.openid})
 
-          // only unique openid saved in DB
+          // only unique openid can be saved in DB
           if (wxUser == undefined) {
             // insert session into DB
-            WXAccounts.insert({openid:sessionInfo.openid, session:sessionInfo});
+            WXAccounts.insert({openid:sessionInfo.openid, session:sessionInfo, status:0});
           } else if (WXAccounts.findOne({openid:sessionInfo.openid}).session.session_key != sessionInfo.session_key){
             // else update session information
-
-
             WXAccounts.update({openid:sessionInfo.openid}, {$set:{session:sessionInfo}});
+          }
+
+          // return null bindInformation when doest not exist
+          if (wxUser && wxUser.bindInformation) {
+            var bindInformation = wxUser.bindInformation
+          } else {
+            var bindInformation = null
           }
 
           JsonRoutes.sendResult(res, {
               data: {
-                openid: sessionInfo.openid
+                meteorAccount: {
+                  openid: sessionInfo.openid,
+                  status: WXAccounts.findOne({openid:sessionInfo.openid}).status,
+                  ifAdmin: WXAccounts.findOne({openid:sessionInfo.openid}).ifAdmin
+                },
+                bindInformation: bindInformation
               }
           });
 
@@ -80,34 +90,26 @@ JsonRoutes.add('get', '/api/wx/getUserInfo', function(req, res, next) {
 
 });
 
-JsonRoutes.add('get', '/api/wx/accountbind', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/accountBind', function(req, res, next) {
 
     var data = req.query
+    var email = data.email
 
-    // convert string to object
-    data.userInfo = JSON.parse(data.userInfo)
-    data.meteorAccount = JSON.parse(data.meteorAccount)
-    data.status = 1
+    if (Students.find({email:email}).count() == 1) {
+      var studentid = Students.findOne({email:email})._id
+      var result = WXAccounts.update({openid:data.openid},{$set:{"bindInformation.email":email, "bindInformation.studentid":studentid, status:1}})
 
-    console.log(data)
-
-    if ( WXAccounts.find({"meteorAccount.openid":data.meteorAccount.openid}).count() == 0) {
-      var id = WXAccounts.insert(data)
-    }
-
-    if (id) {
       JsonRoutes.sendResult(res, {
           data: {
-            error: 0,
+            result : result
           }
       });
     } else {
-      JsonRoutes.sendResult(res, {
-          data: {
-            error: 1,
-          }
-      });
+      console.log('cannot find student')
     }
+
+
+
 
 });
 
@@ -128,6 +130,30 @@ JsonRoutes.add('get', '/api/wx/program', function(req, res, next) {
     JsonRoutes.sendResult(res, {
         data: {
           programList : result
+        }
+    });
+});
+
+JsonRoutes.add('get', '/api/wx/studentprogram', function(req, res, next) {
+    var  openid= req.query.openid
+    // program api should take no parameter
+    var studentid = WXAccounts.findOne({openid:openid}).bindInformation.studentid
+
+    var enrollment = Students.findOne({_id:studentid}).enrollment
+
+    var programsids = []
+
+    for (i=0;i<enrollment.length;i++) {
+      programsids.push(enrollment[i].programId)
+    }
+
+    var programs = Programs.find({_id:{$in:programsids}}).fetch();
+
+
+
+    JsonRoutes.sendResult(res, {
+        data: {
+          programs
         }
     });
 });

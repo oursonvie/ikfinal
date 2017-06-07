@@ -27,9 +27,9 @@
             <th>admin</th>
           </tr>
 
-          {{#each bindingInfomration}}
+          {{#each WXAccounts}}
           <tr>
-            <td style="vertical-align:middle;">{{meteorAccount.openid}}</td>
+            <td style="vertical-align:middle;">{{openid}}</td>
             <td style="vertical-align:middle;"><img class="img-responsive img-circle avatar-photo"  src={{userInfo.avatarUrl}}></td>
             <td style="vertical-align:middle;">{{userInfo.nickName}}</td>
             <td style="vertical-align:middle;">{{userInfo.gender}}</td>
@@ -37,7 +37,7 @@
             <td style="vertical-align:middle;">{{userInfo.city}}</td>
             <td style="vertical-align:middle;">{{userInfo.province}}</td>
             <td style="vertical-align:middle;">{{userInfo.country}}</td>
-            <td style="vertical-align:middle;">{{accountbind}}</td>
+            <td style="vertical-align:middle;">{{bindInformation.email}}</td>
             <td style="vertical-align:middle;"><button class="btn btn-sm btn-info btn-pending">{{status}}</button></td>
             {{#if ifAdmin}}
               <td style="vertical-align:middle;"><i class="fa fa-user-circle fa-wx-admin fa-2x" style="color:green"></i></td>
