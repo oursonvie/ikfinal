@@ -19,6 +19,14 @@ Meteor.publish('EnrolledProgram', function(id) {
   return Programs.find({_id:{$in:searchField}});
 })
 
+// return only avaliable courses
 Meteor.publish('dataSelector', function(start, end) {
+
+  // get today's date
+  var currentDate = moment().format("YYYY-MM-DD")
+  // the start date have to -1 to make sure the result is right
+  var start = moment(currentDate).add(1,'days').toDate()
+  var end = moment(currentDate).toDate()
+
   return Programs.find({start_date:{$lte: start},end_date:{$gte:end}},{fields:{student:0}})
 })

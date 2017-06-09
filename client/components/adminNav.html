@@ -21,18 +21,18 @@
 
           <li role="presentation" class={{isActiveRoute 'users'}}><a href="/admin/users">Users</a></li>
 
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Weixin <span class="caret"></span></a>
-              <ul class="dropdown-menu">
 
-                <li role="presentation" class={{isActiveRoute 'programSelector'}}><a href="/admin/weixin/program">Program Selector</a></li>
+          <li class="dropdown {{isActiveRoute regex='programSelector|weixinUser'}}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Weixin <span class="caret"></span></a>
+            <ul class="dropdown-menu">
 
-                <li role="presentation" class={{isActiveRoute 'weixinUser'}}><a href="/admin/weixin/user">User</a></li>
+              <li role="presentation" class={{isActiveRoute 'programSelector'}}><a href="/admin/weixin/program">Program Selector</a></li>
 
-              </ul>
-            </li>
-          </ul>
+              <li role="presentation" class={{isActiveRoute 'weixinUser'}}><a href="/admin/weixin/user">User</a></li>
+
+            </ul>
+          </li>
+
 
 
           <li role="presentation" class={{isActiveRoute 'oauthHome'}}><a href="/admin/oauth">Oauth</a></li>
