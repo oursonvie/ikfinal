@@ -149,13 +149,25 @@ JsonRoutes.add('get', '/api/wx/studentprogram', function(req, res, next) {
       programsids.push(enrollment[i].programId)
     }
 
-    var programs = Programs.find({_id:{$in:programsids}}).fetch();
+    // define time range of avaliable courses
+    // get today's date
+    var currentDate = moment().format("YYYY-MM-DD")
+    // the start date have to -1 to make sure the result is right
+    var start = moment(currentDate).add(1,'days').toDate()
+    var end = moment(currentDate).toDate()
+
+    var avaliableProgram = Programs.find({start_date:{$lte: start},end_date:{$gte:end}},{fields:{student:0}})
+
+    console.log(avaliableProgram.count())
+
+    // var programs = Programs.find({_id:{$in:programsids}}).fetch();
+
 
 
 
     JsonRoutes.sendResult(res, {
         data: {
-          programs
+          avaliableProgram
         }
     });
 });
