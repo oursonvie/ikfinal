@@ -16,6 +16,9 @@ Meteor.publish('EnrolledProgram', function(id) {
     searchField.push(value['programId'])
   })
 
-
   return Programs.find({_id:{$in:searchField}});
+})
+
+Meteor.publish('dataSelector', function(start, end) {
+  return Programs.find({start_date:{$lte: start},end_date:{$gte:end}},{fields:{student:0}})
 })

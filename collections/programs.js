@@ -90,6 +90,18 @@ Programs.attachSchema(new SimpleSchema({
   'course.$':{
     type: Object
   },
+  'course.$.courseId':{
+    type: String,
+    autoValue: function(){
+      if (this.isInsert) {
+        var id = new Meteor.Collection.ObjectID
+        return id._str
+      }
+    },
+    autoform: {
+        type: "hidden"
+    }
+  },
   'course.$.course_name':{
     type: String,
     label: "Course Name"
@@ -107,6 +119,14 @@ Programs.attachSchema(new SimpleSchema({
     type: String,
     label: "Lecturer Description",
     optional: true
+  },
+  'course.$.ifCheckin':{
+    type: Boolean,
+    label: "Lecturer Description",
+    defaultValue: false,
+    autoform: {
+        type: "hidden"
+    }
   },
   student: {
     type: Array,

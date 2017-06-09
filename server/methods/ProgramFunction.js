@@ -54,7 +54,7 @@ Meteor.methods({
   },
   duplicateProgram(id) {
     if (Roles.userIsInRole(this.userId, ['admin']) == true) {
-      var copy = Programs.findOne({_id:id},{fields:{_id:0, student:0}})
+      var copy = Programs.findOne({_id:id},{fields:{_id:0, student:0,"course.courseId":0}})
       Programs.insert(copy)
     } else {
       console.log('err .duplicateProgram provoked by ' + this.userId)
