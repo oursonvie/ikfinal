@@ -17,72 +17,6 @@ Programs.attachSchema(new SimpleSchema({
     type: String,
     label: "*Program Subject"
   },
-  start_date: {
-    type: Date,
-    label: "Start Date",
-    optional: true,
-    autoform: {
-      type: "bootstrap-datepicker",
-      datePickerOptions: {
-        autoclose: true
-      }
-    }
-  },
-  end_date: {
-    type: Date,
-    label: "End Date",
-    optional: true,
-    autoform: {
-      type: "bootstrap-datepicker",
-      datePickerOptions: {
-        autoclose: true
-      }
-    }
-  },
-  address: {
-    type: String,
-    label: "*Lecture Address"
-  },
-  size: {
-    type: Number,
-    label: "*Class Size",
-    min: 0
-  },
-  qualified_to_enroll: {
-    type: String,
-    label: "Qualified to enroll",
-    optional: true
-  },
-  objective: {
-    type: String,
-    label: "Objective",
-    optional: true
-  },
-  contact: {
-    type: String,
-    label: "Contact",
-    optional: true
-  },
-  telephone: {
-    type: String,
-    label: "Telephone",
-    optional: true
-  },
-  email: {
-    type: String,
-    label: "Email",
-    optional: true
-  },
-  office_address: {
-    type: String,
-    label: "Office Address",
-    optional: true
-  },
-  certificate: {
-    type: String,
-    label: "Certificate",
-    optional: true
-  },
   course: {
     type: Array,
     optional: true
@@ -96,6 +30,9 @@ Programs.attachSchema(new SimpleSchema({
       if (this.isInsert) {
         var id = new Meteor.Collection.ObjectID
         return id._str
+      } else if (this.upSert) {
+        var id = new Meteor.Collection.ObjectID
+        return { $setOnInsert: id._str };
       }
     },
     autoform: {
@@ -123,39 +60,13 @@ Programs.attachSchema(new SimpleSchema({
   'course.$.ifCheckin':{
     type: Boolean,
     label: "Lecturer Description",
-    defaultValue: false,
+    autoValue: function() {
+      if (this.isInsert) {
+        return false
+      }
+    },
     autoform: {
         type: "hidden"
     }
-  },
-  student: {
-    type: Array,
-    optional: true,
-    autoform: {
-      type:"hidden"
-    }
-  },
-  'student.$':{
-    type: String,
-    autoform: {
-      type:"hidden"
-    }
-  },
-  createdBy: {
-    type: String,
-    autoValue:function(){
-       return this.userId
-     },
-     autoform: {
-       type: 'hidden'
-     }
-  },
-  createdAt: {
-        type: Date,
-        label: "Created At",
-        defaultValue: new Date(),
-        autoform: {
-            type: "hidden"
-        }
-    }
+  }
 }, { tracker: Tracker }));

@@ -10,6 +10,7 @@
     "body-parser": "^1.17.1",
     "bson": "^1.0.4",
     "meteor-node-stubs": "^0.2.6",
+    "request": "^2.81.0",
     "simpl-schema": "^0.2.3"
   }
 }
