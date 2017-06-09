@@ -90,10 +90,12 @@ JsonRoutes.add('get', '/api/wx/getUserInfo', function(req, res, next) {
 
 });
 
-JsonRoutes.add('get', '/api/wx/accountBind', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/accountbind', function(req, res, next) {
 
     var data = req.query
     var email = data.email
+
+    console.log(email)
 
     if (Students.find({email:email}).count() == 1) {
       var studentid = Students.findOne({email:email})._id

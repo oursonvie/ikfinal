@@ -21,14 +21,10 @@ Meteor.methods({
     },
     'startCheckin': function(courseId,status) {
       if (Roles.userIsInRole(this.userId, ['admin']) == true) {
-
-        console.log(courseId)
-
         Programs.update(
           { "course.courseId": courseId },
           { $set: { "course.$.ifCheckin" : status } }
         )
-
       } else {
         console.log('err .startCheckin provoked by ' + this.userId)
       }

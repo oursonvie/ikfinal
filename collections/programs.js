@@ -5,10 +5,10 @@ Programs = new Mongo.Collection("program");
 
 Programs.allow({
   insert: function(userId, doc) {
-    return Roles.userIsInRole(userId, 'admin');
+    return Roles.userIsInRole(userId, 'admin')
   },
   update: function(userId, doc) {
-    return Roles.userIsInRole(userId, 'admin');
+    return Roles.userIsInRole(userId, 'admin')
   }
 })
 
@@ -41,12 +41,13 @@ Programs.attachSchema(new SimpleSchema({
   },
   address: {
     type: String,
-    label: "*Lecture Address"
+    label: "Lecture Address",
+    optional: true
   },
   size: {
     type: Number,
-    label: "*Class Size",
-    min: 0
+    label: "Class Size",
+    optional: true
   },
   qualified_to_enroll: {
     type: String,
@@ -92,14 +93,16 @@ Programs.attachSchema(new SimpleSchema({
   },
   'course.$.courseId':{
     type: String,
+
+    // for some strang reason, hidden element wont provoke update
+
     autoValue: function(){
       if (this.isInsert) {
         var id = new Meteor.Collection.ObjectID
         return id._str
+      } else {
+        this.unset
       }
-    },
-    autoform: {
-        type: "hidden"
     }
   },
   'course.$.course_name':{
@@ -122,10 +125,12 @@ Programs.attachSchema(new SimpleSchema({
   },
   'course.$.ifCheckin':{
     type: Boolean,
-    label: "Lecturer Description",
-    defaultValue: false,
-    autoform: {
-        type: "hidden"
+    autoValue: function() {
+      if (this.isInsert) {
+        return false
+      } else {
+        this.unset
+      }
     }
   },
   student: {
