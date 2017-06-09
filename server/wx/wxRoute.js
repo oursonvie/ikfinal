@@ -137,17 +137,20 @@ JsonRoutes.add('get', '/api/wx/program', function(req, res, next) {
 });
 
 JsonRoutes.add('get', '/api/wx/studentprogram', function(req, res, next) {
-    var  openid= req.query.openid
+    var openid= req.query.openid
     // program api should take no parameter
     var studentid = WXAccounts.findOne({openid:openid}).bindInformation.studentid
 
     var enrollment = Students.findOne({_id:studentid}).enrollment
 
-    var programsids = []
+    // list student enrolled program
+    var enrolledProgramIds = []
 
-    for (i=0;i<enrollment.length;i++) {
-      programsids.push(enrollment[i].programId)
-    }
+    _.forEach(enrollment, function(item) {
+      enrolledProgramIds.push(item.programId)
+    });
+
+    // console.log('enrolled: ' + enrolledProgramIds);
 
     // define time range of avaliable courses
     // get today's date
@@ -156,18 +159,43 @@ JsonRoutes.add('get', '/api/wx/studentprogram', function(req, res, next) {
     var start = moment(currentDate).add(1,'days').toDate()
     var end = moment(currentDate).toDate()
 
-    var avaliableProgram = Programs.find({start_date:{$lte: start},end_date:{$gte:end}},{fields:{student:0}})
+    var avaliableProgram = Programs.find({start_date:{$lte: start},end_date:{$gte:end}},{fields:{student:0}}).fetch()
 
-    console.log(avaliableProgram.count())
+    // list for avaliable programs
+    var avaliableProgramList = []
 
-    // var programs = Programs.find({_id:{$in:programsids}}).fetch();
+    _.forEach(avaliableProgram, function(course) {
+      avaliableProgramList.push(course._id)
+    });
 
+    // console.log('avaliabled program: ' + avaliableProgramList);
+
+    // get avaliable for perticular student
+    var resultPL = []
+
+    _.forEach(enrolledProgramIds, function(program) {
+      if (avaliableProgramList.includes(program)) {
+        resultPL.push(program)
+      }
+    });
+
+    // console.log('result is: ' + resultPL)
+
+    // return avaliable program list to this perticular student
+    var result = Programs.find({_id:{$in:resultPL}},{fields:{student:0}}).fetch()
 
 
 
     JsonRoutes.sendResult(res, {
         data: {
-          avaliableProgram
+          programs: result
         }
     });
+});
+
+JsonRoutes.add('get', '/api/wx/checkin', function(req, res, next) {
+
+    var data = req.query
+    console.log(data)
+
 });
