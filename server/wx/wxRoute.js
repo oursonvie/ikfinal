@@ -196,7 +196,7 @@ JsonRoutes.add('get', '/api/wx/studentprogram', function(req, res, next) {
 JsonRoutes.add('get', '/api/wx/checkin', function(req, res, next) {
 
     var data = req.query
-    console.log(data)
+
 
     var studentId = WXAccounts.findOne({openid:data.openid}).bindInformation.studentid
 
@@ -207,14 +207,31 @@ JsonRoutes.add('get', '/api/wx/checkin', function(req, res, next) {
     // check if checkin data existed in database
     if (WXAccounts.find({openid: data.openid, "checkin.programid": programId, "checkin.courseId": data.courseId}).count() == 1) {
       console.log('checkin infromation already exist')
+
+      JsonRoutes.sendResult(res, {
+          data: {
+            result: 'already checkedin'
+          }
+      });
+
     } else {
+      console.log(data)
       WXAccounts.update({openid:data.openid},{$addToSet:{checkin:
         {
           programid: programId,
           courseId: data.courseId,
-          location: data.location
+          location: data.location,
+          createdAt: new Date
         }
       }});
+
+      //
+      JsonRoutes.sendResult(res, {
+          data: {
+            code: 200,
+            result: 'checkin success'
+          }
+      });
     }
 
 

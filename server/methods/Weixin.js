@@ -21,10 +21,31 @@ Meteor.methods({
     },
     'startCheckin': function(courseId,status) {
       if (Roles.userIsInRole(this.userId, ['admin']) == true) {
-        Programs.update(
-          { "course.courseId": courseId },
-          { $set: { "course.$.ifCheckin" : status } }
-        )
+        var courses = Programs.findOne({"course.courseId":courseId}).course
+
+        if (status == true) {
+          _.forEach(courses, function(course) {
+            if (course.courseId == courseId) {
+              status = true
+            } else {
+              status = false
+            }
+            
+            Programs.update(
+              { "course.courseId": course.courseId },
+              { $set: { "course.$.ifCheckin" : status } }
+            )
+
+          });
+        } else {
+          _.forEach(courses, function(course) {
+            Programs.update(
+              { "course.courseId": course.courseId },
+              { $set: { "course.$.ifCheckin" : false } }
+            )
+          });
+        }
+
       } else {
         console.log('err .startCheckin provoked by ' + this.userId)
       }
