@@ -18,7 +18,7 @@
         <label class="btn btn-default btn-sm">
     Upload Photo<input type="file" id="photoUpload" style="display: none;" multiple>
         </label>
-        
+
         {{#if ifSelected}}
         <button class="btn btn-danger btn-sm btn-delete">Delete Students</button>
 
@@ -47,6 +47,13 @@
             <th>Email</th>
             <th>Telephone</th>
             <th style="text-align: center">Status</th>
+
+            {{#with program}}
+              {{#each course}}
+                <th>{{@index}}</th>
+              {{/each}}
+            {{/with}}
+
           </tr>
           {{#if Template.subscriptionsReady}}
 
@@ -68,7 +75,9 @@
                     <td>{{telephone}}</td>
                     <td align="center"><button class="btn btn-sm disabled {{enrollCSS}}">{{enrollStatus}}</button></td>
                   </tr>
+
                 {{else}}
+
                   <tr class="success">
                     <td><input type="checkbox" id="{{this._id}}" aria-label="..."></td>
                     <td>{{number @index}}</td>
@@ -90,6 +99,13 @@
                       {{/if}}
 
                     </td>
+
+                    {{#with program}}
+                      {{#each course}}
+                        <td>{{CheckinStatus courseId}}</td>
+                      {{/each}}
+                    {{/with}}
+
                   </tr>
                 {{/if}}
 

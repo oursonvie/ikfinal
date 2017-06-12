@@ -1,10 +1,11 @@
 Template.showStudent.onCreated(function() {
   var self = this;
+  Session.set('selectedStudents',[])
   self.autorun(function() {
     var id = FlowRouter.getParam('id');
     self.subscribe('ProgramsOne', id);
     self.subscribe('StudentsHasProgram', id);
-    Session.set('selectedStudents',[])
+    self.subscribe('WXbindInformation', id);
   });
 });
 
@@ -76,6 +77,9 @@ Template.showStudent.helpers({
     } else {
       return false
     }
+  },
+  CheckinStatus: function(courseId) {
+    console.log(courseId, this)
   }
 });
 
