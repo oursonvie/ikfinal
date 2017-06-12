@@ -1,3 +1,14 @@
+var randomChar = function ()
+{
+    var text = "";
+    var possible = "abcdefghijklmnopqrstuvwxyz";
+
+    for( var i=0; i < 4; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
 JsonRoutes.add('get', '/api/wx/login', function(req, res, next) {
 
     var jscode = req.query.code
@@ -94,12 +105,20 @@ JsonRoutes.add('get', '/api/wx/accountbind', function(req, res, next) {
 
     var data = req.query
     var email = data.email
+    var passPhase = randomChar()
+
+    console.log('binding passphase: ' + passPhase)
+
+    // push passphase to beary for testing
+    var content = 'binding passphase: ' + passPhase
+
+    Meteor.call('pushToChat', content)
 
     console.log(email)
 
     if (Students.find({email:email}).count() == 1) {
       var studentid = Students.findOne({email:email})._id
-      var result = WXAccounts.update({openid:data.openid},{$set:{"bindInformation.email":email, "bindInformation.studentid":studentid, status:1}})
+      var result = WXAccounts.update({openid:data.openid},{$set:{"bindInformation.email":email, "bindInformation.studentid":studentid, "bindInformation.passPhase":passPhase, "bindInformation.vertified":false, status:1}})
 
       JsonRoutes.sendResult(res, {
           data: {
@@ -112,6 +131,29 @@ JsonRoutes.add('get', '/api/wx/accountbind', function(req, res, next) {
 
 
 
+
+});
+
+JsonRoutes.add('get', '/api/wx/emailVertify', function(req, res, next) {
+
+    var data = req.query
+    if (WXAccounts.findOne({openid:data.openid}).bindInformation.passPhase == data.passphase) {
+      WXAccounts.update({openid:data.openid},{$set:{"bindInformation.vertified":true}})
+      var result = {
+        code: 200
+      }
+    } else {
+      console.log('wrong passphase')
+      var result = {
+        error: 'wrong passphase'
+      }
+    }
+
+    JsonRoutes.sendResult(res, {
+        data: {
+          result
+        }
+    });
 
 });
 
@@ -202,6 +244,9 @@ JsonRoutes.add('get', '/api/wx/studentprogram', function(req, res, next) {
           checked: checked
         }
     });
+
+    console.log('GET /api/wx/studentprogram')
+
 });
 
 JsonRoutes.add('get', '/api/wx/checkin', function(req, res, next) {
