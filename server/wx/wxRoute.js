@@ -183,16 +183,23 @@ JsonRoutes.add('get', '/api/wx/studentprogram', function(req, res, next) {
       }
     });
 
-    // console.log('result is: ' + resultPL)
 
-    // return avaliable program list to this perticular student
-    var result = Programs.find({_id:{$in:resultPL}},{fields:{student:0}}).fetch()
+    // return only checkin avaliable course
+    var result = Programs.find({_id:{$in:resultPL},"course.ifCheckin":true},{fields:{subject:1, start_date: 1, end_date: 1, "course.$":1 }}).fetch()
 
+    var courseId = result[0].course[0].courseId
+
+    if (WXAccounts.findOne({openid:openid,"checkin.courseId":courseId},{fields:{"checkin.$":1}})) {
+      var checked = true
+    } else {
+      var checked = false
+    }
 
 
     JsonRoutes.sendResult(res, {
         data: {
-          programs: result
+          programs: result,
+          checked: checked
         }
     });
 });
