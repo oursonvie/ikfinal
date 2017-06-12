@@ -146,8 +146,12 @@ JsonRoutes.add('get', '/api/wx/studentprogram', function(req, res, next) {
     // list student enrolled program
     var enrolledProgramIds = []
 
+    // only return enrolled program, pending will be able to checkin
     _.forEach(enrollment, function(item) {
-      enrolledProgramIds.push(item.programId)
+      if (Students.findOne({"enrollment.programId":item.programId},{fields:{"enrollment.$":1}}).enrollment[0].status == 'Enrolled') {
+        enrolledProgramIds.push(item.programId)
+      }
+
     });
 
     // console.log('enrolled: ' + enrolledProgramIds);
@@ -210,12 +214,11 @@ JsonRoutes.add('get', '/api/wx/checkin', function(req, res, next) {
 
       JsonRoutes.sendResult(res, {
           data: {
-            result: 'already checkedin'
+            toast: 'Success'
           }
       });
 
-    } else {
-      console.log(data)
+    } else if (Programs.findOne({"course.courseId":data.courseId},{fields:{"course.$":1}}).course[0].ifCheckin == true) {
       WXAccounts.update({openid:data.openid},{$addToSet:{checkin:
         {
           programid: programId,
@@ -229,10 +232,18 @@ JsonRoutes.add('get', '/api/wx/checkin', function(req, res, next) {
       JsonRoutes.sendResult(res, {
           data: {
             code: 200,
-            result: 'checkin success'
+            toast: 'Success'
+          }
+      });
+    } else {
+      console.log('checkin forbidden')
+      //
+      JsonRoutes.sendResult(res, {
+          data: {
+            code: 200,
+            error: 'checkin not avaliable'
           }
       });
     }
-
 
 });
