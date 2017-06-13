@@ -14,7 +14,7 @@ Template.home.helpers({
     return content.replace(/<(?:.|\n)*?>/gm, '').substring(0,50) + ' ...';
   },
   programs: function() {
-    return Programs.find({},{sort: {startDate: -1}, limit:4});
+    return Programs.find({},{sort: {start_date: -1}, limit:4});
   },
   formatDate: function(date) {
       return moment(date).format('YYYY-MM-DD');
