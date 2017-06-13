@@ -78,8 +78,26 @@ Template.showStudent.helpers({
       return false
     }
   },
-  CheckinStatus: function(courseId) {
-    console.log(courseId, this)
+  CheckinStatus: function(studentId) {
+
+    var courseList = Programs.findOne().course
+    var courseArray = []
+    _.forEach(courseList,function(course){
+      courseArray.push(course.courseId)
+    });
+
+    var resultArrayObject = [];
+
+    _.forEach(courseArray,function(courseId){
+      if (WXAccounts.findOne({"bindInformation.studentid":studentId,"checkin.courseId":courseId})) {
+        resultArrayObject.push({courseId:courseId, checkin:true})
+      } else {
+        resultArrayObject.push({courseId:courseId, checkin:false})
+      }
+    });
+
+    console.log(resultArrayObject)
+    return resultArrayObject
   }
 });
 

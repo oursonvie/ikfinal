@@ -100,11 +100,15 @@
 
                     </td>
 
-                    {{#with program}}
-                      {{#each course}}
-                        <td>{{CheckinStatus courseId}}</td>
-                      {{/each}}
-                    {{/with}}
+                    {{#each CheckinStatus this._id}}
+                      <td>
+                        {{#if checkin}}
+                          <i class="fa fa-check" style="color:green"></i>
+                        {{else}}
+                        
+                        {{/if}}
+                      </td>
+                    {{/each}}
 
                   </tr>
                 {{/if}}
