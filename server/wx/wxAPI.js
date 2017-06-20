@@ -1,3 +1,14 @@
+var randomChar = function ()
+{
+    var text = "";
+    var possible = "abcdefghijklmnopqrstuvwxyz";
+
+    for( var i=0; i < 4; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
 JsonRoutes.add('get', '/api/wx/test', function(req, res, next) {
 
     var data = req.query
@@ -36,11 +47,11 @@ JsonRoutes.add('get', '/api/wx/test/login', function(req, res, next) {
             // convert session return information to object
             var wxres = JSON.parse(result)
 
-            // console.log('res: ' + res.session_key)
 
             // add time for session
             wxres.updatedAt = new Date();
-            wxres.session = CryptoJS.MD5(wxres.session_key).toString()
+
+            wxres.meteorId = CryptoJS.MD5(wxres.openid).toString()
 
 
             if (WXAccounts.findOne({"wxsession.openid":wxres.openid})) {
@@ -69,7 +80,7 @@ JsonRoutes.add('get', '/api/wx/test/login', function(req, res, next) {
 
             JsonRoutes.sendResult(res, {
                 data: {
-                  session: wxres.session
+                  meteorId: wxres.meteorId
                 }
             });
 
@@ -92,18 +103,19 @@ JsonRoutes.add('get', '/api/wx/test/userInfo', function(req, res, next) {
 
     var data = req.query
     var userInfo = JSON.parse(data.userInfo)
+    // console.log(data)
 
     // add time for student data
-    userInfo.userInfo.updatedAt = new Date();
+    userInfo.updatedAt = new Date();
 
-    if (WXAccounts.findOne({"wxsession.session": data.session}).userInfo) {
+    if (WXAccounts.findOne({"wxsession.meteorId": data.meteorId}).userInfo) {
       WXAccounts.update(
-        {"wxsession.session": data.session},
+        {"wxsession.meteorId": data.session},
         {$set:{userInfo:userInfo}}
       )
     } else {
       WXAccounts.update(
-        {"wxsession.session": data.session},
+        {"wxsession.meteorId": data.meteorId},
         {$set:{userInfo:userInfo}}
       )
     }
@@ -118,11 +130,11 @@ JsonRoutes.add('get', '/api/wx/test/userInfo', function(req, res, next) {
 
 JsonRoutes.add('get', '/api/wx/test/bindInfo', function(req, res, next) {
 
-    var session = req.query.session
+    var meteorId = req.query.meteorId
 
-    console.log(session)
+    console.log(req.query)
 
-    current_account = WXAccounts.findOne({"wxsession.session":session})
+    current_account = WXAccounts.findOne({"wxsession.meteorId":meteorId})
 
     // when bindInformation exist
     if (current_account.bindInformation) {
@@ -142,6 +154,68 @@ JsonRoutes.add('get', '/api/wx/test/bindInfo', function(req, res, next) {
     JsonRoutes.sendResult(res, {
         data: {
           bindInformation: bindInformation
+        }
+    });
+
+});
+
+JsonRoutes.add('get', '/api/wx/test/accountbind', function(req, res, next) {
+
+    var data = req.query
+    var email = data.email
+
+
+    console.log(email)
+
+    if (Students.find({email:email}).count() == 1) {
+
+      // generate random char for vertifying
+      var passPhase = randomChar()
+      var content = 'binding passphase: ' + passPhase
+      Meteor.call('pushToChat', content)
+
+      // update bindInformation
+      var studentid = Students.findOne({email:email})._id
+      var result = WXAccounts.update({"wxsession.session":data.session},{$set:{"bindInformation.email":email, "bindInformation.studentid":studentid, "bindInformation.passPhase":passPhase, "bindInformation.vertified":false}})
+
+      // return result to WX
+      JsonRoutes.sendResult(res, {
+          data: {
+            result : result
+          }
+      });
+    } else {
+      console.log('cannot find student')
+      JsonRoutes.sendResult(res, {
+          data: {
+            err : 'Student not found'
+          }
+      });
+    }
+
+});
+
+JsonRoutes.add('get', '/api/wx/test/emailVertify', function(req, res, next) {
+
+    var data = req.query
+
+    console.log(data)
+
+    if (WXAccounts.findOne({"WXAccounts.session":data.session}).bindInformation.passPhase == data.passphase) {
+      WXAccounts.update({"WXAccounts.session":data.session},{$set:{"bindInformation.vertified":true}})
+      var result = {
+        code: 200
+      }
+    } else {
+      console.log('wrong passphase')
+      var result = {
+        err: 'wrong passphase'
+      }
+    }
+
+    JsonRoutes.sendResult(res, {
+        data: {
+          result
         }
     });
 
