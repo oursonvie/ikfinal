@@ -201,8 +201,8 @@ JsonRoutes.add('get', '/api/wx/test/emailVertify', function(req, res, next) {
 
     console.log(data)
 
-    if (WXAccounts.findOne({"WXAccounts.session":data.session}).bindInformation.passPhase == data.passphase) {
-      WXAccounts.update({"WXAccounts.session":data.session},{$set:{"bindInformation.vertified":true}})
+    if (WXAccounts.findOne({"wxsession.meteorId":data.meteorId}).bindInformation.passPhase == data.passphase) {
+      WXAccounts.update({"wxsession.meteorId":data.meteorId},{$set:{"bindInformation.verified":true}})
       var result = {
         code: 200
       }
