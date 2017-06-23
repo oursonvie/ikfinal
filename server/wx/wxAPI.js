@@ -28,8 +28,6 @@ JsonRoutes.add('get', '/api/wx/test/login', function(req, res, next) {
 
     var jscode = req.query.code
 
-    console.log(req.query)
-
     if (jscode) {
       HTTP.call( 'GET', 'https://api.weixin.qq.com/sns/jscode2session', {
         params: {
@@ -132,7 +130,7 @@ JsonRoutes.add('get', '/api/wx/test/bindInfo', function(req, res, next) {
 
     var meteorId = req.query.meteorId
 
-    console.log(req.query)
+    // console.log(req.query)
 
     current_account = WXAccounts.findOne({"wxsession.meteorId":meteorId})
 
@@ -158,7 +156,7 @@ JsonRoutes.add('get', '/api/wx/test/accountbind', function(req, res, next) {
     var email = data.email
 
 
-    console.log(email)
+    // console.log(email)
 
     if (Students.find({email:email}).count() == 1) {
 
@@ -192,7 +190,7 @@ JsonRoutes.add('get', '/api/wx/test/emailVertify', function(req, res, next) {
 
     var data = req.query
 
-    console.log(data)
+    // console.log(data)
 
     if (WXAccounts.findOne({"wxsession.meteorId":data.meteorId}).bindInformation.passPhase == data.passphase) {
       WXAccounts.update({"wxsession.meteorId":data.meteorId},{$set:{"bindInformation.vertified":true}})
@@ -277,32 +275,42 @@ JsonRoutes.add('get', '/api/wx/test/studentprogram', function(req, res, next) {
 
       JsonRoutes.sendResult(res, {
           data: {
-            err: 'no avaliable course for checkin'
+            err: 'The course you enrolled does not enable checkin yet'
           }
       });
 
     } else {
 
       // return only checkin avaliable course
-      var result = Programs.find({_id:{$in:resultPL},"course.ifCheckin":true},{fields:{subject:1, start_date: 1, end_date: 1, "course.$":1 }}).fetch()
+      var result = Programs.find({_id:{$in:resultPL},"course.ifCheckin":true},{fields:{subject:1, start_date: 1, end_date: 1, "course.$": 1 }}).fetch()
 
-      var courseId = result[0].course[0].courseId
-
-      if (WXAccounts.findOne({"wxsession.meteorId":meteorId,"checkin.courseId":courseId},{fields:{"checkin.$":1}})) {
-        var checked = true
+      // enabled course but no avaliable checkin
+      if(result.length == 0) {
+        JsonRoutes.sendResult(res, {
+            data: {
+              err: 'no avaliable checkin'
+            }
+        });
       } else {
-        var checked = false
+
+        var courseId = result[0].course[0].courseId
+
+        if (WXAccounts.findOne({"wxsession.meteorId":meteorId,"checkin.courseId":courseId},{fields:{"checkin.$":1}})) {
+          var checked = true
+        } else {
+          var checked = false
+        }
+
+        JsonRoutes.sendResult(res, {
+            data: {
+              programs: result,
+              checked: checked
+            }
+        });
+
       }
 
-
-      JsonRoutes.sendResult(res, {
-          data: {
-            programs: result,
-            checked: checked
-          }
-      });
-
-      console.log('GET /api/wx/studentprogram')
+      // console.log('GET /api/wx/studentprogram')
 
     }
 
@@ -310,18 +318,11 @@ JsonRoutes.add('get', '/api/wx/test/studentprogram', function(req, res, next) {
 
 JsonRoutes.add('get', '/api/wx/test/checkin', function(req, res, next) {
 
-  console.log('checkin provoked')
-
     var data = req.query
-
-    console.log(req.query)
-
 
     var studentId = WXAccounts.findOne({'wxsession.meteorId':data.meteorId}).bindInformation.studentid
 
     var programId = Programs.findOne({"course.courseId":data.courseId})._id
-
-    // console.log(studentId, programId)
 
     // check if checkin data existed in database
     if (WXAccounts.find({'wxsession.meteorId':data.meteorId, "checkin.programid": programId, "checkin.courseId": data.courseId}).count() == 1) {
