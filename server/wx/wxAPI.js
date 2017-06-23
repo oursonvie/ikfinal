@@ -138,17 +138,10 @@ JsonRoutes.add('get', '/api/wx/test/bindInfo', function(req, res, next) {
 
     // when bindInformation exist
     if (current_account.bindInformation) {
-      if (current_account.bindInformation.vertified == true) {
-        var bindInformation = current_account.bindInformation
-        bindInformation.status = 2
-      } else if (current_account.bindInformation.email) {
-        var bindInformation = current_account.bindInformation
-        bindInformation.status = 1
-      }
+      var bindInformation = current_account.bindInformation
     } else {
       // init bind information
       var bindInformation = {}
-      bindInformation.status = 0
     }
 
     JsonRoutes.sendResult(res, {
@@ -218,5 +211,155 @@ JsonRoutes.add('get', '/api/wx/test/emailVertify', function(req, res, next) {
           result
         }
     });
+
+});
+
+
+JsonRoutes.add('get', '/api/wx/test/studentprogram', function(req, res, next) {
+
+    var meteorId= req.query.meteorId
+
+
+
+    // program api should take no parameter
+    var studentid = WXAccounts.findOne({"wxsession.meteorId":meteorId}).bindInformation.studentid
+
+    // console.log(meteorId,studentid)
+
+    var enrollment = Students.findOne({_id:studentid}).enrollment
+
+    // list student enrolled program
+    var enrolledProgramIds = []
+
+
+    // only return enrolled program, pending will not be able to checkin
+    _.forEach(enrollment, function(item) {
+      if (Students.findOne({"enrollment.programId":item.programId},{fields:{"enrollment.$":1}}).enrollment[0].status == 'Enrolled') {
+        enrolledProgramIds.push(item.programId)
+      }
+
+    });
+
+    // console.log('enrolled: ' + enrolledProgramIds);
+
+    // define time range of avaliable courses
+    // get today's date
+    var currentDate = moment().format("YYYY-MM-DD")
+    // the start date have to -1 to make sure the result is right
+    var start = moment(currentDate).add(1,'days').toDate()
+    var end = moment(currentDate).toDate()
+
+    var avaliableProgram = Programs.find({start_date:{$lte: start},end_date:{$gte:end}},{fields:{student:0}}).fetch()
+
+    // list for avaliable programs
+    var avaliableProgramList = []
+
+    _.forEach(avaliableProgram, function(course) {
+      avaliableProgramList.push(course._id)
+    });
+
+    // console.log(avaliableProgramList)
+
+    // get avaliable for perticular student
+
+    var resultPL = []
+
+    _.forEach(enrolledProgramIds, function(program) {
+      if (avaliableProgramList.includes(program)) {
+        resultPL.push(program)
+      }
+    });
+
+    // console.log(resultPL)
+
+    // when student have no course to checkin, return an error
+    if (resultPL.length == 0) {
+
+      JsonRoutes.sendResult(res, {
+          data: {
+            err: 'no avaliable course for checkin'
+          }
+      });
+
+    } else {
+
+      // return only checkin avaliable course
+      var result = Programs.find({_id:{$in:resultPL},"course.ifCheckin":true},{fields:{subject:1, start_date: 1, end_date: 1, "course.$":1 }}).fetch()
+
+      var courseId = result[0].course[0].courseId
+
+      if (WXAccounts.findOne({"wxsession.meteorId":meteorId,"checkin.courseId":courseId},{fields:{"checkin.$":1}})) {
+        var checked = true
+      } else {
+        var checked = false
+      }
+
+
+      JsonRoutes.sendResult(res, {
+          data: {
+            programs: result,
+            checked: checked
+          }
+      });
+
+      console.log('GET /api/wx/studentprogram')
+
+    }
+
+});
+
+JsonRoutes.add('get', '/api/wx/test/checkin', function(req, res, next) {
+
+  console.log('checkin provoked')
+
+    var data = req.query
+
+    console.log(req.query)
+
+
+    var studentId = WXAccounts.findOne({'wxsession.meteorId':data.meteorId}).bindInformation.studentid
+
+    var programId = Programs.findOne({"course.courseId":data.courseId})._id
+
+    // console.log(studentId, programId)
+
+    // check if checkin data existed in database
+    if (WXAccounts.find({'wxsession.meteorId':data.meteorId, "checkin.programid": programId, "checkin.courseId": data.courseId}).count() == 1) {
+
+      console.log('checkin infromation already exist')
+
+      JsonRoutes.sendResult(res, {
+          data: {
+            toast: 'Success'
+          }
+      });
+
+    } else if (Programs.findOne({"course.courseId":data.courseId},{fields:{"course.$":1}}).course[0].ifCheckin == true) {
+      WXAccounts.update({'wxsession.meteorId':data.meteorId},{$addToSet:{checkin:
+        {
+          programid: programId,
+          courseId: data.courseId,
+          location: data.location,
+          createdAt: new Date
+        }
+      }});
+
+      //
+      JsonRoutes.sendResult(res, {
+          data: {
+            code: 200,
+            toast: 'Success'
+          }
+      });
+    } else {
+      console.log('checkin forbidden')
+      //
+      JsonRoutes.sendResult(res, {
+          data: {
+            code: 200,
+            error: 'checkin not avaliable'
+          }
+      });
+    }
 
 });
