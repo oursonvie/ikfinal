@@ -1,9 +1,9 @@
 Meteor.methods({
-    'WXStatus': function (status, userId, WXAccountsID){
+    'WXStatus': function (userId, WXAccountsID){
       if (Roles.userIsInRole(this.userId, ['admin']) == true) {
         WXAccounts.update(
           {_id: WXAccountsID},
-          {$set: {"status":status,"bindInformation.vertified":true}}
+          {$set: {"bindInformation.vertified":true}}
         )
       } else {
         console.log('err .WXStatus provoked by ' + this.userId)
@@ -30,7 +30,7 @@ Meteor.methods({
             } else {
               status = false
             }
-            
+
             Programs.update(
               { "course.courseId": course.courseId },
               { $set: { "course.$.ifCheckin" : status } }
