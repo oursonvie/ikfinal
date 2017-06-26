@@ -24,7 +24,7 @@ JsonRoutes.add('get', '/api/wx/test', function(req, res, next) {
 
 });
 
-JsonRoutes.add('get', '/api/wx/test/login', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/login', function(req, res, next) {
 
     var jscode = req.query.code
 
@@ -89,15 +89,13 @@ JsonRoutes.add('get', '/api/wx/test/login', function(req, res, next) {
       });
 
     } else {
-      console.log('/api/wx/test/login error')
+      console.log('/api/wx/login error')
     }
-
-
 
 });
 
 
-JsonRoutes.add('get', '/api/wx/test/userInfo', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/userInfo', function(req, res, next) {
 
     var data = req.query
     var userInfo = JSON.parse(data.userInfo)
@@ -126,7 +124,7 @@ JsonRoutes.add('get', '/api/wx/test/userInfo', function(req, res, next) {
 
 });
 
-JsonRoutes.add('get', '/api/wx/test/bindInfo', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/bindInfo', function(req, res, next) {
 
     var meteorId = req.query.meteorId
 
@@ -150,7 +148,7 @@ JsonRoutes.add('get', '/api/wx/test/bindInfo', function(req, res, next) {
 
 });
 
-JsonRoutes.add('get', '/api/wx/test/accountbind', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/accountbind', function(req, res, next) {
 
     var data = req.query
     var email = data.email
@@ -186,7 +184,7 @@ JsonRoutes.add('get', '/api/wx/test/accountbind', function(req, res, next) {
 
 });
 
-JsonRoutes.add('get', '/api/wx/test/emailVertify', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/emailVertify', function(req, res, next) {
 
     var data = req.query
 
@@ -213,11 +211,11 @@ JsonRoutes.add('get', '/api/wx/test/emailVertify', function(req, res, next) {
 });
 
 
-JsonRoutes.add('get', '/api/wx/test/studentprogram', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/studentprogram', function(req, res, next) {
 
     var meteorId= req.query.meteorId
 
-
+    // console.log(req.query)
 
     // program api should take no parameter
     var studentid = WXAccounts.findOne({"wxsession.meteorId":meteorId}).bindInformation.studentid
@@ -316,7 +314,7 @@ JsonRoutes.add('get', '/api/wx/test/studentprogram', function(req, res, next) {
 
 });
 
-JsonRoutes.add('get', '/api/wx/test/checkin', function(req, res, next) {
+JsonRoutes.add('get', '/api/wx/checkin', function(req, res, next) {
 
     var data = req.query
 

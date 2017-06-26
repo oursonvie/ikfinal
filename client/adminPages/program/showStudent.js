@@ -96,7 +96,7 @@ Template.showStudent.helpers({
       }
     });
 
-    console.log(resultArrayObject)
+    // console.log(resultArrayObject)
     return resultArrayObject
   }
 });
