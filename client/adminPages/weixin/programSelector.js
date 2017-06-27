@@ -18,6 +18,6 @@ Template.programSelector.helpers({
 Template.programSelector.events({
   'click .btn-select': function() {
     var status = !this.ifCheckin
-    Meteor.call('startCheckin',this.courseId, status)
+    Meteor.call('startCheckin',this.courseId)
   }
 })

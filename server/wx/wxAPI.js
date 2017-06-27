@@ -173,6 +173,29 @@ JsonRoutes.add('get', '/api/wx/accountbind', function(req, res, next) {
             result : result
           }
       });
+    } else if ( Meteor.users.find({'emails.address':email}).count() == 1) {
+
+      console.log('admin bind')
+
+      var userId = Meteor.users.findOne({'emails.address':email})._id
+      var result = WXAccounts.update(
+        {"wxsession.session":data.session},
+        {$set:
+          {"bindInformation.email":email,
+           "bindInformation.userId":userId,
+           "bindInformation.vertified":false,
+           "bindInformation.admin":true}
+        }
+      )
+
+      // return result to WX
+      JsonRoutes.sendResult(res, {
+          data: {
+            result : result
+          }
+      });
+
+
     } else {
       console.log('cannot find student')
       JsonRoutes.sendResult(res, {

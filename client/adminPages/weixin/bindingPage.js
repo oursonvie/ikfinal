@@ -10,7 +10,7 @@ Template.bindingPage.helpers({
     return WXAccounts.find({})
   },
   ifAdmin: function() {
-    return this.ifAdmin
+    return this.bindInformation.admin
   },
   bindStatus: function() {
 
@@ -37,14 +37,6 @@ Template.bindingPage.helpers({
 Template.bindingPage.events({
   'click .btn-pending': function() {
     Meteor.call("WXStatus", Meteor.userId(), this._id)
-
-  },
-  'click .fa-wx-admin':function() {
-    if (this.ifAdmin == undefined) {
-      Meteor.call('wxAdmin', this._id, true)
-    } else {
-      Meteor.call('wxAdmin', this._id, !this.ifAdmin)
-    }
 
   }
 })

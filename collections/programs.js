@@ -149,7 +149,9 @@ Programs.attachSchema(new SimpleSchema({
   createdBy: {
     type: String,
     autoValue:function(){
-       return this.userId
+      if (this.isInsert) {
+        return this.userId
+      }
      },
      autoform: {
        type: 'hidden'
