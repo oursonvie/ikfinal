@@ -156,7 +156,13 @@ JsonRoutes.add('get', '/api/wx/accountbind', function(req, res, next) {
 
     // console.log(email)
 
-    if (Students.find({email:email}).count() == 1) {
+    if (WXAccounts.find({'bindInformation.email':email}).count() == 1 && WXAccounts.findOne({'bindInformation.email':email}).bindInformation.vertified == true) {
+      JsonRoutes.sendResult(res, {
+          data: {
+            err : 'Email is associate with another account'
+          }
+      });
+    } else if (Students.find({email:email}).count() == 1) {
 
       // generate random char for vertifying
       var passPhase = randomChar()
@@ -197,7 +203,7 @@ JsonRoutes.add('get', '/api/wx/accountbind', function(req, res, next) {
 
 
     } else {
-      console.log('cannot find student')
+      // console.log('cannot find student')
       JsonRoutes.sendResult(res, {
           data: {
             err : 'Student not found'
