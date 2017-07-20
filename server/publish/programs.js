@@ -7,7 +7,13 @@ Meteor.publish('ProgramsOne', function(id) {
 })
 
 Meteor.publish('EnrolledProgram', function(id) {
-  var enrollmentList = Students.findOne({_id:id}).enrollment
+
+  try {
+    var enrollmentList = Students.findOne({_id:id}).enrollment
+  } catch(err) {
+    console.log(err)
+  }
+
 
   // manually adding all program id to an array
   var searchField = []
