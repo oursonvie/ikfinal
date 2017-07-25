@@ -11,23 +11,23 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-sm-6">
-                <i class="fa fa-calendar"></i> <b>Start Date: </b>{{formatDate start_date}}
+                <i class="fa fa-calendar"></i> <b>{{_ 'programlist.start_date'}}: </b>{{formatDate start_date}}
               </div>
               <div class="col-sm-6">
-                <i class="fa fa-calendar"></i> <b>End Date: </b>{{formatDate end_date}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <i class="fa fa-map-marker"></i> <b>Address: </b>{{address}}
-              </div>
-              <div class="col-sm-6">
-                <i class="fa fa-book"></i> <b>Class Size: </b>{{size}}
+                <i class="fa fa-calendar"></i> <b>{{_ 'programlist.end_date'}}: </b>{{formatDate end_date}}
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <i class="fa fa-user"></i> <b>Current Enrollment: </b>{{numberEnrolled}}
+                <i class="fa fa-map-marker"></i> <b>{{_ 'programlist.address'}}: </b>{{address}}
+              </div>
+              <div class="col-sm-6">
+                <i class="fa fa-book"></i> <b>{{_ 'programlist.class_size'}}: </b>{{size}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <i class="fa fa-user"></i> <b>{{_ 'programlist.current_enrollment'}}: </b>{{numberEnrolled}}
               </div>
             </div>
           </div>
@@ -35,36 +35,36 @@
 
         <div class="panel panel-default panel-program">
           <div class="panel-heading">
-            <h3 class="panel-title">Basic Informaiton</h3>
+            <h3 class="panel-title">{{_ 'programlist.basic_informaiton'}}</h3>
           </div>
           <div class="panel-body">
             <div class="row">
               <div class="col-sm-6">
-                <b>Objective: </b>{{objective}}
+                <b>{{_ 'programlist.objective'}}: </b>{{objective}}
               </div>
               <div class="col-sm-6">
-                <b>Who can enroll: </b>{{qualified_to_enroll}}
+                <b>{{_ 'programlist.who_can_enroll'}}: </b>{{qualified_to_enroll}}
               </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
-                <b>Certificate: </b>{{certificate}}
+                <b>{{_ 'programlist.certificate'}}: </b>{{certificate}}
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <b>Contact: </b>{{contact}}
+                <b>{{_ 'programlist.contact'}}: </b>{{contact}}
               </div>
               <div class="col-sm-6">
-                <b>Phone: </b>{{telephone}}
+                <b>{{_ 'programlist.phone'}}: </b>{{telephone}}
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <b>Email: </b>{{email}}
+                <b>{{_ 'programlist.email'}}: </b>{{email}}
               </div>
               <div class="col-sm-6">
-                <b>Office Address: </b>{{office_address}}
+                <b>{{_ 'programlist.office_address'}}: </b>{{office_address}}
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@
             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#Courses" aria-expanded="true" aria-controls="collapseOne">
               <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
-                    Courses
+                    {{_ 'programlist.Courses'}}
                     {{#if ifAccordion}}
                       <i class="fa fa-angle-double-left fa-50x pull-right" aria-hidden="true"></i>
                     {{else}}
@@ -90,10 +90,10 @@
 
                   <div class="row">
                     <div class="col-sm-2">
-                      <b>Course Name: </b>{{course_name}}
+                      <b>{{_ 'programlist.course_name'}}: </b>{{course_name}}
                     </div>
                     <div class="col-sm-10">
-                      <b>Course Description: </b>
+                      <b>{{_ 'programlist.course_description'}}: </b>
                       <br>
                       {{course_description}}
                     </div>
@@ -101,10 +101,10 @@
 
                   <div class="row">
                     <div class="col-sm-2">
-                      <b>Lecturer Name: </b>{{lecturer_name}}
+                      <b>{{_ 'programlist.lecturer_name'}}: </b>{{lecturer_name}}
                     </div>
                     <div class="col-sm-10">
-                      <b>Lecturer Description: </b>
+                      <b>{{_ 'programlist.lecturer_description'}}: </b>
                       <br>
                       {{lecturer_description}}
                     </div>

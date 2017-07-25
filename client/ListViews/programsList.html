@@ -9,23 +9,23 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-6">
-            <h4><i class="fa fa-calendar"></i> <b>Start Date: </b>{{formatDate start_date}}</h4>
+            <h4><i class="fa fa-calendar"></i> <b>{{_ 'programlist.start_date'}}: </b>{{formatDate start_date}}</h4>
           </div>
           <div class="col-sm-6">
-            <h4><i class="fa fa-calendar"></i> <b>End Date: </b>{{formatDate end_date}}</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <i class="fa fa-map-marker"></i> <b>Address: </b>{{address}}
-          </div>
-          <div class="col-sm-6">
-            <i class="fa fa-book"></i> <b>Class Size: </b>{{size}}
+            <h4><i class="fa fa-calendar"></i> <b>{{_ 'programlist.end_date'}}: </b>{{formatDate end_date}}</h4>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <i class="fa fa-user"></i> <b>Current Enrollment: </b>{{numberEnrolled}}
+            <i class="fa fa-map-marker"></i> <b>{{_ 'programlist.address'}}: </b>{{address}}
+          </div>
+          <div class="col-sm-6">
+            <i class="fa fa-book"></i> <b>{{_ 'programlist.class_size'}}: </b>{{size}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <i class="fa fa-user"></i> <b>{{_ 'programlist.current_enrollment'}}: </b>{{numberEnrolled}}
           </div>
 
           <div class="col-sm-6">

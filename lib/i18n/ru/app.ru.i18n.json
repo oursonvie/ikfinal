@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "home": "дом",
+    "news": "новости",
+    "program": "программа",
+    "me": "я"
+  },
+  "homepage": {
+    "more": "Больше"
+  },
+  "programlist": {
+    "start_date": "Дата начала",
+    "end_date": "Дата окончания",
+    "address": "Адрес",
+    "class_size": "Размер класса",
+    "current_enrollment": "Текущая регистрация",
+    "basic_informaiton": "Основная информация",
+    "objective": "Цель",
+    "who_can_enroll": "Кто может зарегистрироваться",
+    "certificate": "Сертификат",
+    "contact": "Контакт",
+    "phone": "Телефон",
+    "email": "Электронная почта",
+    "office_address": "Адрес офиса",
+    "Courses": "Курсы",
+    "course_name": "Название курса",
+    "course_description": "Описание курса",
+    "lecturer_name": "Имя преподавателя",
+    "lecturer_description": "Описание преподавателя"
+  }
+}

@@ -15,8 +15,8 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <a href="/news"><b><i class="fa fa-angle-right  pull-right" aria-hidden="true"> More</i></b></a>
-        <h3 class="panel-title"><b>News</b></h3>
+        <a href="/news"><b><i class="fa fa-angle-right  pull-right" aria-hidden="true"> {{_ 'homepage.more'}}</i></b></a>
+        <h3 class="panel-title"><b>{{_ 'navbar.news'}}</b></h3>
       </div>
       <div class="panel-body">
         {{#if Template.subscriptionsReady}}
@@ -38,8 +38,8 @@
 
     <div class="panel panel-default home-program">
                 <div class="panel-heading">
-                <a href="/program"><b><i class="fa fa-angle-right  pull-right" aria-hidden="true"> More</i></b></a>
-                    <h3 class="panel-title"><b>Program</b> </h3>
+                <a href="/program"><b><i class="fa fa-angle-right  pull-right" aria-hidden="true"> {{_ 'homepage.more'}}</i></b></a>
+                    <h3 class="panel-title"><b>{{_ 'navbar.program'}}</b> </h3>
                 </div>
 
                 {{#if Template.subscriptionsReady}}
@@ -50,10 +50,10 @@
 
 
                             <div class="panel-body">
-                              <h6><p><i class="fa fa-calendar"></i> Start Date: </p>
+                              <h6><p><i class="fa fa-calendar"></i> {{_ 'programlist.start_date'}}: </p>
                                 {{formatDate start_date}}</h6>
 
-                              <h6><p><i class="fa fa-calendar"></i> End Date: </p>
+                              <h6><p><i class="fa fa-calendar"></i> {{_ 'programlist.end_date'}}: </p>
                                 {{formatDate end_date}}</h6>
 
                             </div>

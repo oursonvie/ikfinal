@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "home": "home",
+    "news": "news",
+    "program": "program",
+    "me": "me"
+  },
+  "homepage": {
+    "more": "more"
+  },
+  "programlist": {
+    "start_date": "Start Date",
+    "end_date": "End Date",
+    "address": "Address",
+    "class_size": "Class Size",
+    "current_enrollment": "Current Enrollment",
+    "basic_informaiton": "Basic Informaiton",
+    "objective": "Objective",
+    "who_can_enroll": "Who can enroll",
+    "certificate": "Certificate",
+    "contact": "Contact",
+    "phone": "Phone",
+    "email": "Email",
+    "office_address": "Office Address",
+    "Courses": "Courses",
+    "course_name": "Course Name",
+    "course_description": "Course Description",
+    "lecturer_name": "Lecturer Name",
+    "lecturer_description": "Lecturer Description"
+  }
+}
