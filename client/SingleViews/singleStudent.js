@@ -33,6 +33,11 @@ Template.singleStudent.helpers({
     var status = Students.findOne({}).enrollment[arrayNo].status;
 
     return status
+  },
+  translateHelper: function(keyword) {
+    console.log(keyword)
+    let key = 'autoformstudent.'+keyword
+    return TAPi18n.__(key)
   }
 });
 

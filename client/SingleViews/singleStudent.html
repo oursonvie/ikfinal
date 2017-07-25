@@ -1,11 +1,11 @@
 <template name="singleStudent">
   {{#if editMe}}
     <i class="fa fa-times pull-right"></i>
-    {{> quickForm collection="Students" doc=this id="updateStudentsForm" type="update"}}
+    {{> UpdateMeForm}}
   {{else}}
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">{{_ 'studentlist.basic_informaiton'}}</h3>
+        <h3 class="panel-title">{{_ 'studentlist.basic_information'}}</h3>
       </div>
       <div class="panel-body">
         <div class="row">
@@ -96,10 +96,10 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-6">
-            <b>{{_ 'studentlist.occupation'}}: </b>{{occupation}}
+            <b>{{_ 'studentlist.occupation'}}: </b>{{occupation}} - {{translateHelper occupation}}
           </div>
           <div class="col-sm-6">
-            <b>{{_ 'studentlist.source'}}? </b>{{source}}
+            <b>{{_ 'studentlist.source'}}? </b>{{source}} - {{translateHelper source}}
           </div>
         </div>
       </div>

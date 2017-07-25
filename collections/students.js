@@ -88,8 +88,6 @@ let StudentSchema = new SimpleSchema({
         } else {
           return 'null'
         }
-      } else {
-        this.unset()
       }
     }
   },
@@ -398,7 +396,11 @@ let StudentSchema = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    defaultValue: new Date,
+    autoValue: () => {
+      if (this.inInsert) {
+        return new Date
+      }
+    },
      autoform: {
        type: 'hidden'
      }

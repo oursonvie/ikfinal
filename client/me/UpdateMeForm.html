@@ -1,0 +1,28 @@
+<template name="UpdateMeForm">
+  {{#autoForm collection="Students" doc=this id="updateStudentsForm" type="update"}}
+    <fieldset>
+      <legend>{{_ 'autoformstudent.basic_information'}}</legend>
+        {{> afQuickField name='full_name'}}
+        {{> afQuickField name='gender'}}
+        {{> afQuickField name='date_of_birth'}}
+        {{> afQuickField name='telephone'}}
+      <legend>{{_ 'autoformstudent.citizenship'}}</legend>
+        {{> afQuickField name='country_of_birth'}}
+        {{> afQuickField name='country_of_citizenship'}}
+        {{> afQuickField name='passport'}}
+      <legend>{{_ 'autoformstudent.current_study'}}</legend>
+        {{> afQuickField name='university_name'}}
+        {{> afQuickField name='studentid'}}
+        {{> afQuickField name='degree'}}
+        {{> afQuickField name='department'}}
+      <legend>{{_ 'autoformstudent.education_history'}}</legend>
+        {{> afQuickField name='highest_education'}}
+        {{> afQuickField name='area_of_study'}}
+        {{> afQuickField name='name_of_institute'}}
+      <legend>{{_ 'autoformstudent.other'}}</legend>
+        {{> afQuickField name='occupation'}}
+        {{> afQuickField name='source'}}
+    </fieldset>
+    <button type="submit" class="btn btn-primary">{{_ 'general.submit'}}</button>
+  {{/autoForm}}
+</template>
