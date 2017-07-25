@@ -30,6 +30,9 @@ Template.verifiedwarning.events({
             }
         };
       var interval = Meteor.setInterval(timeLeft, 1000);
+    },
+    'click .uploadRedirect' () {
+      document.getElementById('photoUpload').click()
     }
 });
 

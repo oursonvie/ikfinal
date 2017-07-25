@@ -3,7 +3,8 @@
     "home": "дом",
     "news": "новости",
     "program": "программа",
-    "me": "я"
+    "me": "я",
+    "edit_profile": "Редактировать профиль"
   },
   "homepage": {
     "more": "Больше"
@@ -26,6 +27,43 @@
     "course_name": "Название курса",
     "course_description": "Описание курса",
     "lecturer_name": "Имя преподавателя",
-    "lecturer_description": "Описание преподавателя"
+    "lecturer_description": "Описание преподавателя",
+    "course_subject": "Тема курса",
+    "status": "Положение дел"
+  },
+  "warningbanner": {
+    "warning_for_enroll": "Прежде чем вы сможете зарегистрироваться в любой программе, у вас все еще есть следующие задачи",
+    "verify_email_address": "Проверить свой адрес электронной почты",
+    "please_wait": "Пожалуйста, подождите",
+    "send_email": "Отправить электронную почту",
+    "upload_photo": "Не забудьте загрузить свою фотографию",
+    "profile": "профиль",
+    "need_to_complete": "Вам нужно заполнить свой"
+  },
+  "studentlist": {
+    "profile_photo": "Фото профиля",
+    "basic_informaiton": "Основная информация",
+    "full_name": "Полное имя",
+    "gender": "Пол",
+    "date_of_birth": "Дата рождения",
+    "telephone": "Телефон",
+    "citizenship": "Гражданство",
+    "country_of_birth": "Страна рождения",
+    "country_of_citizenship": "Страна гражданства",
+    "passport": "Номер паспорта",
+    "current_study": "Текущее исследование",
+    "university_name": "Название университета",
+    "studentid": "Студент нет",
+    "degree": "Степень",
+    "department": "Департамент",
+    "education_history": "История образования",
+    "highest_education": "Высшее образование",
+    "area_of_study": "Область исследования",
+    "name_of_institute": "Название института",
+    "other": "Другое",
+    "occupation": "Занятость",
+    "source": "Где вы нас нашли",
+    "program_history": "История программы",
+    "edit": "редактировать"
   }
 }

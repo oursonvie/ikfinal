@@ -23,6 +23,7 @@ Template.nav.events({
   'click .changeLang' () {
     console.log(this.code)
     TAPi18n.setLanguage(this.code);
+    accountsUIBootstrap3.setLanguage('ru');
   }
 
 });

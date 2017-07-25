@@ -3,7 +3,8 @@
     "home": "home",
     "news": "news",
     "program": "program",
-    "me": "me"
+    "me": "me",
+    "edit_profile": "Edit profile"
   },
   "homepage": {
     "more": "more"
@@ -26,6 +27,43 @@
     "course_name": "Course Name",
     "course_description": "Course Description",
     "lecturer_name": "Lecturer Name",
-    "lecturer_description": "Lecturer Description"
+    "lecturer_description": "Lecturer Description",
+    "course_subject": "Course Subject",
+    "status": "Status"
+  },
+  "warningbanner": {
+    "warning_for_enroll": "Before you can enroll to any program, you still have the following tasks to complete",
+    "verify_email_address": "Verify your email address",
+    "please_wait": "Please Wait",
+    "send_email": "Send Email",
+    "upload_photo": "Dont forget to upload a photo of yours in",
+    "profile": "profile",
+    "need_to_complete": "You need to complete your"
+  },
+  "studentlist": {
+    "profile_photo": "Profile Photo",
+    "basic_informaiton": "Basic Informaiton",
+    "full_name": "Full Name",
+    "gender": "Gender",
+    "date_of_birth": "Date of Birth",
+    "telephone": "Telephone",
+    "citizenship": "Citizenship",
+    "country_of_birth": "Country of Birth",
+    "country_of_citizenship": "Country of Citizenship",
+    "passport": "Passport No",
+    "current_study": "Current Study",
+    "university_name": "University Name",
+    "studentid": "Student No",
+    "degree": "Degree",
+    "department": "Department",
+    "education_history": "Education History",
+    "highest_education": "Highest Education",
+    "area_of_study": "Area of Study",
+    "name_of_institute": "Name of Institute",
+    "other": "Other",
+    "occupation": "Occupation",
+    "source": "Where did you find us",
+    "program_history": "Program History",
+    "edit": "Edit"
   }
 }

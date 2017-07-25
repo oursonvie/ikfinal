@@ -5,23 +5,23 @@
   {{else}}
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Basic Information</h3>
+        <h3 class="panel-title">{{_ 'studentlist.basic_informaiton'}}</h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-6">
-            <b>Full Name: </b>{{full_name}}
+            <b>{{_ 'studentlist.full_name'}}: </b>{{full_name}}
           </div>
           <div class="col-sm-6">
-            <b>Gender: </b>{{gender}}
+            <b>{{_ 'studentlist.gender'}}: </b>{{gender}}
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <b>Date of Birth: </b>{{date_of_birth}}
+            <b>{{_ 'studentlist.date_of_birth'}}: </b>{{date_of_birth}}
           </div>
           <div class="col-sm-6">
-            <b>Telephone: </b>{{telephone}}
+            <b>{{_ 'studentlist.telephone'}}: </b>{{telephone}}
           </div>
         </div>
       </div>
@@ -29,18 +29,18 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Citizenship</h3>
+        <h3 class="panel-title">{{_ 'studentlist.citizenship'}}</h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-4">
-            <b>Country of Birth: </b>{{country_of_birth}}
+            <b>{{_ 'studentlist.country_of_birth'}}: </b>{{country_of_birth}}
           </div>
           <div class="col-sm-4">
-            <b>Country of Citizenship: </b>{{country_of_citizenship}}
+            <b>{{_ 'studentlist.country_of_citizenship'}}: </b>{{country_of_citizenship}}
           </div>
           <div class="col-sm-4">
-            <b>Passport No: </b>{{passport}}
+            <b>{{_ 'studentlist.passport'}}: </b>{{passport}}
           </div>
         </div>
       </div>
@@ -48,23 +48,23 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Current Study</h3>
+        <h3 class="panel-title">{{_ 'studentlist.current_study'}}</h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-6">
-            <b>University Name: </b>{{university_name}}
+            <b>{{_ 'studentlist.university_name'}}: </b>{{university_name}}
           </div>
           <div class="col-sm-6">
-            <b>Student No: </b>{{studentid}}
+            <b>{{_ 'studentlist.studentid'}}: </b>{{studentid}}
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <b>Degree: </b>{{degree}}
+            <b>{{_ 'studentlist.degree'}}: </b>{{degree}}
           </div>
           <div class="col-sm-6">
-            <b>Major: </b>{{major}}
+            <b>{{_ 'studentlist.department'}}: </b>{{department}}
           </div>
         </div>
       </div>
@@ -72,18 +72,18 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Education History</h3>
+        <h3 class="panel-title">{{_ 'studentlist.education_history'}}</h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-4">
-            <b>Highest Education: </b>{{highest_education}}
+            <b>{{_ 'studentlist.highest_education'}}: </b>{{highest_education}}
           </div>
           <div class="col-sm-4">
-            <b>Area of Study: </b>{{area_of_study}}
+            <b>{{_ 'studentlist.area_of_study'}}: </b>{{area_of_study}}
           </div>
           <div class="col-sm-4">
-            <b>Name of Institute: </b>{{name_of_institute}}
+            <b>{{_ 'studentlist.name_of_institute'}}: </b>{{name_of_institute}}
           </div>
         </div>
       </div>
@@ -91,15 +91,15 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Other</h3>
+        <h3 class="panel-title">{{_ 'studentlist.other'}}</h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-6">
-            <b>Occupation: </b>{{occupation}}
+            <b>{{_ 'studentlist.occupation'}}: </b>{{occupation}}
           </div>
           <div class="col-sm-6">
-            <b>Where did you find us? </b>{{source}}
+            <b>{{_ 'studentlist.source'}}? </b>{{source}}
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
-          <h3 class="panel-title">Program History</h3>
+          <h3 class="panel-title">{{_ 'studentlist.program_history'}}</h3>
       </div>
       <div class="panel-body">
 
@@ -117,9 +117,9 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Course Subject</th>
-                <th>Start Date</th>
-                <th>Status</th>
+                <th>{{_ 'programlist.course_subject'}}</th>
+                <th>{{_ 'programlist.start_date'}}</th>
+                <th>{{_ 'programlist.status'}}</th>
               </tr>
             </thead>
 
@@ -142,7 +142,7 @@
 
     <div class="panel panel-default">
       <div class="panel-body">
-          <button class="btn btn-primary btn-edit">Edit</button>
+          <button class="btn btn-primary btn-edit">{{_ 'studentlist.edit'}}</button>
       </div>
     </div>
 

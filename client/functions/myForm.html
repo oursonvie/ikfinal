@@ -1,7 +1,7 @@
 <template name="myForm">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Profile Photo</h3>
+      <h3 class="panel-title">{{_ 'studentlist.profile_photo'}}</h3>
     </div>
     <div class="panel-body">
       {{#if profileNotExist}}
@@ -10,7 +10,7 @@
         {{/with}}
         <input type="file" name="…" class="myFileInput">
       {{else}}
-        <input type="file" name="…" class="myFileInput">
+        <input type="file" name="…" class="myFileInput" id="photoUpload">
       {{/if}}
     </div>
   </div>

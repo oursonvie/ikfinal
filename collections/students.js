@@ -260,13 +260,11 @@ Students.attachSchema(new SimpleSchema({
       }
     }
   },
-  major: {
+  department: {
     type: String,
-    label: "*Major",
+    label: "*Department",
     autoform: {
-      group: 'Current Study',
-      type: "select",
-      options: function(){return AreaOfStudyList()}
+      group: 'Current Study'
     },
     autoValue:function(){
       if (this.isInsert) {

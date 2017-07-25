@@ -41,7 +41,8 @@ Programs.attachSchema(new SimpleSchema({
   },
   address: {
     type: String,
-    label: "*Lecture Address"
+    label: "Lecture Address",
+    optional: true
   },
   size: {
     type: Number,
