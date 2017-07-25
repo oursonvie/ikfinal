@@ -398,7 +398,12 @@ let StudentSchema = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    defaultValue: new Date,
+    autoValue: function() {
+      console.log(this.isInsert)
+      if (this.isInsert) {
+        return new Date
+      }
+    },
      autoform: {
        type: 'hidden'
      }
