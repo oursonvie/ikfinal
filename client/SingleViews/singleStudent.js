@@ -35,8 +35,7 @@ Template.singleStudent.helpers({
     return status
   },
   translateHelper: function(keyword) {
-    console.log(keyword)
-    let key = 'autoformstudent.'+keyword
+    let key = 'optionlists.'+keyword
     return TAPi18n.__(key)
   }
 });
