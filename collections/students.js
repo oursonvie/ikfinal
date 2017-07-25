@@ -399,7 +399,6 @@ let StudentSchema = new SimpleSchema({
   createdAt: {
     type: Date,
     autoValue: function() {
-      console.log(this.isInsert)
       if (this.isInsert) {
         return new Date
       }
