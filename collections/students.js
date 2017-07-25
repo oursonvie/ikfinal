@@ -12,21 +12,30 @@ Students.allow({
   }
 })
 
-Students.attachSchema(new SimpleSchema({
+let StudentSchema = new SimpleSchema({
   full_name: {
     type: String,
-    label: "*Full Name",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.full_name'))
+    },
     autoform: {
       group: 'Basic Information'
     }
   },
   gender: {
     type: String,
-    label: "*Gender",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.gender'))
+    },
     autoform: {
       group: 'Basic Information',
       type: "select-radio-inline",
-      options: function() {return[{label:"Male",value:"Male"},{label:"Female",value:"Female"}]}
+      options: () => {
+        return[
+          {label: TAPi18n.__('general.male'), value:"Male"},
+          {label: TAPi18n.__('general.female'), value:"Female"}
+        ]
+      }
     },
     autoValue:function(){
       if (this.isInsert) {
@@ -42,7 +51,9 @@ Students.attachSchema(new SimpleSchema({
   },
   date_of_birth: {
     type: String,
-    label: "*Date of Birth",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.date_of_birth'))
+    },
     autoform: {
       group: 'Basic Information',
       type: "bootstrap-datepicker",
@@ -64,7 +75,9 @@ Students.attachSchema(new SimpleSchema({
   },
   telephone: {
     type: String,
-    label: "*Telephone",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.telephone'))
+    },
     autoform: {
       group: 'Basic Information'
     },
@@ -100,7 +113,9 @@ Students.attachSchema(new SimpleSchema({
   },
   country_of_birth: {
     type: String,
-    label: "*Country of Birth",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.country_of_birth'))
+    },
     autoform: {
       group: 'Citizenship',
       type: "select",
@@ -120,7 +135,9 @@ Students.attachSchema(new SimpleSchema({
   },
   country_of_citizenship: {
     type: String,
-    label: "*Country of Citizenship",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.country_of_citizenship'))
+    },
     autoform: {
       group: 'Citizenship',
       type: "select",
@@ -140,7 +157,9 @@ Students.attachSchema(new SimpleSchema({
   },
   passport: {
     type: String,
-    label: "*Passport No.",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.passport'))
+    },
     autoform: {
       group: 'Citizenship'
     },
@@ -158,7 +177,9 @@ Students.attachSchema(new SimpleSchema({
   },
   highest_education: {
     type: String,
-    label: "*Highest Education",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.highest_education'))
+    },
     autoform: {
       group: 'Education History',
       type: "select",
@@ -178,7 +199,9 @@ Students.attachSchema(new SimpleSchema({
   },
   area_of_study: {
     type: String,
-    label: "*Area of Study",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.area_of_study'))
+    },
     autoform: {
       group: 'Education History',
       type: "select",
@@ -198,7 +221,9 @@ Students.attachSchema(new SimpleSchema({
   },
   name_of_institute: {
     type: String,
-    label: "Name of Institute",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.name_of_institute'))
+    },
     optional: true,
     autoform: {
       group: 'Education History'
@@ -206,7 +231,9 @@ Students.attachSchema(new SimpleSchema({
   },
   university_name: {
     type: String,
-    label: "*University Name",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.university_name'))
+    },
     autoform: {
       group: 'Current Study'
     },
@@ -224,7 +251,9 @@ Students.attachSchema(new SimpleSchema({
   },
   studentid: {
     type: String,
-    label: "*Student No.",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.studentid'))
+    },
     autoform: {
       group: 'Current Study'
     },
@@ -242,7 +271,9 @@ Students.attachSchema(new SimpleSchema({
   },
   degree: {
     type: String,
-    label: "*Degree",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.degree'))
+    },
     autoform: {
       group: 'Current Study',
       type: "select",
@@ -262,7 +293,9 @@ Students.attachSchema(new SimpleSchema({
   },
   department: {
     type: String,
-    label: "*Department",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.department'))
+    },
     autoform: {
       group: 'Current Study'
     },
@@ -280,17 +313,23 @@ Students.attachSchema(new SimpleSchema({
   },
   occupation: {
     type: String,
-    label: "Occupation",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.occupation'))
+    },
     optional: true,
     autoform: {
       group: 'Other',
       type: "select",
-      options: function(){return OccupationList()}
+      options: () => {
+        return OccupationList()
+      }
     }
   },
   source: {
     type: String,
-    label: "Where did you find us?",
+    label: () => {
+      return (TAPi18n.__('autoformstudent.source'))
+    },
     optional: true,
     autoform: {
 
@@ -364,4 +403,6 @@ Students.attachSchema(new SimpleSchema({
        type: 'hidden'
      }
   }
-}, { tracker: Tracker }));
+}, { tracker: Tracker })
+
+Students.attachSchema(StudentSchema);

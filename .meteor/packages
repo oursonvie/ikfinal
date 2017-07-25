@@ -83,3 +83,4 @@ dynamic-import
 
 ## internationalisation
 tap:i18n
+tap:i18n-ui

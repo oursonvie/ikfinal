@@ -65,5 +65,32 @@
     "source": "Где вы нас нашли",
     "program_history": "История программы",
     "edit": "редактировать"
+  },
+  "autoformstudent": {
+    "basic_informaiton": "Основная информация",
+    "full_name": "*Полное имя",
+    "gender": "*Пол",
+    "date_of_birth": "*Дата рождения",
+    "telephone": "*Телефон",
+    "citizenship": "Гражданство",
+    "country_of_birth": "*Страна рождения",
+    "country_of_citizenship": "*Страна гражданства",
+    "passport": "*Номер паспорта",
+    "current_study": "Текущее исследование",
+    "university_name": "*Название университета",
+    "studentid": "*Студент нет",
+    "degree": "*Степень",
+    "department": "*Департамент",
+    "education_history": "История образования",
+    "highest_education": "*Высшее образование",
+    "area_of_study": "*Область исследования",
+    "name_of_institute": "Название института",
+    "other": "Другое",
+    "occupation": "Занятость",
+    "source": "Где вы нас нашли"
+  },
+  "general": {
+    "male": "мужчина",
+    "female": "Женщина"
   }
 }

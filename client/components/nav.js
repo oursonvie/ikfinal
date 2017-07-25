@@ -6,7 +6,6 @@ Template.nav.helpers({
     for (const key in obj) {
       if (key) languages.push({ code: key, labels: obj[key] });
     }
-    console.log(languages)
     if (languages) return languages;
   },
 
@@ -21,9 +20,9 @@ Template.nav.helpers({
 
 Template.nav.events({
   'click .changeLang' () {
-    console.log(this.code)
+    // console.log(this.code)
     TAPi18n.setLanguage(this.code);
-    accountsUIBootstrap3.setLanguage('ru');
+    accountsUIBootstrap3.setLanguage(this.code);
   }
 
 });
