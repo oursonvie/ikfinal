@@ -10,6 +10,7 @@ Template.programsList.helpers({
       if (Students.findOne() == undefined) {
         return false
       } else {
+
         var enrollmentList = Students.findOne().enrollment;
         return JSON.stringify(enrollmentList).includes(this._id);
       }
@@ -26,13 +27,19 @@ Template.programsList.helpers({
         }
     },
     enrollStauts: function() {
-      var enrollmentObj = Students.findOne().enrollment;
-      var arrayNo = lodash.findIndex(enrollmentObj, ['programId',this._id])
-      if ( arrayNo == -1 ) {
+      try {
+        var enrollmentObj = Students.findOne().enrollment;
+        var arrayNo = lodash.findIndex(enrollmentObj, ['programId',this._id])
+        if ( arrayNo == -1 ) {
+          return 'Enroll'
+        } else {
+          return Students.findOne().enrollment[arrayNo].status
+        }
+      } catch(err) {
+        // console.log(err)
         return 'Enroll'
-      } else {
-        return Students.findOne().enrollment[arrayNo].status
       }
+
     },
     enrollCSS: function() {
       var enrollmentObj = Students.findOne().enrollment;
@@ -54,15 +61,15 @@ Template.programsList.events({
         if (Meteor.user().emails[0].verified == true) {
             Meteor.call('enrollProgram', this._id, Meteor.userId(), function(err, res) {
                 if (res == 1) {
-                    Bert.alert('You need to fill in your information before enroll in any program', 'danger', 'growl-top-right');
+                    Bert.alert(TAPi18n.__('bertwarning.fill_information'), 'danger', 'growl-top-right');
                 } else if (res == 2) {
-                    Bert.alert('You need upload a profile photo', 'danger', 'growl-top-right');
+                    Bert.alert(TAPi18n.__('bertwarning.fill_photo'), 'danger', 'growl-top-right');
                 } else {
-                    Bert.alert('Signup for program, please wait for enrollment confirmation', 'info', 'growl-top-right');
+                    Bert.alert(TAPi18n.__('bertwarning.signup_success'), 'info', 'growl-top-right');
                 }
             });
         } else {
-            Bert.alert('You need to vertify yout email first', 'danger', 'growl-top-right');
+            Bert.alert(TAPi18n.__('bertwarning.vertify_email'), 'danger', 'growl-top-right');
         }
     }
 });

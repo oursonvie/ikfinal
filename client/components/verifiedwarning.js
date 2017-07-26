@@ -13,7 +13,7 @@ Template.verifiedwarning.events({
                 Bert.alert(error.reason, 'danger', 'growl-top-right');
             } else {
                 let email = Meteor.user().emails[0].address;
-                Bert.alert(`Verification sent to ${ email }!`, 'success', 'growl-top-right');
+                Bert.alert(TAPi18n.__('bertwarning.email_sent')+`${email}`, 'success', 'growl-top-right');
             }
         });
     },

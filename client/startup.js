@@ -1,6 +1,8 @@
 const userLanguage = () => {
   // If the user is logged in, retrieve their saved language
-  if (Meteor.user() && !Roles.userIsInRole(Meteor.userId(), 'admin')) return Meteor.user().profile.lang;
+  if (Meteor.user() && !Roles.userIsInRole(Meteor.userId(), 'admin')) {
+    return Meteor.user().profile.lang;
+  }
 };
 
 if (Meteor.isClient) {

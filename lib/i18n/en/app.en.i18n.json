@@ -9,6 +9,17 @@
   "homepage": {
     "more": "more"
   },
+  "bertwarning": {
+    "email_vertified": "Email verified! Thanks!",
+    "email_sent": "Verification sent to ",
+    "fill_information": "You need to fill in your information before enroll in any program",
+    "fill_photo": "You need upload a profile photo",
+    "signup_success": "Signup for program, please wait for enrollment confirmation",
+    "vertify_email": "You need to vertify yout email first"
+  },
+  "emailcontent": {
+    "subject": "[IKCEST] Verify Your Email Address"
+  },
   "programlist": {
     "start_date": "Start Date",
     "end_date": "End Date",
