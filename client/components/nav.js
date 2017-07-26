@@ -23,6 +23,7 @@ Template.nav.events({
     // console.log(this.code)
     TAPi18n.setLanguage(this.code);
     accountsUIBootstrap3.setLanguage(this.code);
+    Meteor.call('setLang', Meteor.userId(), this.code)
   }
 
 });
