@@ -16,14 +16,6 @@
           <li role="presentation" class={{isActiveRoute 'home'}}><a href="/">{{_ 'navbar.home'}}</a></li>
           <li role="presentation" class={{isActiveRoute 'news'}}><a href="/news">{{_ 'navbar.news'}}</a></li>
           <li role="presentation" class={{isActiveRoute 'program'}}><a href="/program">{{_ 'navbar.program'}}</a></li>
-
-          {{#if currentUser }}
-            {{#if isInRole 'admin'}}
-
-            {{else}}
-              <li role="presentation" class={{isActiveRoute 'me'}}><a href="/me">{{_ 'navbar.me'}}</a></li>
-            {{/if}}
-          {{/if}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
 

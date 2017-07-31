@@ -1,3 +1,9 @@
 <template name="_loginButtonsAdditionalLoggedInDropdownActions">
-	<button class="btn btn-default btn-block" id="login-buttons-edit-profile">{{_ 'navbar.edit_profile'}}</button>
+	{{#if currentUser }}
+		{{#if isInRole 'admin'}}
+		{{else}}
+			<button class="btn btn-default btn-block" id="login-buttons-edit-profile">{{_ 'navbar.edit_profile'}}</button>
+			<button class="btn btn-default btn-block" id="login-buttons-my-program">{{_ 'navbar.my_program'}}</button>
+		{{/if}}
+	{{/if}}
 </template>

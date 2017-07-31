@@ -1,0 +1,38 @@
+<template name="myProgram">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{_ 'studentlist.program_history'}}</h3>
+    </div>
+    <div class="panel-body">
+
+
+
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>{{_ 'programlist.course_subject'}}</th>
+              <th>{{_ 'programlist.start_date'}}</th>
+              <th>{{_ 'programlist.status'}}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {{#each enrolledPrograms}}
+            <tr>
+              <th scope="row">{{@index}}</th>
+              <td>{{subject}}</td>
+              <td>{{formatDate start_date}}</td>
+              <td><button class="btn btn-sm disabled {{enrollCSS status}}">{{status}}</button></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+
+
+    </div>
+  </div>
+
+</template>
