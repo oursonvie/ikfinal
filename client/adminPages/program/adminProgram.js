@@ -1,7 +1,9 @@
 Template.adminProgram.onCreated(function(){
+  Meteor.call('updateFormProjList')
    var self = this;
     self.autorun(function() {
        self.subscribe('ProgramsAll');
+       self.subscribe('variables', Meteor.userId());
     });
     Session.set('newProgram', false);
 });

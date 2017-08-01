@@ -52,9 +52,18 @@ function getURL(para, baselink) {
 
 Meteor.methods({
   'wjLogin' () {
-
     const para = ['wj_appkey', 'wj_user', 'wj_timestamp'].sort()
     let link = getURL(para, config.loginURL)
-    console.log(link)
+    return link
+  },
+  'getProjList' () {
+    const para = ['wj_appkey', 'wj_timestamp'].sort()
+    let link = getURL(para, config.projectList)
+    try {
+      const result = Promise.await(httpGetAsync(link,{}))
+      return JSON.parse(result.content)
+    } catch (err) {
+      console.log(err)
+    }
   }
 });

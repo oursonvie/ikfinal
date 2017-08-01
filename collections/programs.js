@@ -122,6 +122,18 @@ Programs.attachSchema(new SimpleSchema({
       type:"hidden"
     }
   },
+  survey: {
+    type: String,
+    label: "Survey Short URL",
+    optional: true,
+    autoform: {
+      group: 'Other',
+      type: "select",
+      options: () => {
+        return Variables.findOne({name:'autoFormProjList'}).value
+      }
+    }
+  },
   createdBy: {
     type: String,
     autoValue:function(){
@@ -132,11 +144,14 @@ Programs.attachSchema(new SimpleSchema({
      }
   },
   createdAt: {
-        type: Date,
-        label: "Created At",
-        defaultValue: new Date(),
-        autoform: {
-            type: "hidden"
-        }
-    }
+    type: Date,
+    autoValue: function() {
+      if (this.isInsert) {
+        return new Date
+      }
+    },
+     autoform: {
+       type: 'hidden'
+     }
+  }
 }, { tracker: Tracker }));

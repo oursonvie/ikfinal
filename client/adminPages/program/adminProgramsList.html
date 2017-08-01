@@ -7,7 +7,6 @@
         <button class="btn btn-default btn-sm btn-edit ">Edit</button>
         <button class="btn btn-default btn-sm btn-duplicate">Duplicate</button>
         <button class="btn btn-danger btn-sm btn-delete">Delete</button>
-
       </div>
     </div>
     {{#if editProgram}}
@@ -38,8 +37,15 @@
       </div>
       <div class="panel-footer clearfix">
         <a href="/admin/program/showstudents/{{_id}}" type=button class="btn btn-info btn-sm pull-right">Show Student</a>
-        Created at: {{createdAt}}
+        <button class="btn btn-default btn-sm btn-exam">Exam/Survey</button>
       </div>
+
+      {{#if showExamPanel}}
+        <div class="panel-body">
+          {{> updateSurvey}}
+        </div>
+      {{/if}}
+
     {{/if}}
   </div>
 </template>
