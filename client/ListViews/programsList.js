@@ -10,9 +10,11 @@ Template.programsList.helpers({
       if (Students.findOne() == undefined) {
         return false
       } else {
-
         var enrollmentList = Students.findOne().enrollment;
-        return JSON.stringify(enrollmentList).includes(this._id);
+        if (enrollmentList) {
+          return JSON.stringify(enrollmentList).includes(this._id);
+        }
+        return false
       }
     },
     numberEnrolled: function() {
