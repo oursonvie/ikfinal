@@ -32,3 +32,13 @@ JsonRoutes.add('get', '/login', function(req, res, next) {
     });
 
 });
+
+JsonRoutes.add('get', '/api/wenjuan', function(req, res, next) {
+
+    console.log(req.query)
+
+    JsonRoutes.sendResult(res, {
+        data: req.query
+    });
+
+});
