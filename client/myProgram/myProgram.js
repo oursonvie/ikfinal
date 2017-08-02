@@ -18,12 +18,10 @@ Template.myProgram.helpers({
     return Programs.find()
   },
   status: function() {
-
     var programId = this._id
     var enrollmentObj = Students.findOne({}).enrollment;
     var arrayNo = lodash.findIndex(enrollmentObj, ['programId',programId]);
     var status = Students.findOne({}).enrollment[arrayNo].status;
-
     return status
   },
   formatDate: function(date) {
