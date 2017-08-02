@@ -31,8 +31,7 @@ function getSignature(para, config) {
 }
 
 // generate url base on para needed
-function getURL(para, baselink) {
-  let ObjConfig = Promise.await(addTimeStamp())
+function getURL(ObjConfig, para, baselink) {
 
   let url = ''
 
@@ -43,6 +42,8 @@ function getURL(para, baselink) {
     url += string
   });
 
+  // console.log('before encrpt: '+ Promise.await(getSignature(para,ObjConfig)))
+
   signature = CryptoJS.MD5(Promise.await(getSignature(para,ObjConfig))).toString()
 
   let loginUrl = baselink + url + `wj_signature=${signature}`
@@ -52,18 +53,42 @@ function getURL(para, baselink) {
 
 Meteor.methods({
   'wjLogin' () {
+    let timeAddedObj = Promise.await(addTimeStamp())
     const para = ['wj_appkey', 'wj_user', 'wj_timestamp'].sort()
-    let link = getURL(para, config.loginURL)
+    let link = getURL(timeAddedObj, para, config.loginURL)
     return link
   },
   'getProjList' () {
+    let timeAddedObj = Promise.await(addTimeStamp())
     const para = ['wj_appkey', 'wj_timestamp'].sort()
-    let link = getURL(para, config.projectList)
+    let link = getURL(timeAddedObj, para, config.projectListURL)
     try {
       const result = Promise.await(httpGetAsync(link,{}))
       return JSON.parse(result.content)
     } catch (err) {
       console.log(err)
     }
+  },
+  'wjContentUrl' (shortId, studentId, programId) {
+    const respondent = `${studentId}_${programId}`
+    let temp = ObjConst
+    temp.wj_respondent = respondent
+
+    const para = ['wj_appkey', 'wj_respondent'].sort()
+
+    let params = getURL(temp, para, '')
+    // short id is not included in the full para link, therefore
+    let link = config.contentURL + shortId + '/?' + params
+    return link
+  },
+  'wjDetailResult' (shortId) {
+    let timeAddedObj = Promise.await(addTimeStamp())
+    timeAddedObj.wj_short_id = shortId
+
+    const para = ['wj_appkey', 'wj_user', 'wj_short_id', 'wj_timestamp'].sort()
+
+    let link = getURL(timeAddedObj, para, config.surveyResultURL)
+    console.log(link)
+
   }
 });

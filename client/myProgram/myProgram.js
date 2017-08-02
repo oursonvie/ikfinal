@@ -41,9 +41,18 @@ Template.myProgram.helpers({
         return 'btn-default';
         break;
     }
+  },
+  surveyAvaliable () {
+    return this.survey
   }
 });
 
 Template.myProgram.events({
-
+  'click .fa-survey' () {
+    PromiseMeteorCall('wjContentUrl', this.survey, Students.findOne()._id, this._id).then(res => {
+      window.open(res, '_blank')
+    }).catch( err => {
+      console.log(err)
+    })
+  }
 });

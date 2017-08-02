@@ -15,6 +15,7 @@
               <th>{{_ 'programlist.course_subject'}}</th>
               <th>{{_ 'programlist.start_date'}}</th>
               <th>{{_ 'programlist.status'}}</th>
+              <th>Survey</th>
             </tr>
           </thead>
 
@@ -25,6 +26,16 @@
               <td>{{subject}}</td>
               <td>{{formatDate start_date}}</td>
               <td><button class="btn btn-sm disabled {{enrollCSS status}}">{{status}}</button></td>
+              {{#if $in status 'Enrolled' 'Completed' }}
+                {{#if surveyAvaliable}}
+                  <td><i class="fa fa-file fa-survey" aria-hidden="true" style="color:green"></i></td>
+                {{else}}
+                  <td></td>
+                {{/if}}
+
+              {{else}}
+                <td></td>
+              {{/if}}
             </tr>
             {{/each}}
           </tbody>
