@@ -109,6 +109,11 @@ Programs.attachSchema(new SimpleSchema({
     label: "Lecturer Description",
     optional: true
   },
+  'course.$.quiz':{
+    type: String,
+    label: "Quiz URL",
+    optional: true
+  },
   student: {
     type: Array,
     optional: true,
@@ -124,7 +129,7 @@ Programs.attachSchema(new SimpleSchema({
   },
   survey: {
     type: String,
-    label: "Survey Short URL",
+    label: "Survey URL",
     optional: true,
     autoform: {
       group: 'Other',

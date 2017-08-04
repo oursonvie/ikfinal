@@ -26,6 +26,7 @@ function getSignature(para, config) {
       res += config[key]
     })
     res += ObjConst.wj_appsecret
+
     resolve(res)
   });
 }
@@ -62,6 +63,7 @@ Meteor.methods({
     let timeAddedObj = Promise.await(addTimeStamp())
     const para = ['wj_appkey', 'wj_timestamp'].sort()
     let link = getURL(timeAddedObj, para, config.projectListURL)
+    console.log(link)
     try {
       const result = Promise.await(httpGetAsync(link,{}))
       return JSON.parse(result.content)
