@@ -1,6 +1,7 @@
 Template.adminProgramsList.onCreated(function() {
   this.editProgram = new ReactiveVar(false);
-  this.showExamPanel = new ReactiveVar(false);
+  this.showSurveyPanel = new ReactiveVar(false);
+  this.showQuizPanel = new ReactiveVar(false);
 });
 
 Template.adminProgramsList.helpers({
@@ -21,7 +22,10 @@ Template.adminProgramsList.helpers({
     }
   },
   showExamPanel: function() {
-    return Template.instance().showExamPanel.get();
+    return Template.instance().showSurveyPanel.get();
+  },
+  showQuizPanel: function() {
+    return Template.instance().showQuizPanel.get();
   }
 });
 
@@ -31,7 +35,8 @@ Template.adminProgramsList.events({
   },
   'click .btn-submit': function(event, template) {
     template.editProgram.set(false);
-    template.showExamPanel.set(false);
+    template.showSurveyPanel.set(false);
+    template.showQuizPanel.set(false);
   },
   'click .btn-duplicate': function(event, template) {
     Meteor.call('duplicateProgram', this._id);
@@ -46,8 +51,11 @@ Template.adminProgramsList.events({
     }
 
   },
-  'click .btn-exam' (event, template) {
-    template.showExamPanel.set(!template.showExamPanel.get())
+  'click .btn-survey' (event, template) {
+    template.showSurveyPanel.set(!template.showSurveyPanel.get())
+  },
+  'click .btn-quiz' (event, template) {
+    template.showQuizPanel.set(!template.showQuizPanel.get())
   },
   'click .btn_redirect_wj' () {
     PromiseMeteorCall('wjLogin').then(res => {

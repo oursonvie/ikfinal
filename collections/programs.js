@@ -93,7 +93,7 @@ Programs.attachSchema(new SimpleSchema({
   },
   'course.$.course_name':{
     type: String,
-    label: "Course Name"
+    label: "* Course Name"
   },
   'course.$.course_description':{
     type: String,
@@ -102,7 +102,7 @@ Programs.attachSchema(new SimpleSchema({
   },
   'course.$.lecturer_name':{
     type: String,
-    label: "Lecturer Name"
+    label: "* Lecturer Name"
   },
   'course.$.lecturer_description':{
     type: String,
@@ -112,7 +112,13 @@ Programs.attachSchema(new SimpleSchema({
   'course.$.quiz':{
     type: String,
     label: "Quiz URL",
-    optional: true
+    optional: true,
+    autoform: {
+      type: "select",
+      options: () => {
+        return Variables.findOne({name:'autoFormProjList'}).value
+      }
+    }
   },
   student: {
     type: Array,
