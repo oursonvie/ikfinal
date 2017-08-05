@@ -3,8 +3,10 @@
     <fieldset>
       <legend>Quiz</legend>
         {{#afEachArrayItem name='course'}}
-          {{> afQuickField name=this.current.course_name disabled="true"}}
-          {{> afQuickField name=this.current.quiz}}
+          <div class="row">
+            {{> afQuickField name=this.current.course_name disabled="true" template="bootstrap3-inline" label-class="sr-only" formgroup-class="col-sm-3"}}
+            {{> afQuickField name=this.current.quiz template="bootstrap3-inline" label-class="sr-only" afFieldInput-placeholder="schemaLabel" formgroup-class="col-sm-9"}}
+          </div>
         {{/afEachArrayItem}}
     </fieldset>
     <button type="submit" class="btn btn-primary btn-submit">Save</button>

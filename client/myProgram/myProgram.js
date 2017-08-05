@@ -42,12 +42,41 @@ Template.myProgram.helpers({
   },
   surveyAvaliable () {
     return this.survey
+  },
+  quizAvaliable () {
+    let temp = null
+    if (this.course) {
+      _.forEach(this.course, function(course) {
+        if (course.quiz) {
+          temp = true
+        }
+      })
+    } else {
+      temp = false
+    }
+    console.log(temp)
+    return temp
+  },
+  courseLength () {
+    if (this.course) {
+      console.log(this.course.length)
+      return this.course.length
+    } else {
+      return 1
+    }
   }
 });
 
 Template.myProgram.events({
   'click .fa-survey' () {
     PromiseMeteorCall('wjContentUrl', this.survey, Students.findOne()._id, this._id).then(res => {
+      window.open(res, '_blank')
+    }).catch( err => {
+      console.log(err)
+    })
+  },
+  'click .fa-quiz' () {
+    PromiseMeteorCall('wjContentUrl', this.quiz, Students.findOne()._id, this._id).then(res => {
       window.open(res, '_blank')
     }).catch( err => {
       console.log(err)
