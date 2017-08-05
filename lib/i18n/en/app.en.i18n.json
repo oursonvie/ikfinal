@@ -42,7 +42,8 @@
     "lecturer_description": "Lecturer Description",
     "course_subject": "Course Subject",
     "status": "Status",
-    "survey": "Survey"
+    "survey": "Survey",
+    "quiz": "Quiz"
   },
   "warningbanner": {
     "warning_for_enroll": "Before you can enroll to any program, you still have the following tasks to complete",

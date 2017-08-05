@@ -29,8 +29,7 @@ Template.myForm.events({
           console.log(err);
         } else {
           var userId = Meteor.userId();
-          var imagesURL = {"profile.image": fileObj._id};
-          Meteor.users.update(userId, {$set: imagesURL});
+          Meteor.users.update(userId, {$set: {"profile.image":fileObj._id}});
           var studentId = Students.findOne()._id;
           Meteor.call('insertProfileImage', studentId, userId);
         }
