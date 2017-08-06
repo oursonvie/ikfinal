@@ -43,19 +43,25 @@ Template.myProgram.helpers({
   surveyAvaliable () {
     return this.survey
   },
-  quizAvaliable () {
-    let temp = null
+  quizAvaliableProgram () {
+    let status = null
     if (this.course) {
       _.forEach(this.course, function(course) {
         if (course.quiz) {
-          temp = true
+          status = true
         }
       })
     } else {
-      temp = false
+      status = false
     }
-    console.log(temp)
-    return temp
+    return status
+  },
+  quizAvaliable () {
+    if (this.quiz) {
+      return true
+    } else {
+      return false
+    }
   },
   courseLength () {
     if (this.course) {
@@ -76,10 +82,14 @@ Template.myProgram.events({
     })
   },
   'click .fa-quiz' () {
-    PromiseMeteorCall('wjContentUrl', this.quiz, Students.findOne()._id, this._id).then(res => {
+
+    // let course_id = this.course_id
+    // let programId = Programs.findOne({'course.course_id':course_id})._id
+
+    PromiseMeteorCall('wjContentUrl', this.quiz, Students.findOne()._id, this.course_id).then(res => {
       window.open(res, '_blank')
     }).catch( err => {
       console.log(err)
     })
-  }
+  },
 });

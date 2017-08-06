@@ -91,6 +91,18 @@ Programs.attachSchema(new SimpleSchema({
   'course.$':{
     type: Object
   },
+  'course.$.course_id':{
+    type: String,
+    label: "* Course ID",
+    autoValue:function(){
+       if (this.isInsert) {
+         return new Mongo.ObjectID()._str
+       }
+     },
+     autoform: {
+       type: 'hidden'
+     }
+  },
   'course.$.course_name':{
     type: String,
     label: "* Course Name"

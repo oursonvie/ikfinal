@@ -26,6 +26,13 @@ Template.adminProgramsList.helpers({
   },
   showQuizPanel: function() {
     return Template.instance().showQuizPanel.get();
+  },
+  ifQuiz: function () {
+    if (this.course) {
+      return true
+    } else {
+      return false
+    }
   }
 });
 

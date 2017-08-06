@@ -39,16 +39,17 @@
                   <td></td>
                 {{/if}}
 
-                {{#if quizAvaliable}}
+                {{#if quizAvaliableProgram}}
                   {{#each course}}
-                    <td><i class="fa fa-file fa-quiz fa-2x" aria-hidden="true" style="color:green"></i></td>
+                    {{#if quizAvaliable}}
+                      <td><i class="fa fa-file fa-quiz fa-2x" aria-hidden="true" style="color:green"></i></td>
+                    {{else}}
+                      <td><i class="fa fa-file fa-2x" aria-hidden="true"></i></td>
+                    {{/if}}
                   {{/each}}
                 {{/if}}
 
               </tr>
-
-
-
 
 
               {{/each}}
