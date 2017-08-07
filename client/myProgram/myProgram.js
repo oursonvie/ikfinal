@@ -86,7 +86,7 @@ Template.myProgram.events({
     // let course_id = this.course_id
     // let programId = Programs.findOne({'course.course_id':course_id})._id
 
-    PromiseMeteorCall('wjContentUrl', this.quiz, Students.findOne()._id, this.course_id).then(res => {
+    PromiseMeteorCall('wjCallBackUrl', this.quiz, Students.findOne()._id, this.course_id).then(res => {
       window.open(res, '_blank')
     }).catch( err => {
       console.log(err)

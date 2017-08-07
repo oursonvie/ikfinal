@@ -87,15 +87,17 @@ Meteor.methods({
     const respondent = `${studentId}_${programId}`
     let temp = ObjConst
     temp.wj_respondent = respondent
-    temp.wj_callback = 'http://tonny.xjtudlc.com/api/wenjuan'
+    // temp.wj_callback = 'http://tonny.xjtudlc.com/api/wenjuan'
+    temp.wj_callback = 'http://100.64.34.26:3000/api/wenjuan'
+
 
     const para = ['wj_appkey', 'wj_respondent', 'wj_callback'].sort()
 
     let params = getURL(temp, para, '')
     // short id is not included in the full para link, therefore
     let link = config.contentURL + shortId + '/?' + params
-    console.log(link)
-    // return link
+    // console.log(link)
+    return link
   },
   'wjDetailResult' (shortId) {
     let timeAddedObj = Promise.await(addTimeStamp())
