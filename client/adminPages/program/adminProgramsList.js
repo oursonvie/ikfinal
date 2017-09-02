@@ -60,9 +60,11 @@ Template.adminProgramsList.events({
   },
   'click .btn-survey' (event, template) {
     template.showSurveyPanel.set(!template.showSurveyPanel.get())
+    template.showQuizPanel.set(false)
   },
   'click .btn-quiz' (event, template) {
     template.showQuizPanel.set(!template.showQuizPanel.get())
+    template.showSurveyPanel.set(false)
   },
   'click .btn_redirect_wj' () {
     PromiseMeteorCall('wjLogin').then(res => {
