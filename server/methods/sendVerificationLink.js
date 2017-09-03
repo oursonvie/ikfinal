@@ -4,5 +4,8 @@ Meteor.methods({
     if ( userId ) {
       return Accounts.sendVerificationEmail( userId );
     }
+  },
+  sendToUserLink(userId) {
+    return Accounts.sendVerificationEmail( userId );
   }
 });
