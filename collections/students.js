@@ -36,17 +36,6 @@ let StudentSchema = new SimpleSchema({
           {label: TAPi18n.__('general.female'), value:"Female"}
         ]
       }
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   date_of_birth: {
@@ -60,17 +49,6 @@ let StudentSchema = new SimpleSchema({
       datePickerOptions: {
         autoclose: true
       }
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   telephone: {
@@ -80,17 +58,6 @@ let StudentSchema = new SimpleSchema({
     },
     autoform: {
       group: 'Basic Information'
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   email: {
@@ -120,17 +87,6 @@ let StudentSchema = new SimpleSchema({
       group: 'Citizenship',
       type: "select",
       options: function(){return CountryList()}
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   country_of_citizenship: {
@@ -142,17 +98,6 @@ let StudentSchema = new SimpleSchema({
       group: 'Citizenship',
       type: "select",
       options: function(){return CountryList()}
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   passport: {
@@ -162,17 +107,6 @@ let StudentSchema = new SimpleSchema({
     },
     autoform: {
       group: 'Citizenship'
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   highest_education: {
@@ -184,17 +118,6 @@ let StudentSchema = new SimpleSchema({
       group: 'Education History',
       type: "select",
       options: function(){return HEList()}
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   area_of_study: {
@@ -206,17 +129,6 @@ let StudentSchema = new SimpleSchema({
       group: 'Education History',
       type: "select",
       options: function(){return AreaOfStudyList()}
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   name_of_institute: {
@@ -236,17 +148,6 @@ let StudentSchema = new SimpleSchema({
     },
     autoform: {
       group: 'Current Study'
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   studentid: {
@@ -256,17 +157,6 @@ let StudentSchema = new SimpleSchema({
     },
     autoform: {
       group: 'Current Study'
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   degree: {
@@ -278,17 +168,6 @@ let StudentSchema = new SimpleSchema({
       group: 'Current Study',
       type: "select",
       options: function(){return DegreeList()}
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   department: {
@@ -298,17 +177,6 @@ let StudentSchema = new SimpleSchema({
     },
     autoform: {
       group: 'Current Study'
-    },
-    autoValue:function(){
-      if (this.isInsert) {
-        if (this.value != undefined) {
-          return this.value
-        } else {
-          return 'null'
-        }
-      } else {
-        this.unset()
-      }
     }
   },
   occupation: {
