@@ -1,20 +1,19 @@
-Template.adminHome.onCreated(function() {
-  var self = this;
-  self.autorun(function() {
-    self.subscribe('StudentsAll');
-    self.subscribe('NewsAll');
-    self.subscribe('ProgramsAll');
-  });
+Template.adminHome.onCreated(async function(){
+
+  let studentCount = await PromiseMeteorCall('studentsCount')
+  let newsCount = await PromiseMeteorCall('newsCount')
+  let programCount = await PromiseMeteorCall('programCount')
+
+  Session.set('allCount', {
+    studentCount:studentCount,
+    newsCount:newsCount,
+    programCount:programCount
+  })
+
 });
 
 Template.adminHome.helpers({
-  studentCount: function() {
-    return Students.find().count()
-  },
-  newsCount: function() {
-    return News.find().count()
-  },
-  programCount: function() {
-    return Programs.find().count()
+  allCount: function() {
+    return Session.get('allCount')
   }
 });
