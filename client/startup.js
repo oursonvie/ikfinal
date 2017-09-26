@@ -3,11 +3,9 @@ const userLanguage = () => {
   if (Meteor.user() && !Roles.userIsInRole(Meteor.userId(), 'admin')) {
     if ( Meteor.user().profile && Meteor.user().profile.lang ) {
       return Meteor.user().profile.lang;
-    } else {
-      return 'en'
     }
-  } else {
-    return 'en'
+  } else if (LocalStore.get('lang')){
+    return LocalStore.get('lang')
   }
 };
 
@@ -19,9 +17,13 @@ if (Meteor.isClient) {
 
         // URL Language takes priority
         const urlLang = FlowRouter.getQueryParam('lang');
+
+        LocalStore.set('lang', urlLang)
+
         if (urlLang) {
           lang = urlLang;
         } else if (userLanguage()) {
+
           // User language is set if no url lang
           lang = userLanguage();
         } else {

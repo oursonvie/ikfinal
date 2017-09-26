@@ -60,18 +60,14 @@ Template.programsList.helpers({
 
 Template.programsList.events({
     'click .btn-enroll': function(event, template) {
-        if (Meteor.user().emails[0].verified == true) {
-            Meteor.call('enrollProgram', this._id, Meteor.userId(), function(err, res) {
-                if (res == 1) {
-                    Bert.alert(TAPi18n.__('bertwarning.fill_information'), 'danger', 'growl-top-right');
-                } else if (res == 2) {
-                    Bert.alert(TAPi18n.__('bertwarning.fill_photo'), 'danger', 'growl-top-right');
-                } else {
-                    Bert.alert(TAPi18n.__('bertwarning.signup_success'), 'info', 'growl-top-right');
-                }
-            });
-        } else {
-            Bert.alert(TAPi18n.__('bertwarning.vertify_email'), 'danger', 'growl-top-right');
-        }
+        Meteor.call('enrollProgram', this._id, Meteor.userId(), function(err, res) {
+            if (res == 1) {
+                Bert.alert(TAPi18n.__('bertwarning.fill_information'), 'danger', 'growl-top-right');
+            } else if (res == 2) {
+                Bert.alert(TAPi18n.__('bertwarning.fill_photo'), 'danger', 'growl-top-right');
+            } else {
+                Bert.alert(TAPi18n.__('bertwarning.signup_success'), 'info', 'growl-top-right');
+            }
+        });  
     }
 });

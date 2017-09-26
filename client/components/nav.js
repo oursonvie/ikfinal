@@ -1,5 +1,10 @@
-Template.nav.helpers({
+Template.nav.onCreated(function(){
+  var lang = getParameterByName('lang')
 
+  // console.log(lang)
+})
+
+Template.nav.helpers({
   languages() {
     const obj = TAPi18n.getLanguages();
     const languages = [];

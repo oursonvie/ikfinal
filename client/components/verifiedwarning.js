@@ -7,30 +7,6 @@ Template.verifiedwarning.onCreated(function() {
 });
 
 Template.verifiedwarning.events({
-    'click .resend-verification-link' (event, template) {
-        Meteor.call('sendVerificationLink', (error, response) => {
-            if (error) {
-                Bert.alert(error.reason, 'danger', 'growl-top-right');
-            } else {
-                let email = Meteor.user().emails[0].address;
-                Bert.alert(TAPi18n.__('bertwarning.email_sent')+`${email}`, 'success', 'growl-top-right');
-            }
-        });
-    },
-    'click .btn-send': function() {
-      //set countdown timer to 30s, between each send
-      Session.set('time', 30);
-      var clock = Session.get('time');
-        var timeLeft = function() {
-            if (clock > 0) {
-                clock--;
-                Session.set('time', clock);
-            } else {
-                return Meteor.clearInterval(interval);
-            }
-        };
-      var interval = Meteor.setInterval(timeLeft, 1000);
-    },
     'click .uploadRedirect' () {
       document.getElementById('photoUpload').click()
     }
@@ -52,6 +28,6 @@ Template.verifiedwarning.helpers({
       return Students.findOne().profile_image != undefined;
     },
     allDone: function() {
-      return Students.findOne() != undefined && Students.findOne().profile_image != undefined && Meteor.users.findOne().emails[0].verified
+      return Students.findOne() != undefined && Students.findOne().profile_image != undefined
     }
 });

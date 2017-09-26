@@ -7,16 +7,6 @@
       {{#unless allDone}}
         <p class="alert alert-warning">{{_ 'warningbanner.warning_for_enroll'}}</p>
 
-        {{#unless currentUser.emails.[0].verified}}
-          <p class="alert alert-warning">{{_ 'warningbanner.verify_email_address'}}
-          {{#if inProgress}}
-            <button type="button" class="btn btn-success btn-sm" disabled="disabled">{{_ 'warningbanner.please_wait'}}: {{getCountdown}}</button>
-          {{else}}
-            <button type="button" class="btn btn-success btn-sm btn-send resend-verification-link">{{_ 'warningbanner.send_email'}}</button>
-          {{/if}}
-          </p>
-        {{/unless}}
-
         {{#if ifProfile}}
           {{#unless ProfileImage}}
             <p class="alert alert-warning">{{_ 'warningbanner.upload_photo'}} <a class="uploadRedirect" href="/me">{{_ 'warningbanner.profile'}}</a></p>

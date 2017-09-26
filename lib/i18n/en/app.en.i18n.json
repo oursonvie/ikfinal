@@ -5,7 +5,9 @@
     "program": "program",
     "me": "me",
     "edit_profile": "Edit profile",
-    "my_program": "My Program"
+    "my_program": "My Program",
+    "login":"Login",
+    "logout":"Logout"
   },
   "homepage": {
     "more": "more"

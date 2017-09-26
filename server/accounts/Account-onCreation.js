@@ -1,3 +1,5 @@
+
+/*
 Accounts.onCreateUser(function (options, user) {
   // during the creation of new user, set email sent status to be false
   user.profile = { emailSent : false }
@@ -16,3 +18,4 @@ Accounts.onLogin(function(user) {
   }
 
 });
+*/

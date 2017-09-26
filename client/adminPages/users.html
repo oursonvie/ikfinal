@@ -21,9 +21,8 @@
             <th>UserId</th>
             <th>StudentId</th>
             <th>Email</th>
-            <th>Verified</th>
-            <th>Roles</th>
-            <th>Online Status</th>
+            <th style="text-align:center">Roles</th>
+            <th style="text-align:center">Online Status</th>
           </tr>
               {{#each users}}
                  <tr>
@@ -32,12 +31,11 @@
                    <td>{{profile.studentId}}</td>
                    {{#each emails}}
                      <td>{{address}}</td>
-                     <td>{{verified}}</td>
                    {{/each}}
                    {{#if isAdmin}}
-                      <td><td align="center"><i class="fa fa-user-circle fa-user-circle-remove fa-2x" style="color:green"></i></td></td>
+                      <td align="center"><i class="fa fa-user-circle fa-user-circle-remove fa-2x" style="color:green"></i></td>
                    {{else}}
-                      <td><td align="center"><i class="fa fa-user-circle fa-user-circle-add fa-2x"></i></td></td>
+                      <td align="center"><i class="fa fa-user-circle fa-user-circle-add fa-2x"></i></td>
                    {{/if}}
                     {{#if ifOnline}}
                       <td align="center"><i class="fa fa-power-off fa-2x" style="color:green"></i></td>

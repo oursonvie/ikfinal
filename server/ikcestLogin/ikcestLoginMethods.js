@@ -2,11 +2,13 @@ Meteor.methods({
   createIkcestUser: function(username, baseInfo) {
     var userId = Accounts.createUser({
 			username: username,
+      email: baseInfo.email,
       profile: {
         service: 'ikcest',
         baseInfo:baseInfo
       }
 		});
+    Roles.addUsersToRoles(userId, ['ikcest'])
     return userId
   },
   checkIkestUser: function(username) {
