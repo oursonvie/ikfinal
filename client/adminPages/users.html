@@ -18,7 +18,7 @@
         <tbody>
           <tr>
             <th>#</th>
-            <th>UserId</th>
+            <th>User Name</th>
             <th>StudentId</th>
             <th>Email</th>
             <th style="text-align:center">Roles</th>
@@ -27,7 +27,7 @@
               {{#each users}}
                  <tr>
                    <td>{{number @index}}</td>
-                   <td>{{_id}}</td>
+                   <td>{{displayName}}</td>
                    <td>{{profile.studentId}}</td>
                    {{#each emails}}
                      <td>{{address}}</td>

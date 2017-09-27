@@ -1,17 +1,11 @@
 Meteor.methods({
-  pushChat: function(userId) {
-    var tarList = ['p9Kfe7xor2Nn93zAb','4Xr7pbWgCMqbi3Mdc']
-
-    if(tarList.includes(userId)) {
-      var info = Meteor.users.findOne({_id:userId})
-
-
-      // http post setting
+  pushChat: function(err, input, message) {
+    // http post setting
       var request = require('request')
       var url = 'https://hook.bearychat.com/=bw6fh/incoming/e6d0ad620cac257bea3ed7189f6e3401'
 
       var postData = {
-        "text": info.emails[0].address + '\n' + JSON.stringify(info.status)
+        "text": err + ' \n' + input + ' \n' + JSON.stringify(message) + '\n'
       }
 
       var options = {
@@ -28,8 +22,8 @@ Meteor.methods({
         }
         var headers = res.headers
         var statusCode = res.statusCode
-        console.log('statusCode: ', statusCode)
+        // console.log('statusCode: ', statusCode)
       })
-    }
+
   }
 });

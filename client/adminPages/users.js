@@ -31,6 +31,14 @@ Template.users.helpers({
     } else {
       return false;
     }
+  },
+  displayName: function() {
+    if (this.username) {
+      return this.username
+    } else {
+      console.log(this)
+      return this.emails[0].address
+    }
   }
 })
 

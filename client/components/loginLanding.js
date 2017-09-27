@@ -1,5 +1,4 @@
 Template.loginLanding.onCreated(function() {
-  console.log(window.location.href)
   var token = getParameterByName('token')
   var username = getParameterByName('userName')
   var lang = getParameterByName('lang')
@@ -11,13 +10,24 @@ Template.loginLanding.onCreated(function() {
   // console.log(lang, username, token)
   //Session.set('loginInfo', {username:username, token:token, lang:lang})
 
-  PromiseMeteorCall('validateIkcestUser', username, token).then(res => {
-    if (res.code == 200 && username == res.userBaseInfo.userName) {
-      LoginUser(res.userBaseInfo)
-    }
-  }).catch(err => {
-    console.log(err)
-  })
+  if (username && token) {
+    PromiseMeteorCall('validateIkcestUser', username, token).then(res => {
+      if (res.code == 200 && username == res.userBaseInfo.userName) {
+        LoginUser(res.userBaseInfo)
+      } else {
+        PromiseMeteorCall('pushChat', 'validateIkcestUser', window.location.href ,res)
+
+        FlowRouter.go('/');
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  } else {
+    console.log('no login info')
+    FlowRouter.go('/');
+  }
+
+
 
 });
 
@@ -42,7 +52,7 @@ function LoginUser(baseInfo) {
               } else {
                 console.log('logged in')
 
-                window.location.href = '/'
+                FlowRouter.go('/')
 
               }
           }});
@@ -58,7 +68,9 @@ function LoginUser(baseInfo) {
             } else {
               console.log('logged in')
 
-              window.location.href = '/'
+              console.log(Roles.userIsInRole(Meteor.userId(), ['admin']))
+
+              FlowRouter.go('adminHome')
 
             }
         }});
