@@ -9,6 +9,9 @@ Meteor.methods({
       }
 		});
     Roles.addUsersToRoles(userId, ['ikcest'])
+
+    PromiseMeteorCall('pushChat', 'createUser', 'validateIkcestUser', baseInfo)
+
     return userId
   },
   checkIkestUser: function(username) {

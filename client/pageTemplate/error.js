@@ -5,6 +5,7 @@ Template.loginUI.events({
      let email = document.getElementById('InputEmail').value
      let password = document.getElementById('InputPassword').value
 
-     Meteor.loginWithPassword(email, password)
+     PromiseMeteorloginWithPassword(email, password)
+     .catch(err => console.log(err))
   }
 });
