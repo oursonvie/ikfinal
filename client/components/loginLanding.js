@@ -68,8 +68,6 @@ function LoginUser(baseInfo) {
             } else {
               console.log('logged in')
 
-              console.log(Roles.userIsInRole(Meteor.userId(), ['admin']))
-
               FlowRouter.go('adminHome')
 
             }
