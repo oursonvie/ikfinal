@@ -22,7 +22,7 @@ Meteor.methods({
     }
   },
   validateIkcestUser: async function(username, token) {
-    let result = await httpGetAsync('http://uc.silkroadst.ikcest.org/info',{params:{token:token}})
+    let result = await httpGetAsync( Meteor.settings.public.ikcestAuthServer + 'info',{params:{token:token}})
     return result.data
   }
 });
